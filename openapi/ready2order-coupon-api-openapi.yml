@@ -1,0 +1,735 @@
+openapi: 3.0.0
+info:
+  title: ready2order Public Account Token Coupon API
+  contact:
+    name: support@ready2order.com
+  license:
+    name: proprietary
+  version: R2-2026.30.2
+  description: "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n"
+servers:
+- url: https://api.ready2order.com/v1
+tags:
+- name: Coupon
+  description: '<!-- markdownlint-disable MD041 MD033 MD051 github-internal-links relative-links -- tag description snippet, not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Coupons are gift cards and vouchers that merchants sell and later accept as payment at the point of sale. The `coupon_value` field always holds the current remaining balance.
+
+
+    **Balance and Lifecycle**
+
+
+    You create a coupon with an initial value. From there you can [charge it](#operation/couponChargeById) (add value) or [redeem it](#operation/couponRedeemById) (deduct value). Partial redemptions work fine; the coupon stays active until the balance reaches zero.
+
+
+    **Coupon Purpose**
+
+
+    `coupon_purpose` determines when VAT is due. We distinguish between two voucher types:
+
+
+    | Purpose | When VAT is due | `coupon_containsVat` |
+
+    |---------|-----------------|----------------------|
+
+    | `single` | At issuance (place of supply and tax rate are known at creation) | The applicable rate, e.g. `20` |
+
+    | `multi` | At redemption (the POS applies the right rate per item) | Must be `0` |
+
+
+    Single-purpose suits vouchers for specific goods at a fixed rate, such as a drink voucher tied to a particular product.<br>
+
+    Multi-purpose fits general gift cards redeemable for anything or across multiple locations.
+
+
+    Check with your tax advisor which type applies to your situation.
+
+
+    **Identifier**
+
+
+    `coupon_identifier` is the numeric code printed on physical voucher cards. If you leave it out, an EAN-13 code is generated automatically. Pass it as the `identifier` query parameter on [GET /coupons](#operation/couponGetAll) to look up a coupon by barcode scan.
+
+    '
+paths:
+  /coupons:
+    get:
+      tags:
+      - Coupon
+      summary: List coupons
+      description: Returns a paginated list of coupons. Filter by `identifier` to look up a coupon by its code (e.g. scanned from a barcode).
+      operationId: couponGetAll
+      parameters:
+      - name: page
+        in: query
+        description: Page you want to display
+        required: false
+        schema:
+          type: integer
+          example: 1
+      - name: limit
+        in: query
+        description: Items per page
+        required: false
+        schema:
+          type: integer
+          example: 25
+      - name: identifier
+        in: query
+        description: Identifier/Code of coupon
+        required: false
+        schema:
+          type: string
+          example: '9995071228303'
+      - name: trainingMode
+        in: query
+        description: Trainingmode
+        required: false
+        schema:
+          type: boolean
+          example: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    coupon_id:
+                      type: integer
+                      example: 1234
+                    coupon_name:
+                      type: string
+                      example: Christmas Coupon
+                    coupon_containsVat:
+                      type: string
+                      example: 20
+                    coupon_purpose:
+                      type: string
+                      example: single|multi
+                    coupon_identifier:
+                      type: string
+                      example: 9995071228303
+                    coupon_testMode:
+                      type: boolean
+                      example: true
+                    coupon_validUntil:
+                      type: string
+                      example: '2020-01-31 00:49:39'
+                    coupon_issuedAt:
+                      type: string
+                      example: '2018-01-31 00:49:39'
+                    couponCategory_id:
+                      type: integer
+                      example: 4
+                    vat_id:
+                      type: integer
+                      example: 1234
+                    product_id:
+                      type: integer
+                      example: 1234
+                    customer_id:
+                      type: integer
+                      example: 7455
+                    coupon_created_at:
+                      type: string
+                      example: '2018-01-31 00:49:39'
+                    coupon_updated_at:
+                      type: string
+                      example: '2018-01-31 04:49:39'
+                  type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - Coupon
+      summary: Create a coupon
+      description: 'Creates a new coupon. `coupon_identifier` is auto-generated as an EAN-13 code if omitted. Set `coupon_purpose` to "single" or "multi" to control when VAT is due: at issuance or at redemption.'
+      operationId: couponCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - coupon_name
+              - coupon_value
+              properties:
+                coupon_name:
+                  type: string
+                  example: MyCoupon
+                coupon_value:
+                  type: string
+                  example: 5
+                couponCategory_id:
+                  type: integer
+                  example: 123
+                coupon_containsVat:
+                  type: string
+                  example: 3
+                customer_id:
+                  type: integer
+                  example: 450
+                coupon_type:
+                  type: string
+                  enum:
+                  - coupon
+                  example: coupon
+                coupon_purpose:
+                  type: string
+                  enum:
+                  - single
+                  - multi
+                  example: single|multi
+                coupon_validUntil:
+                  type: string
+                  example: '2030-01-02'
+                coupon_issuedAt:
+                  type: string
+                  example: '2025-01-02'
+                coupon_testMode:
+                  type: boolean
+                  example: false
+                coupon_identifier:
+                  type: string
+                  example: AABBCC
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  coupon_id:
+                    type: integer
+                    example: 1234
+                  coupon_name:
+                    type: string
+                    example: Christmas Coupon
+                  coupon_containsVat:
+                    type: string
+                    example: 20
+                  coupon_purpose:
+                    type: string
+                    example: single|multi
+                  coupon_identifier:
+                    type: string
+                    example: 9995071228303
+                  coupon_testMode:
+                    type: boolean
+                    example: true
+                  coupon_validUntil:
+                    type: string
+                    example: '2020-01-31 00:49:39'
+                  coupon_issuedAt:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  couponCategory_id:
+                    type: integer
+                    example: 4
+                  vat_id:
+                    type: integer
+                    example: 1234
+                  product_id:
+                    type: integer
+                    example: 1234
+                  customer_id:
+                    type: integer
+                    example: 7455
+                  coupon_created_at:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  coupon_updated_at:
+                    type: string
+                    example: '2018-01-31 04:49:39'
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - Bearer: []
+  /coupons/{id}:
+    get:
+      tags:
+      - Coupon
+      summary: Get a coupon
+      description: Returns a single coupon by its ID, including its current balance in coupon_value.
+      operationId: couponFindById
+      parameters:
+      - name: id
+        in: path
+        description: Coupon ID to find
+        required: true
+        schema:
+          type: integer
+          example: 123456
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  coupon_id:
+                    type: integer
+                    example: 1234
+                  coupon_name:
+                    type: string
+                    example: Christmas Coupon
+                  coupon_containsVat:
+                    type: string
+                    example: 20
+                  coupon_purpose:
+                    type: string
+                    example: single|multi
+                  coupon_identifier:
+                    type: string
+                    example: 9995071228303
+                  coupon_testMode:
+                    type: boolean
+                    example: true
+                  coupon_validUntil:
+                    type: string
+                    example: '2020-01-31 00:49:39'
+                  coupon_issuedAt:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  couponCategory_id:
+                    type: integer
+                    example: 4
+                  vat_id:
+                    type: integer
+                    example: 1234
+                  product_id:
+                    type: integer
+                    example: 1234
+                  customer_id:
+                    type: integer
+                    example: 7455
+                  coupon_created_at:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  coupon_updated_at:
+                    type: string
+                    example: '2018-01-31 04:49:39'
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+    put:
+      tags:
+      - Coupon
+      summary: Update a coupon
+      description: Updates coupon metadata such as name, validity dates, category, or customer assignment. To adjust the balance, use the charge or redeem endpoints instead.
+      operationId: couponUpdateById
+      parameters:
+      - name: id
+        in: path
+        description: Coupon ID to update
+        required: true
+        schema:
+          type: integer
+          example: 12345
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                coupon_name:
+                  type: string
+                  example: MyCoupon
+                coupon_value:
+                  type: string
+                  example: 5
+                couponCategory_id:
+                  type: integer
+                  example: 123
+                coupon_containsVat:
+                  type: string
+                  example: 3
+                customer_id:
+                  type: integer
+                  example: 450
+                coupon_type:
+                  type: string
+                  enum:
+                  - coupon
+                  example: coupon
+                coupon_purpose:
+                  type: string
+                  enum:
+                  - single
+                  - multi
+                  example: single|multi
+                coupon_validUntil:
+                  type: string
+                  example: '2030-01-02'
+                coupon_issuedAt:
+                  type: string
+                  example: '2025-01-02'
+                coupon_testMode:
+                  type: boolean
+                  example: false
+                coupon_identifier:
+                  type: string
+                  example: AABBCC
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  coupon_id:
+                    type: integer
+                    example: 1234
+                  coupon_name:
+                    type: string
+                    example: Christmas Coupon
+                  coupon_containsVat:
+                    type: string
+                    example: 20
+                  coupon_purpose:
+                    type: string
+                    example: single|multi
+                  coupon_identifier:
+                    type: string
+                    example: 9995071228303
+                  coupon_testMode:
+                    type: boolean
+                    example: true
+                  coupon_validUntil:
+                    type: string
+                    example: '2020-01-31 00:49:39'
+                  coupon_issuedAt:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  couponCategory_id:
+                    type: integer
+                    example: 4
+                  vat_id:
+                    type: integer
+                    example: 1234
+                  product_id:
+                    type: integer
+                    example: 1234
+                  customer_id:
+                    type: integer
+                    example: 7455
+                  coupon_created_at:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  coupon_updated_at:
+                    type: string
+                    example: '2018-01-31 04:49:39'
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+    delete:
+      tags:
+      - Coupon
+      summary: Delete a coupon
+      description: Deletes a coupon.
+      operationId: couponDeleteById
+      parameters:
+      - name: id
+        in: path
+        description: Coupon ID to delete
+        required: true
+        schema:
+          type: integer
+          example: 12345
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  success:
+                    type: boolean
+                    example: true
+                  msg:
+                    type: string
+                    example: Coupon was successfully deleted!
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+  /coupons/{id}/charge:
+    post:
+      tags:
+      - Coupon
+      summary: Charge a coupon
+      description: Adds value to an existing coupon's balance, for example when a customer tops up a voucher card.
+      operationId: couponChargeById
+      parameters:
+      - name: id
+        in: path
+        description: Coupon ID to charge
+        required: true
+        schema:
+          type: integer
+          example: 1234
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - value
+              properties:
+                value:
+                  description: Charge value
+                  type: string
+                  example: 12
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  coupon_id:
+                    type: integer
+                    example: 1234
+                  coupon_name:
+                    type: string
+                    example: Christmas Coupon
+                  coupon_containsVat:
+                    type: string
+                    example: 20
+                  coupon_purpose:
+                    type: string
+                    example: single|multi
+                  coupon_identifier:
+                    type: string
+                    example: 9995071228303
+                  coupon_testMode:
+                    type: boolean
+                    example: true
+                  coupon_validUntil:
+                    type: string
+                    example: '2020-01-31 00:49:39'
+                  coupon_issuedAt:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  couponCategory_id:
+                    type: integer
+                    example: 4
+                  vat_id:
+                    type: integer
+                    example: 1234
+                  product_id:
+                    type: integer
+                    example: 1234
+                  customer_id:
+                    type: integer
+                    example: 7455
+                  coupon_created_at:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  coupon_updated_at:
+                    type: string
+                    example: '2018-01-31 04:49:39'
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+  /coupons/{id}/redeem:
+    post:
+      tags:
+      - Coupon
+      summary: Redeem a coupon
+      description: Deducts the specified value from the coupon's balance. Partial redemptions are supported. Returns the updated coupon with the new balance in `coupon_value`.
+      operationId: couponRedeemById
+      parameters:
+      - name: id
+        in: path
+        description: Coupon ID to redeem
+        required: true
+        schema:
+          type: integer
+          example: 1234
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - value
+              properties:
+                value:
+                  description: Redemption value
+                  type: string
+                  example: 12
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  coupon_id:
+                    type: integer
+                    example: 1234
+                  coupon_name:
+                    type: string
+                    example: Christmas Coupon
+                  coupon_containsVat:
+                    type: string
+                    example: 20
+                  coupon_purpose:
+                    type: string
+                    example: single|multi
+                  coupon_identifier:
+                    type: string
+                    example: 9995071228303
+                  coupon_testMode:
+                    type: boolean
+                    example: true
+                  coupon_validUntil:
+                    type: string
+                    example: '2020-01-31 00:49:39'
+                  coupon_issuedAt:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  couponCategory_id:
+                    type: integer
+                    example: 4
+                  vat_id:
+                    type: integer
+                    example: 1234
+                  product_id:
+                    type: integer
+                    example: 1234
+                  customer_id:
+                    type: integer
+                    example: 7455
+                  coupon_created_at:
+                    type: string
+                    example: '2018-01-31 00:49:39'
+                  coupon_updated_at:
+                    type: string
+                    example: '2018-01-31 04:49:39'
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Account Token obtained after completing the authorization flow. See First Steps for details.
+      name: Authorization
+      in: header
+x-tagGroups:
+- name: Essentials
+  tags:
+  - Product
+  - Product Group
+  - Bill
+  - Storno
+  - Payment Method
+  - Payment Method Type
+  - Coupon
+  - Coupon Category
+  - Discount
+  - Discount Group
+  - Customer
+- name: Gastro
+  tags:
+  - Order
+  - Table
+  - Table Area
+- name: POS
+  tags:
+  - Printer
+  - Printer Profile
+  - Print Job
+  - Terminal Transaction
+  - User
+  - User Roles
+- name: Reporting
+  tags:
+  - Daily Report
+  - Accounting Financial Year
+  - Export
+- name: Reference Data
+  tags:
+  - Bill Type
+  - Customer Group
+  - Currency
+  - Country
+  - Device
+  - Language
+  - Legal Form
+  - Units
+  - Vat Rate
+- name: Integration
+  tags:
+  - Account Token
+  - Grant Access Token
+  - Developer Token
+  - Webhook
+  - Job Status
+- name: Internal
+  tags:
+  - Account
+  - Admin
+  - CashboxRegistration
+  - ConfirmableAction
+  - Constant
+  - Item
+  - License
+  - MobileConstant
+  - ReadyPaySellRate
+  - Signup
+  - Tss

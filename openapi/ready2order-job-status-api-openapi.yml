@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  title: ready2order Public Account Token Job Status API
+  contact:
+    name: support@ready2order.com
+  license:
+    name: proprietary
+  version: R2-2026.30.2
+  description: "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n"
+servers:
+- url: https://api.ready2order.com/v1
+tags:
+- name: Job Status
+paths:
+  /job_status/{id}:
+    get:
+      tags:
+      - Job Status
+      summary: Get Status By Id
+      description: ''
+      operationId: jobStatusGetStatusById
+      parameters:
+      - name: id
+        in: path
+        description: ID to find
+        required: true
+        schema:
+          type: integer
+          example: 123456
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobStatus_id:
+                    type: integer
+                    example: 123
+                  jobStatus_status:
+                    type: string
+                    example: finished
+                  jobStatus_startedAt:
+                    type: string
+                    example: '2019-08-02 08:08:13'
+                  jobStatus_finishedAt:
+                    type: string
+                    example: '2019-08-02 08:08:14'
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Account Token obtained after completing the authorization flow. See First Steps for details.
+      name: Authorization
+      in: header
+x-tagGroups:
+- name: Essentials
+  tags:
+  - Product
+  - Product Group
+  - Bill
+  - Storno
+  - Payment Method
+  - Payment Method Type
+  - Coupon
+  - Coupon Category
+  - Discount
+  - Discount Group
+  - Customer
+- name: Gastro
+  tags:
+  - Order
+  - Table
+  - Table Area
+- name: POS
+  tags:
+  - Printer
+  - Printer Profile
+  - Print Job
+  - Terminal Transaction
+  - User
+  - User Roles
+- name: Reporting
+  tags:
+  - Daily Report
+  - Accounting Financial Year
+  - Export
+- name: Reference Data
+  tags:
+  - Bill Type
+  - Customer Group
+  - Currency
+  - Country
+  - Device
+  - Language
+  - Legal Form
+  - Units
+  - Vat Rate
+- name: Integration
+  tags:
+  - Account Token
+  - Grant Access Token
+  - Developer Token
+  - Webhook
+  - Job Status
+- name: Internal
+  tags:
+  - Account
+  - Admin
+  - CashboxRegistration
+  - ConfirmableAction
+  - Constant
+  - Item
+  - License
+  - MobileConstant
+  - ReadyPaySellRate
+  - Signup
+  - Tss

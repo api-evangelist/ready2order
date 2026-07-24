@@ -1,0 +1,2464 @@
+openapi: 3.0.0
+info:
+  title: ready2order Public Account Token Bill API
+  contact:
+    name: support@ready2order.com
+  license:
+    name: proprietary
+  version: R2-2026.30.2
+  description: "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n"
+servers:
+- url: https://api.ready2order.com/v1
+tags:
+- name: Bill
+paths:
+  /document/invoice:
+    get:
+      tags:
+      - Bill
+      summary: List all Bills
+      description: ''
+      operationId: billGetAll
+      parameters:
+      - name: offset
+        in: query
+        description: Offset
+        required: false
+        schema:
+          type: integer
+          example: 10
+      - name: limit
+        in: query
+        description: Items per page
+        required: false
+        schema:
+          type: integer
+          example: 255
+      - name: query
+        in: query
+        description: Search query; the value to search by.
+        required: false
+        schema:
+          type: string
+          example: RG2018/1
+      - name: tableId
+        in: query
+        description: Table-Id to filter by.
+        required: false
+        schema:
+          type: integer
+          example: 153311
+      - name: customerId
+        in: query
+        description: Customer-Id to filter by.
+        required: false
+        schema:
+          type: integer
+          example: 27268
+      - name: dateField
+        in: query
+        description: Date field the query should filter by. <br><br> __Values__<br> `daily_report` Filter by the start date of the related Daily Report<br> `bill` Filter by the bill’s creation date
+        required: false
+        schema:
+          type: string
+          default: daily_report
+          enum:
+          - daily_report
+          - dr_startDate
+          - bill
+          - b_dateTime
+          example: daily_report
+      - name: dateFrom
+        in: query
+        description: Marks the start date for filtering. Can be a whole date (account's timestamp is used by default) or a datetime (ISO 8601).<br><br> `2024-10-23` or `2023-12-31T13:00:00Z`
+        required: false
+        schema:
+          type: string
+          example: '2024-10-23'
+      - name: dateTo
+        in: query
+        description: Marks the end date for filtering. Can be a whole date (account's timestamp is used by default) or a datetime (ISO 8601).<br><br> `2024-11-21` or `2023-12-31T13:00:00Z`
+        required: false
+        schema:
+          type: string
+          example: '2024-11-21'
+      - name: testMode
+        in: query
+        description: Training mode on/off.
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+          example: false
+      - name: items
+        in: query
+        description: Include list of items.
+        required: false
+        schema:
+          type: boolean
+          default: 'false'
+          example: false
+      - name: discounts
+        in: query
+        description: Include list of discounts.
+        required: false
+        schema:
+          type: boolean
+          example: false
+      - name: payments
+        in: query
+        description: Include list of payments.
+        required: false
+        schema:
+          type: boolean
+          example: false
+      - name: payment
+        in: query
+        description: '[DEPRECATED] ~~Include list of payments. (Default: `false`)~~ <br><br> __Alternative__<br> `payments`'
+        required: false
+        schema:
+          type: boolean
+          example: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  invoices:
+                    type: array
+                    items:
+                      properties:
+                        invoice_id:
+                          type: integer
+                          example: 1234
+                        invoice_reference_id:
+                          type: integer
+                          example: 1233
+                        invoice_timestamp:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        invoice_number:
+                          type: integer
+                          example: 1
+                        invoice_numberFull:
+                          type: string
+                          example: RG2019/1
+                        invoice_total:
+                          type: string
+                          example: 12
+                        invoice_totalNet:
+                          type: string
+                          example: 10
+                        invoice_totalVat:
+                          type: string
+                          example: 2
+                        invoice_totalTip:
+                          type: string
+                          example: 0
+                        invoice_address_company:
+                          type: string
+                          example: ready2order GmbH
+                        invoice_address_vatId:
+                          type: string
+                          example: ATU12341234
+                        invoice_address_salutation:
+                          type: string
+                          example: Mr/Ms
+                        invoice_address_title:
+                          type: string
+                          example: Professor
+                        invoice_address_firstName:
+                          type: string
+                          example: Chris
+                        invoice_address_lastName:
+                          type: string
+                          example: Fox
+                        invoice_address_street:
+                          type: string
+                          example: Hintere Zollamtsstraße 17
+                        invoice_address_city:
+                          type: string
+                          example: Vienna
+                        invoice_address_zip:
+                          type: string
+                          example: 1030
+                        invoice_address_country:
+                          type: string
+                          example: AT
+                        invoice_address_email:
+                          type: string
+                          example: dux@fox.com
+                        invoice_address_phone:
+                          type: string
+                          example: +43 664 1234 1234 1234
+                        invoice_inPrinterQueue:
+                          type: boolean
+                          example: false
+                        invoice_priceBase:
+                          type: string
+                          example: brutto
+                        invoice_deleted_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        invoice_deletedReason:
+                          type: string
+                          example: Some reason
+                        invoice_pdf:
+                          type: string
+                          example: http://some.link
+                        invoice_textBeforeItemsTable:
+                          type: string
+                          example: Some text
+                        invoice_text:
+                          type: string
+                          example: Some text
+                        invoice_locked:
+                          type: boolean
+                          example: true
+                        invoice_externalReferenceNumber:
+                          type: string
+                          example: REF-1234
+                        invoice_internalInvoiceReferenceNumber:
+                          type: string
+                          example: 1233
+                        invoice_dueDate:
+                          type: string
+                          example: '2019-01-05'
+                        invoice_deliveryDate:
+                          type: string
+                          example: '2019-01-01'
+                        invoice_paid:
+                          type: boolean
+                          example: true
+                        invoice_paidDate:
+                          type: string
+                          example: '2019-01-01'
+                        invoice_offlineTimestamp:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        invoice_offlineNumber:
+                          type: string
+                          example: 2A26A8D9/1
+                        invoice_testMode:
+                          type: boolean
+                          example: true
+                        invoice_formatVersion:
+                          type: integer
+                          example: 2
+                        customer_id:
+                          type: integer
+                          example: 1234
+                        customerCategory_id:
+                          type: integer
+                          example: 1023
+                        table_id:
+                          type: integer
+                          example: 1234
+                        tableArea_id:
+                          type: integer
+                          example: 67
+                        paymentMethod_id:
+                          type: integer
+                          example: 1234
+                        user_id:
+                          type: integer
+                          example: 1234
+                        printer_id:
+                          type: integer
+                          example: 23
+                        billType_id:
+                          type: integer
+                          example: 1
+                        currency_id:
+                          type: integer
+                          example: 1
+                        items:
+                          type: array
+                          items:
+                            properties:
+                              item_id:
+                                type: integer
+                                example: 76234
+                              item_timestamp:
+                                type: string
+                                example: '2019-01-01 00:00:00'
+                              item_quantity:
+                                type: string
+                                example: 1
+                              item_retour:
+                                type: boolean
+                                example: false
+                              item_number:
+                                type: string
+                                example: 1
+                              item_serialNumber:
+                                type: string
+                                example: some-serial-number
+                              item_expirationDate:
+                                type: string
+                                example: '2019-01-01 00:00:00'
+                              item_name:
+                                type: string
+                                example: MyProductName
+                              item_comment:
+                                type: string
+                                example: my-optional-comment
+                              item_price:
+                                type: string
+                                example: 12
+                              item_priceNet:
+                                type: string
+                                example: 10
+                              item_priceBase:
+                                type: boolean
+                                example: false
+                              item_total:
+                                type: string
+                                example: 12
+                              item_totalNet:
+                                type: string
+                                example: 10
+                              item_vat:
+                                type: string
+                                example: 2
+                              item_vatRate:
+                                type: string
+                                example: 20
+                              item_vatCompensation:
+                                type: string
+                                example: 0
+                              item_undiscountedSumBeforeLineDiscount:
+                                type: string
+                                example: 0
+                              item_undiscountedSumBeforeInvoiceDiscount:
+                                type: string
+                                example: 0
+                              item_lineDiscountId:
+                                type: integer
+                                example: 1234
+                              item_lineDiscountGroupId:
+                                type: integer
+                                example: 1234
+                              item_lineDiscountName:
+                                type: string
+                                example: SomeDiscountName
+                              item_lineDiscountPercent:
+                                type: string
+                                example: 0
+                              item_lineDiscountNet:
+                                type: string
+                                example: 0
+                              item_lineDiscountGross:
+                                type: string
+                                example: 0
+                              item_invoiceDiscountNet:
+                                type: string
+                                example: 0
+                              item_invoiceDiscountGross:
+                                type: string
+                                example: 0
+                              item_discountable:
+                                type: boolean
+                                example: true
+                              paymentMethod_id:
+                                type: integer
+                                example: 1234
+                              item_updatedStock:
+                                type: boolean
+                                example: true
+                              product_id:
+                                type: integer
+                                example: 1234
+                              productgroup_name:
+                                type: string
+                                example: My product group
+                              productGroup_id:
+                                type: integer
+                                example: 1234
+                              customer_id:
+                                type: integer
+                                example: 1234
+                              user_id:
+                                type: integer
+                                example: 1234
+                              user_name:
+                                type: string
+                                example: SomeUser
+                              invoice_id:
+                                type: integer
+                                example: 1234
+                              deliveryBill_id:
+                                type: integer
+                                example: 1234
+                              dailyReport_id:
+                                type: integer
+                                example: 1234
+                              productUnit_id:
+                                type: integer
+                                example: 1
+                              table_id:
+                                type: integer
+                                example: 1234
+                              table_name:
+                                type: string
+                                example: SomeTableName
+                              payment_id:
+                                type: integer
+                                example: 431
+                              retourInvoice_id:
+                                type: integer
+                                example: 1233
+                              item_accountingCode:
+                                type: string
+                                example: 4000
+                              item_testMode:
+                                type: boolean
+                                example: false
+                              item_product_price:
+                                type: string
+                                example: 12
+                              item_product_priceNet:
+                                type: string
+                                example: 10
+                              item_product_vat:
+                                type: string
+                                example: 2
+                              item_qty:
+                                type: string
+                                example: 1
+                              item_product_vatRate:
+                                type: string
+                                example: 20
+                              item_product_vatCompensation:
+                                type: string
+                                example: 0
+                              item_product_priceNetPerUnit:
+                                type: string
+                                example: 10
+                              item_product_pricePerUnit:
+                                type: string
+                                example: 12
+                              item_product_discountable:
+                                type: boolean
+                                example: true
+                            type: object
+                        address:
+                          properties:
+                            company:
+                              type: string
+                              example: ready2order GmbH
+                            vatId:
+                              type: string
+                              example: ATU12341234
+                            salutation:
+                              type: string
+                              example: Mr/Ms
+                            title:
+                              type: string
+                              example: Professor
+                            firstName:
+                              type: string
+                              example: Chris
+                            lastName:
+                              type: string
+                              example: Muster
+                            street:
+                              type: string
+                              example: SomeStreet 1234
+                            city:
+                              type: string
+                              example: Vienna
+                            zip:
+                              type: string
+                              example: 1030
+                            country:
+                              type: string
+                              example: AT
+                            email:
+                              type: string
+                              example: dummy@email.com
+                            phone:
+                              type: string
+                              example: +43 1234 12312341234
+                          type: object
+                        type:
+                          properties:
+                            billType_id:
+                              type: integer
+                              example: 1
+                            billType_name:
+                              type: string
+                              example: Rechnung
+                            billType_symbol:
+                              type: string
+                              example: RG
+                          type: object
+                        payment:
+                          type: array
+                          items:
+                            properties:
+                              billPayment_id:
+                                type: integer
+                                example: 9999
+                              billPayment_name:
+                                type: string
+                                example: Cash
+                              billPayment_value:
+                                type: string
+                                example: 12
+                              payment_id:
+                                type: integer
+                                example: 431
+                              referenced_bill_id:
+                                type: integer
+                                example: 1234
+                            type: object
+                        transaction:
+                          properties:
+                            id:
+                              type: string
+                              example: TFRG4C6NG2
+                            tx_id:
+                              type: string
+                            customer_receipt:
+                              type: string
+                            amount:
+                              type: string
+                            r2o_id:
+                              type: string
+                              example: U1JGILYS
+                          type: object
+                        discounts:
+                          type: array
+                          items:
+                            properties:
+                              billDiscount_id:
+                                type: integer
+                                example: 9999
+                              billDiscount_name:
+                                type: string
+                                example: SomeDiscountName
+                              billDiscount_value:
+                                type: string
+                                example: 0
+                              billDiscount_percent:
+                                type: string
+                                example: 0
+                              billDiscount_discount_id:
+                                type: integer
+                                example: 9999
+                              billDiscount_discountGroup_id:
+                                type: integer
+                                example: 9999
+                              billDiscount_created_at:
+                                type: string
+                                example: '2019-01-01 00:00:00'
+                              billDiscount_updated_at:
+                                type: string
+                                example: '2019-01-01 00:00:00'
+                            type: object
+                      type: object
+                  count:
+                    type: integer
+                    example: 50
+                  offset:
+                    type: integer
+                    example: 0
+                  limit:
+                    type: integer
+                    example: 50
+                  dateFrom:
+                    type: string
+                    example: '2019-01-01'
+                  dateTo:
+                    type: string
+                    example: '2019-12-31'
+                  query:
+                    type: string
+                    example: some-query
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - Bearer: []
+    post:
+      tags:
+      - Bill
+      summary: Create Bill
+      description: ''
+      operationId: billCreateBill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - paymentMethod_id
+              - user_id
+              properties:
+                paymentMethod_id:
+                  description: PaymentMethod ID. Whether the bill is marked as paid depends on the payment method type — payment methods with markAsPaid=true will automatically mark the bill as paid.
+                  type: integer
+                  example: 123456
+                user_id:
+                  description: User ID
+                  type: integer
+                  example: 123456
+                partPayments:
+                  description: List of part-payments to split the bill total into multiple payments
+                  type: array
+                  items:
+                    properties:
+                      paymentMethod_id:
+                        description: PaymentMethod ID of this payment
+                        type: integer
+                        example: 123456
+                      amount:
+                        description: Amount paid with this payment method
+                        type: string
+                        example: 5
+                      tip:
+                        description: Tip paid with this payment method
+                        type: string
+                        example: 1
+                      couponIdentifier:
+                        description: Identifier of the coupon to redeem (only for payment methods of type coupon)
+                        type: string
+                        example: COUPON-123
+                    type: object
+                table_id:
+                  description: Table ID
+                  type: integer
+                  example: 4321
+                customer_id:
+                  description: Customer ID
+                  type: integer
+                  example: 1024
+                billType_id:
+                  description: BillType ID
+                  type: integer
+                  example: 1
+                printer_id:
+                  description: Printer ID on which the bill should be printed
+                  type: integer
+                  example: 1
+                printingProfile_id:
+                  description: PrintingProfile ID on which the bill should be printed.
+                  type: integer
+                  example: 1
+                invoice_printCount:
+                  description: Number of copies to be printed (where 1 is the original receipt)
+                  type: integer
+                  example: 2
+                invoice_textBeforeItemsTable:
+                  description: Text shown before items table on bill PDF
+                  type: string
+                  example: Some text
+                invoice_text:
+                  description: Text shown after items table on bill PDF
+                  type: string
+                  example: Some text
+                invoice_externalReferenceNumber:
+                  description: External reference number for the bill
+                  type: string
+                  example: REF-1234
+                invoice_totalTip:
+                  description: Total tip amount for the invoice.
+                  type: string
+                  example: 1.5
+                invoice_priceBase:
+                  description: Pricebase
+                  type: string
+                  enum:
+                  - gross
+                  - net
+                  example: gross or net
+                invoice_testMode:
+                  description: Trainingmode
+                  type: boolean
+                  example: false
+                createPDF:
+                  description: Whether to create and return PDF or not
+                  type: boolean
+                  example: false
+                pdfFormat:
+                  description: PDF format
+                  type: string
+                  example: A4, 80mm or 58mm
+                invoice_showRecipient:
+                  description: Show additional lines on invoice receipt
+                  type: boolean
+                  example: false
+                invoice_dueDate:
+                  description: Due date
+                  type: string
+                  example: '2019-01-15'
+                items:
+                  description: List of items <br><br> _* Required if `orderItem_ids` is not provided._
+                  type: array
+                  items:
+                    properties:
+                      item_quantity:
+                        type: string
+                        default: 1
+                        example: 3
+                      item_name:
+                        type: string
+                        example: MyProductName
+                      item_comment:
+                        type: string
+                        example: MyProductDescription
+                      item_price:
+                        type: string
+                        example: 12
+                      item_vatRate:
+                        description: Please use vatId instead
+                        type: string
+                        example: 20
+                      item_vatId:
+                        type: integer
+                        example: 12345
+                      item_priceBase:
+                        type: string
+                        example: brutto or netto
+                      product_id:
+                        type: integer
+                        example: 1234
+                      discount_id:
+                        type: integer
+                        example: 1234
+                      discount_value:
+                        type: string
+                        example: 0
+                      discount_unit:
+                        type: string
+                        example: percent or currency
+                      item_variations:
+                        description: List of product variations
+                        type: array
+                        items:
+                          properties:
+                            product_id:
+                              description: Id of product variation
+                              type: integer
+                              example: 1
+                            variation_name:
+                              description: Product variation name
+                              type: string
+                              example: Schnitzel with chips and mayo
+                            variation_price:
+                              description: Product variation price
+                              type: string
+                              example: 15.2
+                          type: object
+                    type: object
+                orderItem_ids:
+                  description: List of orderItemIds to process the invoice for <br><br> _* Required if `items` is not provided._
+                  type: array
+                  items:
+                    type: integer
+                  example:
+                  - 1
+                  - 2
+                  - 3
+                address:
+                  description: Address object
+                  type: array
+                  items:
+                    properties:
+                      company:
+                        type: string
+                        example: ready2order GmbH
+                      vatId:
+                        type: string
+                        example: ATU12341234
+                      leitweg_id:
+                        type: string
+                        example: 1234
+                      supplier_number:
+                        type: string
+                        example: 1234
+                      salutation:
+                        type: string
+                        example: Mr/Mrs
+                      title:
+                        type: string
+                        example: Professor
+                      firstName:
+                        type: string
+                        example: Chris
+                      lastName:
+                        type: string
+                        example: Muster
+                      street:
+                        type: string
+                        example: SomeStreet 1234
+                      city:
+                        type: string
+                        example: Vienna
+                      zip:
+                        type: string
+                        example: 1030
+                      country:
+                        type: string
+                        example: AT
+                      email:
+                        type: string
+                        example: dummy@email.com
+                      phone:
+                        type: string
+                        example: +43 1234 12312341234
+                    type: object
+                invoice_discounts:
+                  description: List of invoice-level discounts
+                  type: array
+                  items:
+                    properties:
+                      invoice_discountId:
+                        description: Discount ID
+                        type: integer
+                        example: 1234
+                      invoice_discountValue:
+                        description: Discount value (must be negative)
+                        type: string
+                        example: -5.5
+                      invoice_discountUnit:
+                        description: Discount unit
+                        type: string
+                        example: percent or currency
+                    type: object
+                order_enablePrinting:
+                  description: Whether to print the order receipts (foods, drinks) for the bill (if configured)
+                  type: boolean
+                  example: true
+                priceLevel_id:
+                  description: PriceLevel ID
+                  type: integer
+                  example: 255
+                invoice_roundToSmallestCurrencyUnit:
+                  description: Rounding to 0.05 or 0.10 cents
+                  type: string
+                  example: 0.05, 0.1
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  invoice_id:
+                    type: integer
+                    example: 1234
+                  invoice_reference_id:
+                    type: integer
+                    example: 1233
+                  invoice_timestamp:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_number:
+                    type: integer
+                    example: 1
+                  invoice_numberFull:
+                    type: string
+                    example: RG2019/1
+                  invoice_total:
+                    type: string
+                    example: 12
+                  invoice_totalNet:
+                    type: string
+                    example: 10
+                  invoice_totalVat:
+                    type: string
+                    example: 2
+                  invoice_totalTip:
+                    type: string
+                    example: 0
+                  invoice_address_company:
+                    type: string
+                    example: ready2order GmbH
+                  invoice_address_vatId:
+                    type: string
+                    example: ATU12341234
+                  invoice_address_salutation:
+                    type: string
+                    example: Mr/Ms
+                  invoice_address_title:
+                    type: string
+                    example: Professor
+                  invoice_address_firstName:
+                    type: string
+                    example: Chris
+                  invoice_address_lastName:
+                    type: string
+                    example: Fox
+                  invoice_address_street:
+                    type: string
+                    example: Hintere Zollamtsstraße 17
+                  invoice_address_city:
+                    type: string
+                    example: Vienna
+                  invoice_address_zip:
+                    type: string
+                    example: 1030
+                  invoice_address_country:
+                    type: string
+                    example: AT
+                  invoice_address_email:
+                    type: string
+                    example: dux@fox.com
+                  invoice_address_phone:
+                    type: string
+                    example: +43 664 1234 1234 1234
+                  invoice_inPrinterQueue:
+                    type: boolean
+                    example: false
+                  invoice_priceBase:
+                    type: string
+                    example: brutto
+                  invoice_deleted_at:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_deletedReason:
+                    type: string
+                    example: Some reason
+                  invoice_pdf:
+                    type: string
+                    example: http://some.link
+                  invoice_textBeforeItemsTable:
+                    type: string
+                    example: Some text
+                  invoice_text:
+                    type: string
+                    example: Some text
+                  invoice_locked:
+                    type: boolean
+                    example: true
+                  invoice_externalReferenceNumber:
+                    type: string
+                    example: REF-1234
+                  invoice_internalInvoiceReferenceNumber:
+                    type: string
+                    example: 1233
+                  invoice_dueDate:
+                    type: string
+                    example: '2019-01-05'
+                  invoice_deliveryDate:
+                    type: string
+                    example: '2019-01-01'
+                  invoice_paid:
+                    type: boolean
+                    example: true
+                  invoice_paidDate:
+                    type: string
+                    example: '2019-01-01'
+                  invoice_offlineTimestamp:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_offlineNumber:
+                    type: string
+                    example: 2A26A8D9/1
+                  invoice_testMode:
+                    type: boolean
+                    example: true
+                  invoice_formatVersion:
+                    type: integer
+                    example: 2
+                  customer_id:
+                    type: integer
+                    example: 1234
+                  customerCategory_id:
+                    type: integer
+                    example: 1023
+                  table_id:
+                    type: integer
+                    example: 1234
+                  tableArea_id:
+                    type: integer
+                    example: 67
+                  paymentMethod_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  printer_id:
+                    type: integer
+                    example: 23
+                  billType_id:
+                    type: integer
+                    example: 1
+                  currency_id:
+                    type: integer
+                    example: 1
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        item_id:
+                          type: integer
+                          example: 76234
+                        item_timestamp:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        item_quantity:
+                          type: string
+                          example: 1
+                        item_retour:
+                          type: boolean
+                          example: false
+                        item_number:
+                          type: string
+                          example: 1
+                        item_serialNumber:
+                          type: string
+                          example: some-serial-number
+                        item_expirationDate:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        item_name:
+                          type: string
+                          example: MyProductName
+                        item_comment:
+                          type: string
+                          example: my-optional-comment
+                        item_price:
+                          type: string
+                          example: 12
+                        item_priceNet:
+                          type: string
+                          example: 10
+                        item_priceBase:
+                          type: boolean
+                          example: false
+                        item_total:
+                          type: string
+                          example: 12
+                        item_totalNet:
+                          type: string
+                          example: 10
+                        item_vat:
+                          type: string
+                          example: 2
+                        item_vatRate:
+                          type: string
+                          example: 20
+                        item_vatCompensation:
+                          type: string
+                          example: 0
+                        item_undiscountedSumBeforeLineDiscount:
+                          type: string
+                          example: 0
+                        item_undiscountedSumBeforeInvoiceDiscount:
+                          type: string
+                          example: 0
+                        item_lineDiscountId:
+                          type: integer
+                          example: 1234
+                        item_lineDiscountGroupId:
+                          type: integer
+                          example: 1234
+                        item_lineDiscountName:
+                          type: string
+                          example: SomeDiscountName
+                        item_lineDiscountPercent:
+                          type: string
+                          example: 0
+                        item_lineDiscountNet:
+                          type: string
+                          example: 0
+                        item_lineDiscountGross:
+                          type: string
+                          example: 0
+                        item_invoiceDiscountNet:
+                          type: string
+                          example: 0
+                        item_invoiceDiscountGross:
+                          type: string
+                          example: 0
+                        item_discountable:
+                          type: boolean
+                          example: true
+                        paymentMethod_id:
+                          type: integer
+                          example: 1234
+                        item_updatedStock:
+                          type: boolean
+                          example: true
+                        product_id:
+                          type: integer
+                          example: 1234
+                        productgroup_name:
+                          type: string
+                          example: My product group
+                        productGroup_id:
+                          type: integer
+                          example: 1234
+                        customer_id:
+                          type: integer
+                          example: 1234
+                        user_id:
+                          type: integer
+                          example: 1234
+                        user_name:
+                          type: string
+                          example: SomeUser
+                        invoice_id:
+                          type: integer
+                          example: 1234
+                        deliveryBill_id:
+                          type: integer
+                          example: 1234
+                        dailyReport_id:
+                          type: integer
+                          example: 1234
+                        productUnit_id:
+                          type: integer
+                          example: 1
+                        table_id:
+                          type: integer
+                          example: 1234
+                        table_name:
+                          type: string
+                          example: SomeTableName
+                        payment_id:
+                          type: integer
+                          example: 431
+                        retourInvoice_id:
+                          type: integer
+                          example: 1233
+                        item_accountingCode:
+                          type: string
+                          example: 4000
+                        item_testMode:
+                          type: boolean
+                          example: false
+                        item_product_price:
+                          type: string
+                          example: 12
+                        item_product_priceNet:
+                          type: string
+                          example: 10
+                        item_product_vat:
+                          type: string
+                          example: 2
+                        item_qty:
+                          type: string
+                          example: 1
+                        item_product_vatRate:
+                          type: string
+                          example: 20
+                        item_product_vatCompensation:
+                          type: string
+                          example: 0
+                        item_product_priceNetPerUnit:
+                          type: string
+                          example: 10
+                        item_product_pricePerUnit:
+                          type: string
+                          example: 12
+                        item_product_discountable:
+                          type: boolean
+                          example: true
+                      type: object
+                  address:
+                    properties:
+                      company:
+                        type: string
+                        example: ready2order GmbH
+                      vatId:
+                        type: string
+                        example: ATU12341234
+                      salutation:
+                        type: string
+                        example: Mr/Ms
+                      title:
+                        type: string
+                        example: Professor
+                      firstName:
+                        type: string
+                        example: Chris
+                      lastName:
+                        type: string
+                        example: Muster
+                      street:
+                        type: string
+                        example: SomeStreet 1234
+                      city:
+                        type: string
+                        example: Vienna
+                      zip:
+                        type: string
+                        example: 1030
+                      country:
+                        type: string
+                        example: AT
+                      email:
+                        type: string
+                        example: dummy@email.com
+                      phone:
+                        type: string
+                        example: +43 1234 12312341234
+                    type: object
+                  type:
+                    properties:
+                      billType_id:
+                        type: integer
+                        example: 1
+                      billType_name:
+                        type: string
+                        example: Rechnung
+                      billType_symbol:
+                        type: string
+                        example: RG
+                    type: object
+                  payment:
+                    type: array
+                    items:
+                      properties:
+                        billPayment_id:
+                          type: integer
+                          example: 9999
+                        billPayment_name:
+                          type: string
+                          example: Cash
+                        billPayment_value:
+                          type: string
+                          example: 12
+                        payment_id:
+                          type: integer
+                          example: 431
+                        referenced_bill_id:
+                          type: integer
+                          example: 1234
+                      type: object
+                  transaction:
+                    properties:
+                      id:
+                        type: string
+                        example: TFRG4C6NG2
+                      tx_id:
+                        type: string
+                      customer_receipt:
+                        type: string
+                      amount:
+                        type: string
+                      r2o_id:
+                        type: string
+                        example: U1JGILYS
+                    type: object
+                  discounts:
+                    type: array
+                    items:
+                      properties:
+                        billDiscount_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_name:
+                          type: string
+                          example: SomeDiscountName
+                        billDiscount_value:
+                          type: string
+                          example: 0
+                        billDiscount_percent:
+                          type: string
+                          example: 0
+                        billDiscount_discount_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_discountGroup_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_created_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        billDiscount_updated_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                      type: object
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - Bearer: []
+  /document/invoice/count:
+    get:
+      tags:
+      - Bill
+      summary: Count All Bills
+      description: ''
+      operationId: billCountAllBills
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  count:
+                    type: integer
+                    example: 1500
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      security:
+      - Bearer: []
+  /document/invoice/{id}:
+    get:
+      tags:
+      - Bill
+      summary: Find Bill by Id
+      description: ''
+      operationId: billFindById
+      parameters:
+      - name: id
+        in: path
+        description: Bill ID to find
+        required: true
+        schema:
+          type: integer
+          example: 123456
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  invoice_id:
+                    type: integer
+                    example: 1234
+                  invoice_reference_id:
+                    type: integer
+                    example: 1233
+                  invoice_timestamp:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_number:
+                    type: integer
+                    example: 1
+                  invoice_numberFull:
+                    type: string
+                    example: RG2019/1
+                  invoice_total:
+                    type: string
+                    example: 12
+                  invoice_totalNet:
+                    type: string
+                    example: 10
+                  invoice_totalVat:
+                    type: string
+                    example: 2
+                  invoice_totalTip:
+                    type: string
+                    example: 0
+                  invoice_address_company:
+                    type: string
+                    example: ready2order GmbH
+                  invoice_address_vatId:
+                    type: string
+                    example: ATU12341234
+                  invoice_address_salutation:
+                    type: string
+                    example: Mr/Ms
+                  invoice_address_title:
+                    type: string
+                    example: Professor
+                  invoice_address_firstName:
+                    type: string
+                    example: Chris
+                  invoice_address_lastName:
+                    type: string
+                    example: Fox
+                  invoice_address_street:
+                    type: string
+                    example: Hintere Zollamtsstraße 17
+                  invoice_address_city:
+                    type: string
+                    example: Vienna
+                  invoice_address_zip:
+                    type: string
+                    example: 1030
+                  invoice_address_country:
+                    type: string
+                    example: AT
+                  invoice_address_email:
+                    type: string
+                    example: dux@fox.com
+                  invoice_address_phone:
+                    type: string
+                    example: +43 664 1234 1234 1234
+                  invoice_inPrinterQueue:
+                    type: boolean
+                    example: false
+                  invoice_priceBase:
+                    type: string
+                    example: brutto
+                  invoice_deleted_at:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_deletedReason:
+                    type: string
+                    example: Some reason
+                  invoice_pdf:
+                    type: string
+                    example: http://some.link
+                  invoice_textBeforeItemsTable:
+                    type: string
+                    example: Some text
+                  invoice_text:
+                    type: string
+                    example: Some text
+                  invoice_locked:
+                    type: boolean
+                    example: true
+                  invoice_externalReferenceNumber:
+                    type: string
+                    example: REF-1234
+                  invoice_internalInvoiceReferenceNumber:
+                    type: string
+                    example: 1233
+                  invoice_dueDate:
+                    type: string
+                    example: '2019-01-05'
+                  invoice_deliveryDate:
+                    type: string
+                    example: '2019-01-01'
+                  invoice_paid:
+                    type: boolean
+                    example: true
+                  invoice_paidDate:
+                    type: string
+                    example: '2019-01-01'
+                  invoice_offlineTimestamp:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_offlineNumber:
+                    type: string
+                    example: 2A26A8D9/1
+                  invoice_testMode:
+                    type: boolean
+                    example: true
+                  invoice_formatVersion:
+                    type: integer
+                    example: 2
+                  customer_id:
+                    type: integer
+                    example: 1234
+                  customerCategory_id:
+                    type: integer
+                    example: 1023
+                  table_id:
+                    type: integer
+                    example: 1234
+                  tableArea_id:
+                    type: integer
+                    example: 67
+                  paymentMethod_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  printer_id:
+                    type: integer
+                    example: 23
+                  billType_id:
+                    type: integer
+                    example: 1
+                  currency_id:
+                    type: integer
+                    example: 1
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        item_id:
+                          type: integer
+                          example: 76234
+                        item_timestamp:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        item_quantity:
+                          type: string
+                          example: 1
+                        item_retour:
+                          type: boolean
+                          example: false
+                        item_number:
+                          type: string
+                          example: 1
+                        item_serialNumber:
+                          type: string
+                          example: some-serial-number
+                        item_expirationDate:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        item_name:
+                          type: string
+                          example: MyProductName
+                        item_comment:
+                          type: string
+                          example: my-optional-comment
+                        item_price:
+                          type: string
+                          example: 12
+                        item_priceNet:
+                          type: string
+                          example: 10
+                        item_priceBase:
+                          type: boolean
+                          example: false
+                        item_total:
+                          type: string
+                          example: 12
+                        item_totalNet:
+                          type: string
+                          example: 10
+                        item_vat:
+                          type: string
+                          example: 2
+                        item_vatRate:
+                          type: string
+                          example: 20
+                        item_vatCompensation:
+                          type: string
+                          example: 0
+                        item_undiscountedSumBeforeLineDiscount:
+                          type: string
+                          example: 0
+                        item_undiscountedSumBeforeInvoiceDiscount:
+                          type: string
+                          example: 0
+                        item_lineDiscountId:
+                          type: integer
+                          example: 1234
+                        item_lineDiscountGroupId:
+                          type: integer
+                          example: 1234
+                        item_lineDiscountName:
+                          type: string
+                          example: SomeDiscountName
+                        item_lineDiscountPercent:
+                          type: string
+                          example: 0
+                        item_lineDiscountNet:
+                          type: string
+                          example: 0
+                        item_lineDiscountGross:
+                          type: string
+                          example: 0
+                        item_invoiceDiscountNet:
+                          type: string
+                          example: 0
+                        item_invoiceDiscountGross:
+                          type: string
+                          example: 0
+                        item_discountable:
+                          type: boolean
+                          example: true
+                        paymentMethod_id:
+                          type: integer
+                          example: 1234
+                        item_updatedStock:
+                          type: boolean
+                          example: true
+                        product_id:
+                          type: integer
+                          example: 1234
+                        productgroup_name:
+                          type: string
+                          example: My product group
+                        productGroup_id:
+                          type: integer
+                          example: 1234
+                        customer_id:
+                          type: integer
+                          example: 1234
+                        user_id:
+                          type: integer
+                          example: 1234
+                        user_name:
+                          type: string
+                          example: SomeUser
+                        invoice_id:
+                          type: integer
+                          example: 1234
+                        deliveryBill_id:
+                          type: integer
+                          example: 1234
+                        dailyReport_id:
+                          type: integer
+                          example: 1234
+                        productUnit_id:
+                          type: integer
+                          example: 1
+                        table_id:
+                          type: integer
+                          example: 1234
+                        table_name:
+                          type: string
+                          example: SomeTableName
+                        payment_id:
+                          type: integer
+                          example: 431
+                        retourInvoice_id:
+                          type: integer
+                          example: 1233
+                        item_accountingCode:
+                          type: string
+                          example: 4000
+                        item_testMode:
+                          type: boolean
+                          example: false
+                        item_product_price:
+                          type: string
+                          example: 12
+                        item_product_priceNet:
+                          type: string
+                          example: 10
+                        item_product_vat:
+                          type: string
+                          example: 2
+                        item_qty:
+                          type: string
+                          example: 1
+                        item_product_vatRate:
+                          type: string
+                          example: 20
+                        item_product_vatCompensation:
+                          type: string
+                          example: 0
+                        item_product_priceNetPerUnit:
+                          type: string
+                          example: 10
+                        item_product_pricePerUnit:
+                          type: string
+                          example: 12
+                        item_product_discountable:
+                          type: boolean
+                          example: true
+                      type: object
+                  address:
+                    properties:
+                      company:
+                        type: string
+                        example: ready2order GmbH
+                      vatId:
+                        type: string
+                        example: ATU12341234
+                      salutation:
+                        type: string
+                        example: Mr/Ms
+                      title:
+                        type: string
+                        example: Professor
+                      firstName:
+                        type: string
+                        example: Chris
+                      lastName:
+                        type: string
+                        example: Muster
+                      street:
+                        type: string
+                        example: SomeStreet 1234
+                      city:
+                        type: string
+                        example: Vienna
+                      zip:
+                        type: string
+                        example: 1030
+                      country:
+                        type: string
+                        example: AT
+                      email:
+                        type: string
+                        example: dummy@email.com
+                      phone:
+                        type: string
+                        example: +43 1234 12312341234
+                    type: object
+                  type:
+                    properties:
+                      billType_id:
+                        type: integer
+                        example: 1
+                      billType_name:
+                        type: string
+                        example: Rechnung
+                      billType_symbol:
+                        type: string
+                        example: RG
+                    type: object
+                  payment:
+                    type: array
+                    items:
+                      properties:
+                        billPayment_id:
+                          type: integer
+                          example: 9999
+                        billPayment_name:
+                          type: string
+                          example: Cash
+                        billPayment_value:
+                          type: string
+                          example: 12
+                        payment_id:
+                          type: integer
+                          example: 431
+                        referenced_bill_id:
+                          type: integer
+                          example: 1234
+                      type: object
+                  transaction:
+                    properties:
+                      id:
+                        type: string
+                        example: TFRG4C6NG2
+                      tx_id:
+                        type: string
+                      customer_receipt:
+                        type: string
+                      amount:
+                        type: string
+                      r2o_id:
+                        type: string
+                        example: U1JGILYS
+                    type: object
+                  discounts:
+                    type: array
+                    items:
+                      properties:
+                        billDiscount_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_name:
+                          type: string
+                          example: SomeDiscountName
+                        billDiscount_value:
+                          type: string
+                          example: 0
+                        billDiscount_percent:
+                          type: string
+                          example: 0
+                        billDiscount_discount_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_discountGroup_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_created_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        billDiscount_updated_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                      type: object
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+  /document/invoice/{id}/delete:
+    post:
+      tags:
+      - Bill
+      summary: Cancel an invoice
+      description: Cancels an invoice by creating a cancellation (storno) bill that reverses its items and payments. By default the cancellation is paid back with the original invoice's payment method. An explicit paymentMethod_id and/or partPayments can be given to pay the cancellation back differently - see the description of those parameters for details.
+      operationId: billDelete
+      parameters:
+      - name: id
+        in: path
+        description: ID of the invoice that should be cancelled
+        required: true
+        schema:
+          type: integer
+          example: 123456
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - storno_id
+              - storno_reason
+              properties:
+                storno_id:
+                  description: ID of the storno reason that justifies this cancellation. See `GET /storno` for the list of reasons.
+                  type: integer
+                  example: 9823
+                storno_reason:
+                  description: Free-text comment explaining why this specific invoice was cancelled. Stored on the cancellation bill alongside the storno reason referenced by `storno_id`.
+                  type: string
+                  example: Correction
+                invoice_externalReferenceNumber:
+                  description: External reference number to store on the cancellation bill.
+                  type: string
+                  example: REF-1234
+                paymentMethod_id:
+                  description: PaymentMethod ID to cancel the invoice with. If `partPayments` is also given, this payment method only covers the amount remaining after the part payments; otherwise it covers the entire cancellation amount. Defaults to the original invoice's payment method if not given.
+                  type: integer
+                  example: 123456
+                partPayments:
+                  description: List of part-payments to split the cancellation amount across multiple payment methods, analogous to `partPayments` on `PUT /document/invoice`. This defines a new payment breakdown for the cancellation and is independent of how the original invoice was actually paid - whenever `partPayments` and/or `paymentMethod_id` is given, the original invoice's payment breakdown is fully replaced. Any amount not covered by this list is cancelled with `paymentMethod_id` (or the original invoice's payment method, if `paymentMethod_id` is not given).
+                  type: array
+                  items:
+                    properties:
+                      paymentMethod_id:
+                        description: PaymentMethod ID this part of the cancellation amount is paid back with
+                        type: integer
+                        example: 123456
+                      amount:
+                        description: Amount of the cancellation covered by this payment method
+                        type: string
+                        example: 5
+                      tip:
+                        description: Amount of tip to return via this payment method. The sum of tip across all partPayments must not exceed the original invoice's total tip - any remainder is returned via paymentMethod_id (or the original invoice's payment method, if not given).
+                        type: string
+                        example: 1
+                      couponIdentifier:
+                        description: Identifier of the coupon this part of the cancellation is redeemed against. Required when `paymentMethod_id` references a payment method of type coupon.
+                        type: string
+                        example: COUPON-123
+                    type: object
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  invoice_id:
+                    type: integer
+                    example: 1234
+                  invoice_reference_id:
+                    type: integer
+                    example: 1233
+                  invoice_timestamp:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_number:
+                    type: integer
+                    example: 1
+                  invoice_numberFull:
+                    type: string
+                    example: RG2019/1
+                  invoice_total:
+                    type: string
+                    example: 12
+                  invoice_totalNet:
+                    type: string
+                    example: 10
+                  invoice_totalVat:
+                    type: string
+                    example: 2
+                  invoice_totalTip:
+                    type: string
+                    example: 0
+                  invoice_address_company:
+                    type: string
+                    example: ready2order GmbH
+                  invoice_address_vatId:
+                    type: string
+                    example: ATU12341234
+                  invoice_address_salutation:
+                    type: string
+                    example: Mr/Ms
+                  invoice_address_title:
+                    type: string
+                    example: Professor
+                  invoice_address_firstName:
+                    type: string
+                    example: Chris
+                  invoice_address_lastName:
+                    type: string
+                    example: Fox
+                  invoice_address_street:
+                    type: string
+                    example: Hintere Zollamtsstraße 17
+                  invoice_address_city:
+                    type: string
+                    example: Vienna
+                  invoice_address_zip:
+                    type: string
+                    example: 1030
+                  invoice_address_country:
+                    type: string
+                    example: AT
+                  invoice_address_email:
+                    type: string
+                    example: dux@fox.com
+                  invoice_address_phone:
+                    type: string
+                    example: +43 664 1234 1234 1234
+                  invoice_inPrinterQueue:
+                    type: boolean
+                    example: false
+                  invoice_priceBase:
+                    type: string
+                    example: brutto
+                  invoice_deleted_at:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_deletedReason:
+                    type: string
+                    example: Some reason
+                  invoice_pdf:
+                    type: string
+                    example: http://some.link
+                  invoice_textBeforeItemsTable:
+                    type: string
+                    example: Some text
+                  invoice_text:
+                    type: string
+                    example: Some text
+                  invoice_locked:
+                    type: boolean
+                    example: true
+                  invoice_externalReferenceNumber:
+                    type: string
+                    example: REF-1234
+                  invoice_internalInvoiceReferenceNumber:
+                    type: string
+                    example: 1233
+                  invoice_dueDate:
+                    type: string
+                    example: '2019-01-05'
+                  invoice_deliveryDate:
+                    type: string
+                    example: '2019-01-01'
+                  invoice_paid:
+                    type: boolean
+                    example: true
+                  invoice_paidDate:
+                    type: string
+                    example: '2019-01-01'
+                  invoice_offlineTimestamp:
+                    type: string
+                    example: '2019-01-01 00:00:00'
+                  invoice_offlineNumber:
+                    type: string
+                    example: 2A26A8D9/1
+                  invoice_testMode:
+                    type: boolean
+                    example: true
+                  invoice_formatVersion:
+                    type: integer
+                    example: 2
+                  customer_id:
+                    type: integer
+                    example: 1234
+                  customerCategory_id:
+                    type: integer
+                    example: 1023
+                  table_id:
+                    type: integer
+                    example: 1234
+                  tableArea_id:
+                    type: integer
+                    example: 67
+                  paymentMethod_id:
+                    type: integer
+                    example: 1234
+                  user_id:
+                    type: integer
+                    example: 1234
+                  printer_id:
+                    type: integer
+                    example: 23
+                  billType_id:
+                    type: integer
+                    example: 1
+                  currency_id:
+                    type: integer
+                    example: 1
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        item_id:
+                          type: integer
+                          example: 76234
+                        item_timestamp:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        item_quantity:
+                          type: string
+                          example: 1
+                        item_retour:
+                          type: boolean
+                          example: false
+                        item_number:
+                          type: string
+                          example: 1
+                        item_serialNumber:
+                          type: string
+                          example: some-serial-number
+                        item_expirationDate:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        item_name:
+                          type: string
+                          example: MyProductName
+                        item_comment:
+                          type: string
+                          example: my-optional-comment
+                        item_price:
+                          type: string
+                          example: 12
+                        item_priceNet:
+                          type: string
+                          example: 10
+                        item_priceBase:
+                          type: boolean
+                          example: false
+                        item_total:
+                          type: string
+                          example: 12
+                        item_totalNet:
+                          type: string
+                          example: 10
+                        item_vat:
+                          type: string
+                          example: 2
+                        item_vatRate:
+                          type: string
+                          example: 20
+                        item_vatCompensation:
+                          type: string
+                          example: 0
+                        item_undiscountedSumBeforeLineDiscount:
+                          type: string
+                          example: 0
+                        item_undiscountedSumBeforeInvoiceDiscount:
+                          type: string
+                          example: 0
+                        item_lineDiscountId:
+                          type: integer
+                          example: 1234
+                        item_lineDiscountGroupId:
+                          type: integer
+                          example: 1234
+                        item_lineDiscountName:
+                          type: string
+                          example: SomeDiscountName
+                        item_lineDiscountPercent:
+                          type: string
+                          example: 0
+                        item_lineDiscountNet:
+                          type: string
+                          example: 0
+                        item_lineDiscountGross:
+                          type: string
+                          example: 0
+                        item_invoiceDiscountNet:
+                          type: string
+                          example: 0
+                        item_invoiceDiscountGross:
+                          type: string
+                          example: 0
+                        item_discountable:
+                          type: boolean
+                          example: true
+                        paymentMethod_id:
+                          type: integer
+                          example: 1234
+                        item_updatedStock:
+                          type: boolean
+                          example: true
+                        product_id:
+                          type: integer
+                          example: 1234
+                        productgroup_name:
+                          type: string
+                          example: My product group
+                        productGroup_id:
+                          type: integer
+                          example: 1234
+                        customer_id:
+                          type: integer
+                          example: 1234
+                        user_id:
+                          type: integer
+                          example: 1234
+                        user_name:
+                          type: string
+                          example: SomeUser
+                        invoice_id:
+                          type: integer
+                          example: 1234
+                        deliveryBill_id:
+                          type: integer
+                          example: 1234
+                        dailyReport_id:
+                          type: integer
+                          example: 1234
+                        productUnit_id:
+                          type: integer
+                          example: 1
+                        table_id:
+                          type: integer
+                          example: 1234
+                        table_name:
+                          type: string
+                          example: SomeTableName
+                        payment_id:
+                          type: integer
+                          example: 431
+                        retourInvoice_id:
+                          type: integer
+                          example: 1233
+                        item_accountingCode:
+                          type: string
+                          example: 4000
+                        item_testMode:
+                          type: boolean
+                          example: false
+                        item_product_price:
+                          type: string
+                          example: 12
+                        item_product_priceNet:
+                          type: string
+                          example: 10
+                        item_product_vat:
+                          type: string
+                          example: 2
+                        item_qty:
+                          type: string
+                          example: 1
+                        item_product_vatRate:
+                          type: string
+                          example: 20
+                        item_product_vatCompensation:
+                          type: string
+                          example: 0
+                        item_product_priceNetPerUnit:
+                          type: string
+                          example: 10
+                        item_product_pricePerUnit:
+                          type: string
+                          example: 12
+                        item_product_discountable:
+                          type: boolean
+                          example: true
+                      type: object
+                  address:
+                    properties:
+                      company:
+                        type: string
+                        example: ready2order GmbH
+                      vatId:
+                        type: string
+                        example: ATU12341234
+                      salutation:
+                        type: string
+                        example: Mr/Ms
+                      title:
+                        type: string
+                        example: Professor
+                      firstName:
+                        type: string
+                        example: Chris
+                      lastName:
+                        type: string
+                        example: Muster
+                      street:
+                        type: string
+                        example: SomeStreet 1234
+                      city:
+                        type: string
+                        example: Vienna
+                      zip:
+                        type: string
+                        example: 1030
+                      country:
+                        type: string
+                        example: AT
+                      email:
+                        type: string
+                        example: dummy@email.com
+                      phone:
+                        type: string
+                        example: +43 1234 12312341234
+                    type: object
+                  type:
+                    properties:
+                      billType_id:
+                        type: integer
+                        example: 1
+                      billType_name:
+                        type: string
+                        example: Rechnung
+                      billType_symbol:
+                        type: string
+                        example: RG
+                    type: object
+                  payment:
+                    type: array
+                    items:
+                      properties:
+                        billPayment_id:
+                          type: integer
+                          example: 9999
+                        billPayment_name:
+                          type: string
+                          example: Cash
+                        billPayment_value:
+                          type: string
+                          example: 12
+                        payment_id:
+                          type: integer
+                          example: 431
+                        referenced_bill_id:
+                          type: integer
+                          example: 1234
+                      type: object
+                  transaction:
+                    properties:
+                      id:
+                        type: string
+                        example: TFRG4C6NG2
+                      tx_id:
+                        type: string
+                      customer_receipt:
+                        type: string
+                      amount:
+                        type: string
+                      r2o_id:
+                        type: string
+                        example: U1JGILYS
+                    type: object
+                  discounts:
+                    type: array
+                    items:
+                      properties:
+                        billDiscount_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_name:
+                          type: string
+                          example: SomeDiscountName
+                        billDiscount_value:
+                          type: string
+                          example: 0
+                        billDiscount_percent:
+                          type: string
+                          example: 0
+                        billDiscount_discount_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_discountGroup_id:
+                          type: integer
+                          example: 9999
+                        billDiscount_created_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                        billDiscount_updated_at:
+                          type: string
+                          example: '2019-01-01 00:00:00'
+                      type: object
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+  /document/invoice/{id}/print:
+    post:
+      tags:
+      - Bill
+      summary: Print a bill
+      description: Add bill to printer queue for specific printer
+      operationId: billPrint
+      parameters:
+      - name: id
+        in: path
+        description: Bill ID to find
+        required: true
+        schema:
+          type: integer
+          example: 123456
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                printer_id:
+                  description: Printer ID where to print the bill <br><br> _* Required if none of `printingProfile_id` are provided._
+                  type: integer
+                  example: 2394
+                printingProfile_id:
+                  description: PrintingProfile ID on which the bill should be printed. <br><br> _* Required if none of `printer_id` are provided._
+                  type: integer
+                  example: 1
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  msg:
+                    type: string
+                    example: Bill was added to printer queue
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+  /document/invoice/{id}/pdf:
+    get:
+      tags:
+      - Bill
+      summary: Create PDF for bill
+      description: Returns signed S3 URL. Optionally regenerates pdf if `regeneratePDF` is set to `true`
+      operationId: billPdf
+      parameters:
+      - name: id
+        in: path
+        description: User ID to delete
+        required: true
+        schema:
+          type: integer
+          example: 12345
+      - name: regeneratePDF
+        in: query
+        description: Regenerate an existing PDF
+        required: false
+        schema:
+          type: boolean
+          example: true
+      - name: format
+        in: query
+        description: PDF Format
+        required: false
+        schema:
+          type: string
+          default: A4
+          example: A4, 80mm or 58mm
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  uri:
+                    type: string
+                    example: https://some.link
+                  format:
+                    type: string
+                    example: A4
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Account Token obtained after completing the authorization flow. See First Steps for details.
+      name: Authorization
+      in: header
+x-tagGroups:
+- name: Essentials
+  tags:
+  - Product
+  - Product Group
+  - Bill
+  - Storno
+  - Payment Method
+  - Payment Method Type
+  - Coupon
+  - Coupon Category
+  - Discount
+  - Discount Group
+  - Customer
+- name: Gastro
+  tags:
+  - Order
+  - Table
+  - Table Area
+- name: POS
+  tags:
+  - Printer
+  - Printer Profile
+  - Print Job
+  - Terminal Transaction
+  - User
+  - User Roles
+- name: Reporting
+  tags:
+  - Daily Report
+  - Accounting Financial Year
+  - Export
+- name: Reference Data
+  tags:
+  - Bill Type
+  - Customer Group
+  - Currency
+  - Country
+  - Device
+  - Language
+  - Legal Form
+  - Units
+  - Vat Rate
+- name: Integration
+  tags:
+  - Account Token
+  - Grant Access Token
+  - Developer Token
+  - Webhook
+  - Job Status
+- name: Internal
+  tags:
+  - Account
+  - Admin
+  - CashboxRegistration
+  - ConfirmableAction
+  - Constant
+  - Item
+  - License
+  - MobileConstant
+  - ReadyPaySellRate
+  - Signup
+  - Tss
