@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://packagist.org/packages/ready2order/r2o-api-client-php
+packages:
+- language: php
+  registry: packagist
+  name: ready2order/r2o-api-client-php
+  url: https://packagist.org/packages/ready2order/r2o-api-client-php
+  repository: https://github.com/ready2order/r2o-api-client-php
+  install: composer require ready2order/r2o-api-client-php
+  description: Official PHP library for the ready2order POS API v1.
+  official: true
+- language: php
+  registry: packagist
+  name: duxthefux/ready2order-php-api-v1
+  url: https://packagist.org/packages/duxthefux/ready2order-php-api-v1
+  install: composer require duxthefux/ready2order-php-api-v1
+  description: Community PHP library for the ready2order POS API v1.
+  official: false
+- language: javascript
+  registry: npm
+  name: ready2order-api
+  url: https://www.npmjs.com/package/ready2order-api
+  install: npm install ready2order-api
+  description: Community wrapper for the ready2order API.
+  official: false

@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ready2order-openapi-original.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Account Token obtained after completing the authorization flow. See First Steps
+    for details.
+  sources:
+  - openapi/ready2order-openapi-original.json

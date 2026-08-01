@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ready2order-openapi-original.json
+format: json
+note: Errors returned as plain JSON (not RFC 9457). Status codes derived from OpenAPI 4xx responses; remediation
+  from API docs.
+envelope:
+  fields:
+  - error
+  - msg
+  description: Error responses carry a JSON body describing the failure.
+problems:
+- status: 400
+  title: Bad Request
+  remediation: Validation failed; check required fields and value formats in the request body.
+- status: 401
+  title: Unauthorized
+  remediation: 'Missing or wrong token type. Send Authorization: Bearer <ACCOUNT_TOKEN>.'
+- status: 403
+  title: Forbidden
+  remediation: Developer/Account token mismatch or insufficient permission for the account.
+- status: 404
+  title: Not Found
+  remediation: The referenced resource id does not exist on this account.
+- status: 429
+  title: Too Many Requests
+  remediation: Rate limit exceeded (60 requests/minute per Account Token). Back off and retry.

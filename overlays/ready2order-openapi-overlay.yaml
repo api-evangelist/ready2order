@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ready2order Public API
+  version: 1.0.0
+extends: openapi/ready2order-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-20'
+      x-api-base-url: https://api.ready2order.com/v1
+      x-auth-model: apiKey-bearer-account-token
+      x-rate-limit: 60 requests/minute per Account Token
+      x-webhooks: 17 documented event types (GET/PUT /webhook, /webhook/events)
+  - target: $.info
+    update:
+      x-apievangelist-artifacts:
+        authentication: authentication/ready2order-authentication.yml
+        conventions: conventions/ready2order-conventions.yml
+        errors: errors/ready2order-problem-types.yml
+        webhooks: asyncapi/ready2order-webhooks.yml
+        data_model: data-model/ready2order-data-model.yml
+        packages: packages/ready2order-packages.yml

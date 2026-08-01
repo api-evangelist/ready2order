@@ -1,0 +1,429 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/ready2order-openapi-original.json
+server:
+  name: ready2order
+  transport: http
+note: No official hosted MCP server found. Candidate tool list derived one-per-operation from the OpenAPI.
+tools:
+- name: accountTokenRevoke
+  description: Revoke Account Token
+  source_operation: openapi/ready2order-openapi-original.json#accountTokenRevoke
+- name: accountingFinancialYearGetAll
+  description: List all Accounting Financial Years
+  source_operation: openapi/ready2order-openapi-original.json#accountingFinancialYearGetAll
+- name: accountingFinancialYearFindById
+  description: Find Accounting Financial Year by Id
+  source_operation: openapi/ready2order-openapi-original.json#accountingFinancialYearFindById
+- name: billTypeGetAll
+  description: List all Bill Types
+  source_operation: openapi/ready2order-openapi-original.json#billTypeGetAll
+- name: billTypeFindById
+  description: Find Bill Type by Id
+  source_operation: openapi/ready2order-openapi-original.json#billTypeFindById
+- name: exportExportCashbookV3
+  description: Export Cashbook
+  source_operation: openapi/ready2order-openapi-original.json#exportExportCashbookV3
+- name: exportExportAccountancy
+  description: Export Accountancy
+  source_operation: openapi/ready2order-openapi-original.json#exportExportAccountancy
+- name: exportExportCashbook
+  description: Export Cashbook
+  source_operation: openapi/ready2order-openapi-original.json#exportExportCashbook
+- name: exportExportSales
+  description: Export Sales
+  source_operation: openapi/ready2order-openapi-original.json#exportExportSales
+- name: countryGetAll
+  description: List all Countries
+  source_operation: openapi/ready2order-openapi-original.json#countryGetAll
+- name: countryFindById
+  description: Find Country by Id
+  source_operation: openapi/ready2order-openapi-original.json#countryFindById
+- name: couponCategoryGetPaginated
+  description: List coupon categories
+  source_operation: openapi/ready2order-openapi-original.json#couponCategoryGetPaginated
+- name: couponCategoryCreate
+  description: Create a coupon category
+  source_operation: openapi/ready2order-openapi-original.json#couponCategoryCreate
+- name: couponCategoryFindById
+  description: Get a coupon category
+  source_operation: openapi/ready2order-openapi-original.json#couponCategoryFindById
+- name: couponCategoryUpdate
+  description: Update a coupon category
+  source_operation: openapi/ready2order-openapi-original.json#couponCategoryUpdate
+- name: couponCategoryDeleteById
+  description: Delete a coupon category
+  source_operation: openapi/ready2order-openapi-original.json#couponCategoryDeleteById
+- name: couponGetAll
+  description: List coupons
+  source_operation: openapi/ready2order-openapi-original.json#couponGetAll
+- name: couponCreate
+  description: Create a coupon
+  source_operation: openapi/ready2order-openapi-original.json#couponCreate
+- name: couponFindById
+  description: Get a coupon
+  source_operation: openapi/ready2order-openapi-original.json#couponFindById
+- name: couponUpdateById
+  description: Update a coupon
+  source_operation: openapi/ready2order-openapi-original.json#couponUpdateById
+- name: couponDeleteById
+  description: Delete a coupon
+  source_operation: openapi/ready2order-openapi-original.json#couponDeleteById
+- name: couponChargeById
+  description: Charge a coupon
+  source_operation: openapi/ready2order-openapi-original.json#couponChargeById
+- name: couponRedeemById
+  description: Redeem a coupon
+  source_operation: openapi/ready2order-openapi-original.json#couponRedeemById
+- name: currencyGetCurrencies
+  description: Get Currencies
+  source_operation: openapi/ready2order-openapi-original.json#currencyGetCurrencies
+- name: currencyGetCurrency
+  description: Get Currency
+  source_operation: openapi/ready2order-openapi-original.json#currencyGetCurrency
+- name: customerGroupGetAllCustomerGroups
+  description: Get All Customer Groups
+  source_operation: openapi/ready2order-openapi-original.json#customerGroupGetAllCustomerGroups
+- name: customerGroupCreateCustomerGroup
+  description: Create Customer Group
+  source_operation: openapi/ready2order-openapi-original.json#customerGroupCreateCustomerGroup
+- name: customerGroupGetCustomerGroupById
+  description: Get Customer Group By Id
+  source_operation: openapi/ready2order-openapi-original.json#customerGroupGetCustomerGroupById
+- name: customerGroupUpdateCustomerGroup
+  description: Update Customer Group
+  source_operation: openapi/ready2order-openapi-original.json#customerGroupUpdateCustomerGroup
+- name: customerGroupDeleteCustomerGroup
+  description: Delete Customer Group
+  source_operation: openapi/ready2order-openapi-original.json#customerGroupDeleteCustomerGroup
+- name: customerGetAll
+  description: List all Customers
+  source_operation: openapi/ready2order-openapi-original.json#customerGetAll
+- name: customerCreate
+  description: Create a new Customer
+  source_operation: openapi/ready2order-openapi-original.json#customerCreate
+- name: customerFindById
+  description: Find Customer by Id
+  source_operation: openapi/ready2order-openapi-original.json#customerFindById
+- name: customerUpdate
+  description: Update Customer by Id
+  source_operation: openapi/ready2order-openapi-original.json#customerUpdate
+- name: customerDelete
+  description: Delete Customer by Id
+  source_operation: openapi/ready2order-openapi-original.json#customerDelete
+- name: customerMergeCustomers
+  description: Merge Customers
+  source_operation: openapi/ready2order-openapi-original.json#customerMergeCustomers
+- name: dailyReportOpen
+  description: Open daily report
+  source_operation: openapi/ready2order-openapi-original.json#dailyReportOpen
+- name: dailyReportClose
+  description: Close daily report
+  source_operation: openapi/ready2order-openapi-original.json#dailyReportClose
+- name: dailyReportStatus
+  description: Get daily report status
+  source_operation: openapi/ready2order-openapi-original.json#dailyReportStatus
+- name: grantAccessTokenCreateGrantAccessToken
+  description: Create Grant Access Token
+  source_operation: openapi/ready2order-openapi-original.json#grantAccessTokenCreateGrantAccessToken
+- name: grantAccessTokenGetGrantAccessTokenStatus
+  description: Get Grant Access Token Status
+  source_operation: openapi/ready2order-openapi-original.json#grantAccessTokenGetGrantAccessTokenStatus
+- name: deviceList
+  description: List
+  source_operation: openapi/ready2order-openapi-original.json#deviceList
+- name: discountGroupGetAllDiscountGroups
+  description: List discount groups
+  source_operation: openapi/ready2order-openapi-original.json#discountGroupGetAllDiscountGroups
+- name: discountGroupCreateDiscountGroup
+  description: Create a discount group
+  source_operation: openapi/ready2order-openapi-original.json#discountGroupCreateDiscountGroup
+- name: discountGroupGetDiscountGroup
+  description: Get a discount group
+  source_operation: openapi/ready2order-openapi-original.json#discountGroupGetDiscountGroup
+- name: discountGroupUpdateDiscountGroup
+  description: Update a discount group
+  source_operation: openapi/ready2order-openapi-original.json#discountGroupUpdateDiscountGroup
+- name: discountGroupDeleteDiscountGroup
+  description: Delete a discount group
+  source_operation: openapi/ready2order-openapi-original.json#discountGroupDeleteDiscountGroup
+- name: discountGetAll
+  description: List discounts
+  source_operation: openapi/ready2order-openapi-original.json#discountGetAll
+- name: discountCreate
+  description: Create a discount
+  source_operation: openapi/ready2order-openapi-original.json#discountCreate
+- name: discountFindById
+  description: Get a discount
+  source_operation: openapi/ready2order-openapi-original.json#discountFindById
+- name: discountUpdate
+  description: Update a discount
+  source_operation: openapi/ready2order-openapi-original.json#discountUpdate
+- name: discountDelete
+  description: Delete a discount
+  source_operation: openapi/ready2order-openapi-original.json#discountDelete
+- name: billGetAll
+  description: List all Bills
+  source_operation: openapi/ready2order-openapi-original.json#billGetAll
+- name: billCreateBill
+  description: Create Bill
+  source_operation: openapi/ready2order-openapi-original.json#billCreateBill
+- name: billCountAllBills
+  description: Count All Bills
+  source_operation: openapi/ready2order-openapi-original.json#billCountAllBills
+- name: billFindById
+  description: Find Bill by Id
+  source_operation: openapi/ready2order-openapi-original.json#billFindById
+- name: billDelete
+  description: Cancel an invoice
+  source_operation: openapi/ready2order-openapi-original.json#billDelete
+- name: billPrint
+  description: Print a bill
+  source_operation: openapi/ready2order-openapi-original.json#billPrint
+- name: billPdf
+  description: Create PDF for bill
+  source_operation: openapi/ready2order-openapi-original.json#billPdf
+- name: jobStatusGetStatusById
+  description: Get Status By Id
+  source_operation: openapi/ready2order-openapi-original.json#jobStatusGetStatusById
+- name: languageGetAll
+  description: List all Languages
+  source_operation: openapi/ready2order-openapi-original.json#languageGetAll
+- name: languageFindById
+  description: Find Language by Id
+  source_operation: openapi/ready2order-openapi-original.json#languageFindById
+- name: legalFormGetAll
+  description: List all Legal Forms
+  source_operation: openapi/ready2order-openapi-original.json#legalFormGetAll
+- name: legalFormFindById
+  description: Find Legal Form by Id
+  source_operation: openapi/ready2order-openapi-original.json#legalFormFindById
+- name: orderGetAllPaginated
+  description: List all Orders
+  source_operation: openapi/ready2order-openapi-original.json#orderGetAllPaginated
+- name: orderCreate
+  description: Create a new Order
+  source_operation: openapi/ready2order-openapi-original.json#orderCreate
+- name: orderTransfer
+  description: Transfer
+  source_operation: openapi/ready2order-openapi-original.json#orderTransfer
+- name: paymentMethodGetAll
+  description: List all Payment Methods
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodGetAll
+- name: paymentMethodCreatePaymentMethod
+  description: Create Payment Method
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodCreatePaymentMethod
+- name: paymentMethodFindById
+  description: Find Payment Method by Id
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodFindById
+- name: paymentMethodUpdatePaymentMethod
+  description: Update Payment Method
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodUpdatePaymentMethod
+- name: paymentMethodDeletePaymentMethod
+  description: Delete Payment Method
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodDeletePaymentMethod
+- name: paymentMethodTypeGetAll
+  description: List all Payment Method Types
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodTypeGetAll
+- name: paymentMethodTypeFindById
+  description: Find Payment Method Type by Id
+  source_operation: openapi/ready2order-openapi-original.json#paymentMethodTypeFindById
+- name: printJobGetNotPrinted
+  description: Get Not Printed
+  source_operation: openapi/ready2order-openapi-original.json#printJobGetNotPrinted
+- name: printJobCreate
+  description: Create a new Print Job
+  source_operation: openapi/ready2order-openapi-original.json#printJobCreate
+- name: printJobDeleteById
+  description: Delete Print Job by Id
+  source_operation: openapi/ready2order-openapi-original.json#printJobDeleteById
+- name: printerGetAll
+  description: List printers
+  source_operation: openapi/ready2order-openapi-original.json#printerGetAll
+- name: printerFindById
+  description: Get a printer
+  source_operation: openapi/ready2order-openapi-original.json#printerFindById
+- name: printerTestPrint
+  description: Send a test print
+  source_operation: openapi/ready2order-openapi-original.json#printerTestPrint
+- name: printerProfileGetAll
+  description: List printer profiles
+  source_operation: openapi/ready2order-openapi-original.json#printerProfileGetAll
+- name: productGroupGetAllPaginated
+  description: List all Product Groups
+  source_operation: openapi/ready2order-openapi-original.json#productGroupGetAllPaginated
+- name: productGroupCreate
+  description: Create a new Product Group
+  source_operation: openapi/ready2order-openapi-original.json#productGroupCreate
+- name: productGroupFindById
+  description: Find Product Group by Id
+  source_operation: openapi/ready2order-openapi-original.json#productGroupFindById
+- name: productGroupUpdateById
+  description: Update Product Group by Id
+  source_operation: openapi/ready2order-openapi-original.json#productGroupUpdateById
+- name: productGroupDeleteById
+  description: Delete Product Group by Id
+  source_operation: openapi/ready2order-openapi-original.json#productGroupDeleteById
+- name: productGroupFindWithProductsById
+  description: Find With Products By Id
+  source_operation: openapi/ready2order-openapi-original.json#productGroupFindWithProductsById
+- name: productCreateBatch
+  description: Create products in bulk
+  source_operation: openapi/ready2order-openapi-original.json#productCreateBatch
+- name: productUpdateStockInBatch
+  description: Update stock in bulk
+  source_operation: openapi/ready2order-openapi-original.json#productUpdateStockInBatch
+- name: productGetAll
+  description: List products
+  source_operation: openapi/ready2order-openapi-original.json#productGetAll
+- name: productCreate
+  description: Create a product
+  source_operation: openapi/ready2order-openapi-original.json#productCreate
+- name: productFindById
+  description: Get a product
+  source_operation: openapi/ready2order-openapi-original.json#productFindById
+- name: productUpdate
+  description: Update a product
+  source_operation: openapi/ready2order-openapi-original.json#productUpdate
+- name: productDelete
+  description: Delete a product
+  source_operation: openapi/ready2order-openapi-original.json#productDelete
+- name: productGetStockByItemNumber
+  description: Get product stock by item number
+  source_operation: openapi/ready2order-openapi-original.json#productGetStockByItemNumber
+- name: productGetStock
+  description: Get product stock
+  source_operation: openapi/ready2order-openapi-original.json#productGetStock
+- name: productUpdateStock
+  description: Update product stock
+  source_operation: openapi/ready2order-openapi-original.json#productUpdateStock
+- name: productGetAllCustomerProductPrices
+  description: List per-customer prices
+  source_operation: openapi/ready2order-openapi-original.json#productGetAllCustomerProductPrices
+- name: productAddCustomerProductPrice
+  description: Set per-customer price
+  source_operation: openapi/ready2order-openapi-original.json#productAddCustomerProductPrice
+- name: productGetCustomerProductPrice
+  description: Get per-customer price
+  source_operation: openapi/ready2order-openapi-original.json#productGetCustomerProductPrice
+- name: productUpdateCustomerProductPrice
+  description: Update per-customer price
+  source_operation: openapi/ready2order-openapi-original.json#productUpdateCustomerProductPrice
+- name: productDeleteCustomerProductPrice
+  description: Remove per-customer price
+  source_operation: openapi/ready2order-openapi-original.json#productDeleteCustomerProductPrice
+- name: productGetAllCustomerCategoryProductPrices
+  description: List customer category prices
+  source_operation: openapi/ready2order-openapi-original.json#productGetAllCustomerCategoryProductPrices
+- name: productAddCustomerCategoryProductPrice
+  description: Set customer category price
+  source_operation: openapi/ready2order-openapi-original.json#productAddCustomerCategoryProductPrice
+- name: productGetCustomerCategoryProductPrice
+  description: Get customer category price
+  source_operation: openapi/ready2order-openapi-original.json#productGetCustomerCategoryProductPrice
+- name: productUpdateCustomerCategoryProductPrice
+  description: Update customer category price
+  source_operation: openapi/ready2order-openapi-original.json#productUpdateCustomerCategoryProductPrice
+- name: productDeleteCustomerCategoryProductPrice
+  description: Remove customer category price
+  source_operation: openapi/ready2order-openapi-original.json#productDeleteCustomerCategoryProductPrice
+- name: unitsGetAll
+  description: List all Units
+  source_operation: openapi/ready2order-openapi-original.json#unitsGetAll
+- name: stornoGetAll
+  description: List all Stornos
+  source_operation: openapi/ready2order-openapi-original.json#stornoGetAll
+- name: stornoCreate
+  description: Create a new Storno
+  source_operation: openapi/ready2order-openapi-original.json#stornoCreate
+- name: stornoFindById
+  description: Find Storno by Id
+  source_operation: openapi/ready2order-openapi-original.json#stornoFindById
+- name: stornoUpdateById
+  description: Update Storno by Id
+  source_operation: openapi/ready2order-openapi-original.json#stornoUpdateById
+- name: stornoDeleteById
+  description: Delete Storno by Id
+  source_operation: openapi/ready2order-openapi-original.json#stornoDeleteById
+- name: tableAreaGetAll
+  description: List all Table Areas
+  source_operation: openapi/ready2order-openapi-original.json#tableAreaGetAll
+- name: tableAreaCreate
+  description: Create a new Table Area
+  source_operation: openapi/ready2order-openapi-original.json#tableAreaCreate
+- name: tableAreaFindById
+  description: Find Table Area by Id
+  source_operation: openapi/ready2order-openapi-original.json#tableAreaFindById
+- name: tableAreaUpdateById
+  description: Update Table Area by Id
+  source_operation: openapi/ready2order-openapi-original.json#tableAreaUpdateById
+- name: tableAreaDeleteById
+  description: Delete Table Area by Id
+  source_operation: openapi/ready2order-openapi-original.json#tableAreaDeleteById
+- name: tableGetAll
+  description: List all Tables
+  source_operation: openapi/ready2order-openapi-original.json#tableGetAll
+- name: tableCreate
+  description: Create a new Table
+  source_operation: openapi/ready2order-openapi-original.json#tableCreate
+- name: tableFindById
+  description: Find Table by Id
+  source_operation: openapi/ready2order-openapi-original.json#tableFindById
+- name: tableUpdateById
+  description: Update Table by Id
+  source_operation: openapi/ready2order-openapi-original.json#tableUpdateById
+- name: tableDeleteById
+  description: Delete Table by Id
+  source_operation: openapi/ready2order-openapi-original.json#tableDeleteById
+- name: terminalTransactionInit
+  description: Init
+  source_operation: openapi/ready2order-openapi-original.json#terminalTransactionInit
+- name: terminalTransactionTriggerBillCreation
+  description: Trigger Bill Creation
+  source_operation: openapi/ready2order-openapi-original.json#terminalTransactionTriggerBillCreation
+- name: terminalTransactionStatus
+  description: Status
+  source_operation: openapi/ready2order-openapi-original.json#terminalTransactionStatus
+- name: terminalTransactionAbort
+  description: Abort
+  source_operation: openapi/ready2order-openapi-original.json#terminalTransactionAbort
+- name: userGetAll
+  description: List all Users
+  source_operation: openapi/ready2order-openapi-original.json#userGetAll
+- name: userCreate
+  description: Create a new User
+  source_operation: openapi/ready2order-openapi-original.json#userCreate
+- name: userFindById
+  description: Find User by Id
+  source_operation: openapi/ready2order-openapi-original.json#userFindById
+- name: userUpdateById
+  description: Update User by Id
+  source_operation: openapi/ready2order-openapi-original.json#userUpdateById
+- name: userDeleteById
+  description: Delete User by Id
+  source_operation: openapi/ready2order-openapi-original.json#userDeleteById
+- name: userUpdatePasswordById
+  description: Update Password By Id
+  source_operation: openapi/ready2order-openapi-original.json#userUpdatePasswordById
+- name: userGetSignInToken
+  description: Get Sign In Token
+  source_operation: openapi/ready2order-openapi-original.json#userGetSignInToken
+- name: userRolesGetAll
+  description: List all User Roles
+  source_operation: openapi/ready2order-openapi-original.json#userRolesGetAll
+- name: vatRateGetAll
+  description: List VAT rates
+  source_operation: openapi/ready2order-openapi-original.json#vatRateGetAll
+- name: webhookFind
+  description: Find
+  source_operation: openapi/ready2order-openapi-original.json#webhookFind
+- name: webhookUpdateWebhookUrl
+  description: Update Webhook Url
+  source_operation: openapi/ready2order-openapi-original.json#webhookUpdateWebhookUrl
+- name: webhookFindWebhookEvents
+  description: Find Webhook Events
+  source_operation: openapi/ready2order-openapi-original.json#webhookFindWebhookEvents
+- name: webhookUpdateWebhookEvent
+  description: Update Webhook Event
+  source_operation: openapi/ready2order-openapi-original.json#webhookUpdateWebhookEvent

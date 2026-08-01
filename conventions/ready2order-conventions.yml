@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: https://ready2order.com/api/doc
+authentication:
+  style: apiKey
+  header: Authorization
+  format: Bearer <ACCOUNT_TOKEN>
+  flow: 'three-token: Developer Token -> Grant Access Token (10 min) -> Account Token (long-lived)'
+  ref: authentication/ready2order-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key mechanism documented.
+pagination:
+  style: page-number
+  params:
+  - page
+  - limit
+  - offset
+  example: GET /products?page=1&limit=25
+rate_limiting:
+  limit: 60 requests/minute per Account Token
+  retry_status: 429
+  ref: errors/ready2order-problem-types.yml
+versioning:
+  style: uri-path
+  current: v1
+  ref: lifecycle/ready2order-lifecycle.yml
+error_envelope:
+  format: json
+  ref: errors/ready2order-problem-types.yml
+events:
+  style: webhooks
+  ref: asyncapi/ready2order-webhooks.yml
+base_url: https://api.ready2order.com/v1

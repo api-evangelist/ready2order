@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+source: https://ready2order.com/api/doc
+versioning:
+  scheme: uri-path
+  current: v1
+  api_version: R2-2026.30.2
+  docs: https://ready2order.com/api/doc
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/Sunset policy found.
+status_page: null
+sla:
+  url: null
+deprecated_operations: []

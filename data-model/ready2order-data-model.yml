@@ -1,0 +1,109 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ready2order-openapi-original.json
+note: Entities derived from OpenAPI tags/paths. Relationships inferred from path nesting and id-reference
+  fields.
+entities:
+- name: Product
+  path: /products
+  relationships:
+  - type: belongs_to
+    target: ProductGroup
+    via: productgroup_id
+  - type: has_many
+    target: CustomerProductPrice
+    via: product
+- name: ProductGroup
+  path: /productgroups
+  relationships:
+  - type: has_many
+    target: Product
+    via: productgroup
+- name: Customer
+  path: /customers
+  relationships:
+  - type: belongs_to
+    target: CustomerGroup
+    via: customerCategory
+- name: CustomerGroup
+  path: /customerCategories
+  relationships: []
+- name: Order
+  path: /orders
+  relationships:
+  - type: has_many
+    target: OrderItem
+    via: order
+  - type: belongs_to
+    target: Table
+    via: table
+- name: Bill
+  path: /document/invoice
+  relationships:
+  - type: belongs_to
+    target: Customer
+    via: customer
+- name: Table
+  path: /tables
+  relationships:
+  - type: belongs_to
+    target: TableArea
+    via: tableArea
+- name: TableArea
+  path: /tableAreas
+  relationships: []
+- name: Coupon
+  path: /coupons
+  relationships:
+  - type: belongs_to
+    target: CouponCategory
+    via: couponCategory
+- name: PaymentMethod
+  path: /paymentMethods
+  relationships:
+  - type: belongs_to
+    target: PaymentMethodType
+    via: paymentMethodType
+- name: User
+  path: /users
+  relationships:
+  - type: belongs_to
+    target: UserRole
+    via: userRole
+all_resources:
+- Account Token
+- Accounting Financial Year
+- Bill
+- Bill Type
+- Country
+- Coupon
+- Coupon Category
+- Currency
+- Customer
+- Customer Group
+- Daily Report
+- Device
+- Discount
+- Discount Group
+- Export
+- Grant Access Token
+- Job Status
+- Language
+- Legal Form
+- Order
+- Payment Method
+- Payment Method Type
+- Print Job
+- Printer
+- Printer Profile
+- Product
+- Product Group
+- Storno
+- Table
+- Table Area
+- Terminal Transaction
+- Units
+- User
+- User Roles
+- Vat Rate
+- Webhook

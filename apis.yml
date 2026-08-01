@@ -1,8 +1,28 @@
 aid: ready2order
 name: Ready2order
-description: Ready2order is a company surfaced as a portfolio company of speedinvest and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  ready2order is an Austrian cloud point-of-sale (POS) system for small businesses in gastronomy,
+  retail, and services, running on tablets, phones, computers, and dedicated terminals. Its Public
+  API (v1) lets integrations manage the full POS surface — products and product groups, stock, orders
+  and tables, bills/invoices, customers and customer groups, coupons, discounts, payment methods,
+  printing, daily reports, and accounting exports — secured with a Bearer Account Token and kept in
+  sync through 17 push webhook events. The platform is tax-office compliant for Austria, Germany, and
+  Switzerland. Surfaced as a portfolio company of Speedinvest and enriched into the API Evangelist
+  network from its published OpenAPI and developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/ready2order/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://ready2order.com/favicon.ico
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,12 +31,928 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Point of Sale
+- POS
+- Payments
+- Retail
+- Gastronomy
+- Cash Register
+- SaaS
+apis:
+- aid: ready2order:ready2order-account-token-api
+  name: Ready2order Account Token API
+  description: Account Token
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Account Token
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-account-token-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-accounting-financial-year-api
+  name: Ready2order Accounting Financial Year API
+  description: >-
+    The Accounting Financial Year API from Ready2order — 2 operation(s) for accounting financial year.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Accounting Financial Year
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-accounting-financial-year-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-bill-api
+  name: Ready2order Bill API
+  description: The Bill API from Ready2order — 6 operation(s) for bill.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Bill
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-bill-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-bill-type-api
+  name: Ready2order Bill Type API
+  description: The Bill Type API from Ready2order — 2 operation(s) for bill type.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Bill Type
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-bill-type-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-country-api
+  name: Ready2order Country API
+  description: The Country API from Ready2order — 2 operation(s) for country.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Country
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-country-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-coupon-api
+  name: Ready2order Coupon API
+  description: >-
+    <!-- markdownlint-disable MD041 MD033 MD051 github-internal-links relative-links -- tag description
+    snippet, not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Coupons are gift cards and vouchers that merchants sell and later accept as payment at the point of
+    sale. The `coupon_value` field always holds the current remaining balance.
+
+
+    **Balance and Lifecycle**
+
+
+    You create a coupon with an initial value. From there you can [charge it](#operation/couponChargeById)
+    (add value) or [redeem it](#operation/couponRedeemById) (deduct value). Partial redemptions work fine;
+    the coupon stays active until the balance reaches zero.
+
+
+    **Coupon Purpose**
+
+
+    `coupon_purpose` determines when VAT is due. We distinguish between two voucher types:
+
+
+    | Purpose | When VAT is due | `coupon_containsVat` |
+
+    |---------|-----------------|----------------------|
+
+    | `single` | At issuance (place of supply and tax rate are known at creation) | The applicable rate,
+    e.g. `20` |
+
+    | `multi` | At redemption (the POS applies the right rate per item) | Must be `0` |
+
+
+    Single-purpose suits vouchers for specific goods at a fixed rate, such as a drink voucher tied to
+    a particular product.<br>
+
+    Multi-purpose fits general gift cards redeemable for anything or across multiple locations.
+
+
+    Check with your tax advisor which type applies to your situation.
+
+
+    **Identifier**
+
+
+    `coupon_identifier` is the numeric code printed on physical voucher cards. If you leave it out, an
+    EAN-13 code is generated automatically. Pass it as the `identifier` query parameter on [GET /coupons](#operation/couponGetAll)
+    to look up a coupon by barcode scan.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Coupon
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-coupon-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-coupon-category-api
+  name: Ready2order Coupon Category API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Coupon categories let you group coupons under a shared label. The category has no effect on coupon
+    behaviour or tax treatment.
+
+
+    To assign a coupon to a category, set `couponCategory_id` when [creating](#operation/couponCreate)
+    or [updating](#operation/couponUpdateById) the coupon. You cannot delete a category that still has
+    coupons assigned to it.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Coupon Category
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-coupon-category-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-currency-api
+  name: Ready2order Currency API
+  description: The Currency API from Ready2order — 2 operation(s) for currency.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Currency
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-currency-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-customer-api
+  name: Ready2order Customer API
+  description: The Customer API from Ready2order — 3 operation(s) for customer.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Customer
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-customer-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-customer-group-api
+  name: Ready2order Customer Group API
+  description: The Customer Group API from Ready2order — 2 operation(s) for customer group.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Customer Group
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-customer-group-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-daily-report-api
+  name: Ready2order Daily Report API
+  description: >-
+    <!-- markdownlint-disable MD041 -- tag description snippet, not a standalone document; the tag name
+    serves as the heading in the API docs -->
+
+    A daily report represents a business day at the point of sale. Opening one starts a new sales period;
+    closing it finalises the day's transactions and triggers the end-of-day summary.
+
+
+    Only one daily report can be open at a time. Closing is required before the next day can be opened.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Daily Report
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-daily-report-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-device-api
+  name: Ready2order Device API
+  description: Device
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Device
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-device-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-discount-api
+  name: Ready2order Discount API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Discounts are preset price reductions that cashiers can apply at the point of sale. Unlike coupons,
+    they are not financial instruments; they simply reduce the sale price, with VAT calculated on the
+    reduced amount.
+
+
+    Every discount belongs to a group via `discountGroup_id`. The group determines how discounts are organised
+    and presented at the POS. You need at least one [discount group](#operation/discountGroupCreateDiscountGroup)
+    before you can create a discount.
+
+
+    **Discount unit**
+
+
+    `discount_unit` controls how the reduction is calculated:
+
+
+    | Unit | Behaviour | `discount_value` |
+
+    |------|-----------|-----------------|
+
+    | `percent` | Reduces the price by a percentage | 0–100 |
+
+    | `currency` | Reduces the price by a fixed amount | Any positive number |
+
+    | `custom` | The cashier enters the amount at checkout | Not required |
+
+
+    **Visibility and ordering**
+
+
+    Set `discount_active` to `false` to hide a discount at the POS without deleting it. `discount_order`
+    controls the position in the list shown to cashiers.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Discount
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-discount-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-discount-group-api
+  name: Ready2order Discount Group API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Discount groups organise discounts into named collections. Every discount must belong to a group,
+    so you need at least one group before you can create discounts.
+
+
+    Setting `discountGroup_active` to `false` hides all discounts in the group at the POS, which is useful
+    for seasonal or temporarily suspended promotions.
+
+
+    A group cannot be deleted while it still contains discounts. [Delete](#operation/discountDelete) or
+    move the discounts out of the group first.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Discount Group
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-discount-group-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-export-api
+  name: Ready2order Export API
+  description: The Export API from Ready2order — 4 operation(s) for export.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Export
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-export-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-grant-access-token-api
+  name: Ready2order Grant Access Token API
+  description: The Grant Access Token API from Ready2order — 2 operation(s) for grant access token.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Grant Access Token
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-grant-access-token-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-job-status-api
+  name: Ready2order Job Status API
+  description: The Job Status API from Ready2order — 1 operation(s) for job status.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Job Status
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-job-status-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-language-api
+  name: Ready2order Language API
+  description: The Language API from Ready2order — 2 operation(s) for language.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Language
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-language-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-legal-form-api
+  name: Ready2order Legal Form API
+  description: The Legal Form API from Ready2order — 2 operation(s) for legal form.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Legal Form
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-legal-form-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-order-api
+  name: Ready2order Order API
+  description: The Order API from Ready2order — 2 operation(s) for order.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-order-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-payment-method-api
+  name: Ready2order Payment Method API
+  description: The Payment Method API from Ready2order — 2 operation(s) for payment method.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Payment Method
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-payment-method-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-payment-method-type-api
+  name: Ready2order Payment Method Type API
+  description: The Payment Method Type API from Ready2order — 2 operation(s) for payment method type.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Payment Method Type
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-payment-method-type-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-print-job-api
+  name: Ready2order Print Job API
+  description: The Print Job API from Ready2order — 2 operation(s) for print job.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Print Job
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-print-job-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-printer-api
+  name: Ready2order Printer API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Printers represent the physical printing devices registered to an account — including receipt printers,
+    mobile printers, and all-in-one terminals. They are configured through the ready2order POS or dashboard;
+    the public API is read-only except for triggering a test print.
+
+
+    **Fields**
+
+
+    | Field | Description |
+
+    |-------|-------------|
+
+    | `printer_id` | System-assigned unique identifier for the printer |
+
+    | `printer_name` | The name assigned to the printer in the account settings |
+
+    | `printer_description` | Optional free-text description |
+
+    | `printer_deviceName` | The OS-level device name used to address the printer |
+
+    | `printer_model` | The hardware model, for example `TM-T20II` or `mC-Print3` |
+
+    | `printer_manufacturer` | The manufacturer, for example `epson` or `star` |
+
+    | `printer_ipAddress` | **Deprecated.** The connection address for the printer: an IP address for
+    network printers, a MAC address for Bluetooth, a device path (e.g. `/dev/usb/lp0`) for USB, or `ready2print`
+    for OS-managed printers. `null` if not yet configured |
+
+    | `printer_characters` | The number of characters per printed line, which determines print width |
+
+    | `printer_doubleHeight` | Whether characters are printed at double height |
+
+    | `printer_createdAt` | Timestamp when the printer record was created |
+
+
+    **Printer profiles**
+
+
+    A printer profile (see [Printer Profile](#tag/Printer-Profile)) is a named logical slot that sits
+    between your POS configuration and a physical printer. Assigning print jobs to a profile rather than
+    to a printer directly means you can swap out hardware without reconfiguring the rest of the system.
+    Each profile lists the physical printer IDs it currently maps to in `printingProfile_associatedPhysicalPrinterIds`.
+
+
+    **Cash drawer**
+
+
+    Some printers support opening a connected cash drawer via an RJ11 kick signal. This is configured
+    per printer in the account settings. See the [create bill](#operation/billCreateBill) endpoint for
+    how to trigger it via the API.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Printer
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-printer-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-printer-profile-api
+  name: Ready2order Printer Profile API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    A printer profile is a named stand-in for a physical printer. The POS targets profiles by name rather
+    than by hardware ID, so you can replace a physical printer in the account settings without any change
+    to your POS configuration.
+
+
+    Each profile can be linked to one or more physical printers. When a job targets a profile, all linked
+    printers receive it simultaneously. The IDs of the linked printers are returned in `printingProfile_associatedPhysicalPrinterIds`.
+
+
+    **Fields**
+
+
+    | Field | Description |
+
+    |-------|-------------|
+
+    | `printingProfile_id` | System-assigned unique identifier for the printer profile |
+
+    | `printingProfile_name` | The name assigned to this profile, for example `Kitchen` or `Bar` |
+
+    | `printingProfile_associatedPhysicalPrinterIds` | The [physical printers](#tag/Printer) currently
+    linked to this profile |
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Printer Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-printer-profile-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-product-api
+  name: Ready2order Product API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Products are the items sold at the point of sale. Each product belongs to a product group and carries
+    a price, a VAT rate, and a set of optional features such as stock tracking, variations, and ingredients.
+
+
+    **Identifiers**
+
+
+    A product supports three optional identifiers alongside its system `product_id`:
+
+
+    - `product_itemnumber`: the merchant's own article number, used on labels, in exports, and for stock
+    lookups
+
+    - `product_barcode`: EAN or barcode for scanning at the POS
+
+    - `product_externalReference`: for integrators to store their own system's ID, so you can map between
+    your records and ready2order without storing `product_id` on your side
+
+
+    **Pricing and VAT**
+
+
+    `product_price` is the base price. Set `product_priceIncludesVat` to `true` (the default) if that
+    figure is gross, or `false` if it is net. A VAT rate is required on creation — supply either `product_vat`
+    as a percentage or `product_vat_id` referencing a [VAT rate](#tag/Vat-Rate).
+
+
+    Customers and customer categories can have individual price overrides managed via the [per-customer
+    prices](#operation/productGetAllCustomerProductPrices) and [per-category prices](#operation/productGetAllCustomerCategoryProductPrices)
+    endpoints.
+
+
+    **Custom price and quantity**
+
+
+    Set `product_customPrice: true` to let the cashier enter the price manually at checkout, which is
+    useful for open-price items. `product_customQuantity: true` does the same for the quantity.
+
+
+    **Stock**
+
+
+    Stock tracking is optional and configured per product. Set `product_stock_enabled: true`, then use
+    `product_stock_value` for the current quantity, `product_stock_safetyStock` for the minimum threshold,
+    and `product_stock_reorderLevel` for the point at which the system alerts about low inventory. Use
+    the [get stock](#operation/productGetStock) and [update stock](#operation/productUpdateStock) endpoints
+    to read or update stock figures without touching other product fields.
+
+
+    **Product type**
+
+
+    `product_type` is mainly relevant in gastro mode, where it drives printer routing (e.g. kitchen vs.
+    bar). Available values: `standard`, `food`, `drink`, `extra`, `sidedish`, `variation`, `ingredient`.
+    For standard retail products, use `standard`.
+
+
+    **Variations and ingredients**
+
+
+    Variations (selectable add-ons or modifications) and ingredients (component tracking for recipes and
+    partial-unit sales) are enabled per product with `product_variations_enabled` and `product_ingredients_enabled`.
+    Both require the corresponding feature to be active on the account.
+
+
+    **Keeping a catalogue in sync**
+
+
+    The recommended approach is to subscribe to [webhooks](#tag/Webhook) for `product.created` and `product.updated`
+    events. This avoids polling and ensures your system is updated in near real-time without unnecessary
+    requests.
+
+
+    If webhooks are not an option, use the `updatedAfter` query parameter on [list products](#operation/productGetAll)
+    to fetch only products changed since a given timestamp. Use [batch create](#operation/productCreateBatch)
+    to create multiple products in one request.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Product
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-product-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-product-group-api
+  name: Ready2order Product Group API
+  description: The Product Group API from Ready2order — 3 operation(s) for product group.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Product Group
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-product-group-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-storno-api
+  name: Ready2order Storno API
+  description: The Storno API from Ready2order — 2 operation(s) for storno.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Storno
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-storno-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-table-api
+  name: Ready2order Table API
+  description: The Table API from Ready2order — 2 operation(s) for table.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Table
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-table-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-table-area-api
+  name: Ready2order Table Area API
+  description: The Table Area API from Ready2order — 2 operation(s) for table area.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Table Area
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-table-area-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-terminal-transaction-api
+  name: Ready2order Terminal Transaction API
+  description: The Terminal Transaction API from Ready2order — 3 operation(s) for terminal transaction.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Terminal Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-terminal-transaction-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-units-api
+  name: Ready2order Units API
+  description: Units
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Units
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-units-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-user-api
+  name: Ready2order User API
+  description: The User API from Ready2order — 3 operation(s) for user.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-user-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-user-roles-api
+  name: Ready2order User Roles API
+  description: The User Roles API from Ready2order — 1 operation(s) for user roles.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - User Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-user-roles-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-vat-rate-api
+  name: Ready2order Vat Rate API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    VAT rates define the tax percentages available for the account. When [creating](#operation/productCreate)
+    or [updating](#operation/productUpdate) a product, you can reference a VAT rate by its `vat_id` via
+    `product_vat_id`, or pass the percentage directly as `product_vat`.
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Vat Rate
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-vat-rate-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
+- aid: ready2order:ready2order-webhook-api
+  name: Ready2order Webhook API
+  description: >-
+    <!-- markdownlint-disable MD041 MD051 github-internal-links relative-links -- tag description snippet,
+    not a standalone document; the tag name serves as the heading in the API docs -->
+
+    Webhooks push events to your application automatically — no polling required.
+
+
+    **Available Events**
+
+
+    | Event | Description | Payload |
+
+    |-------|-------------|---------|
+
+    | `coupon.created` | A new voucher or gift card is issued | Full object |
+
+    | `coupon.updated` | A voucher's properties change (value, validity, linked customer, etc.) | Full
+    object |
+
+    | `couponTransaction.created` | A transaction is recorded on a voucher (charge, redeem, correction,
+    bonus, payout) | Full transaction object |
+
+    | `customer.created` | A new customer profile is added to the account | Full object |
+
+    | `customer.updated` | A customer profile's details are updated (name, address, contact info, etc.)
+    | Full object |
+
+    | `customer.deleted` | A customer profile is deleted from the account | Resource ID |
+
+    | `invoice.created` | An invoice or receipt is finalised — also fires for the storno document when
+    an invoice is cancelled | Full object |
+
+    | `invoice.cancelled` | Fired for the **original** invoice when it is cancelled — use this to mark
+    the original as cancelled in your system; use `invoice.created` to receive the storno document | Full
+    object |
+
+    | `orderItem.created` | One or more items are placed on an open table order | Resource IDs |
+
+    | `orderItem.cancelled` | One or more open table order items are voided before billing | Resource
+    IDs |
+
+    | `orderItem.transferred` | Open table order items are moved from one table to another | Transfer
+    metadata (source/target table, order IDs) |
+
+    | `product.created` | A new product is added to the catalogue | Full object |
+
+    | `product.updated` | A product's details change — not triggered by `product_sortIndex` updates |
+    Full object |
+
+    | `product.deleted` | A product is removed from the catalogue | Resource ID |
+
+    | `productGroup.created` | A new product category is created | Full object |
+
+    | `productGroup.updated` | A product category's properties change (name, description, sort order,
+    etc.) | Full object |
+
+    | `productGroup.deleted` | A product category is removed | Resource ID |
+
+
+    **Processing Webhooks**
+
+
+    Respond to webhook requests with HTTP 202 and process the payload asynchronously in a background worker.
+    This keeps your endpoint fast and avoids delivery failures from timeouts, which may trigger retries.
+
+
+    **Setup**
+
+
+    1. [Register your webhook URL](#operation/webhookUpdateWebhookUrl)
+
+    2. [Subscribe to events](#operation/webhookUpdateWebhookEvent)
+  humanURL: https://ready2order.com/api/doc
+  baseURL: https://api.ready2order.com/v1
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/ready2order-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://ready2order.com/api/doc
+  - type: APIReference
+    url: https://ready2order.com/api/doc
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
+common:
+- type: DeveloperPortal
+  url: https://ready2order.com/en/api/
+- type: Documentation
+  url: https://ready2order.com/api/doc
+- type: APIReference
+  url: https://ready2order.com/api/doc
+- type: Support
+  url: https://support.ready2order.com/l/en
+- type: Pricing
+  url: https://ready2order.com/en/pricing/
+- type: SignUp
+  url: https://ready2order.com/en/signup/start/
+- type: Login
+  url: https://ready2order.com/en/login/
+- type: TermsOfService
+  url: https://ready2order.com/en/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://ready2order.com/en/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/ready2order
+- type: OpenAPI
+  url: openapi/ready2order-openapi-original.json
+- type: Overlay
+  url: overlays/ready2order-openapi-overlay.yaml
+- type: Authentication
+  url: authentication/ready2order-authentication.yml
+- type: DomainSecurity
+  url: security/ready2order-domain-security.yml
+- type: Conventions
+  url: conventions/ready2order-conventions.yml
+- type: ErrorCatalog
+  url: errors/ready2order-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/ready2order-lifecycle.yml
+- type: Conformance
+  url: conformance/ready2order-conformance.yml
+- type: DataModel
+  url: data-model/ready2order-data-model.yml
+- type: WellKnown
+  url: well-known/ready2order-well-known.yml
+- type: Packages
+  url: packages/ready2order-packages.yml
+- type: SDKs
+  url: packages/ready2order-packages.yml
+- type: MCPServer
+  url: mcp/ready2order-mcp.yml
+- type: LLMsTxt
+  url: llms/ready2order-llms.txt
+- type: Webhooks
+  url: asyncapi/ready2order-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml

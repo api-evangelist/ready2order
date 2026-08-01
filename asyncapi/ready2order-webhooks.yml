@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://ready2order.com/api/doc
+spec_type: Webhooks
+transport: http-callback
+delivery: push (no polling); full object payload per event
+management:
+  find: GET /webhook
+  set_url: PUT /webhook
+  list_events: GET /webhook/events
+  toggle_event: PUT /webhook/events
+events:
+- name: coupon.created
+- name: coupon.updated
+- name: couponTransaction.created
+- name: customer.created
+- name: customer.deleted
+- name: customer.updated
+- name: invoice.cancelled
+- name: invoice.created
+- name: orderItem.cancelled
+- name: orderItem.created
+- name: orderItem.transferred
+- name: product.created
+- name: product.deleted
+- name: product.updated
+- name: productGroup.created
+- name: productGroup.deleted
+- name: productGroup.updated

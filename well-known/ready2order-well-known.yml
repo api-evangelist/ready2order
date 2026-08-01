@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+- host: https://ready2order.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+  - path: /.well-known/openid-configuration
+    status: 302
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+  - path: /.well-known/api-catalog
+    status: 302
+  - path: /.well-known/ai-plugin.json
+    status: 302
+- host: https://api.ready2order.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+note: No .well-known discovery documents published. Marketing host 302-redirects; API host returns 403
+  behind auth wall.

@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ready2order-openapi-original.json
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses apiKey bearer token (Authorization header), not OAuth2.
+- id: oidc
+  conforms: false
+- id: api-key
+  conforms: true
+  evidence: securityScheme Bearer type apiKey in header Authorization.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses are plain JSON, not application/problem+json.
+- id: pagination
+  conforms: true
+  evidence: List operations expose page/limit/offset query parameters.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key header documented.
+- id: webhooks
+  conforms: true
+  evidence: Webhook subscription endpoints and 17 documented event types.
+- id: rest
+  conforms: true
+  evidence: Resource-oriented JSON REST over HTTPS with standard verbs.

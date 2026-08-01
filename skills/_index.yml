@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/ready2order-openapi-original.json
+skills:
+  - file: ready2order-manage-catalog.md
+    name: Manage the ready2order product catalog
+    api: openapi/ready2order-openapi-original.json
+    operations: [productGroupCreate, productCreate, productCreateBatch, productGetStock, productUpdateStock, productUpdateStockInBatch]
+  - file: ready2order-invoice-and-customer.md
+    name: Create customers and issue bills
+    api: openapi/ready2order-openapi-original.json
+    operations: [customerCreate, customerFindById, billCreateBill, billFindById, billPrint, billPdf]
+  - file: ready2order-webhook-sync.md
+    name: Subscribe to ready2order webhook events
+    api: openapi/ready2order-openapi-original.json
+    operations: [webhookFind, webhookUpdateWebhookUrl, webhookFindWebhookEvents, webhookUpdateWebhookEvent]

@@ -1,0 +1,28 @@
+# ready2order Public API
+
+> ready2order is an Austrian cloud point-of-sale (POS) system for small businesses in gastronomy, retail, and services. Its Public API (v1) lets integrations manage products, orders, bills/invoices, customers, tables, coupons, payments, and printing, with webhook events for real-time sync. Tax-office compliant for Austria, Germany, and Switzerland.
+
+## API
+
+- [ready2order Public API v1](https://ready2order.com/api/doc): REST API. Base URL https://api.ready2order.com/v1. Bearer Account Token auth (Authorization header). 140 operations across 37 resource groups. Rate limit 60 req/min per Account Token.
+
+## Specs
+
+- [OpenAPI 3.0 specification](openapi/ready2order-openapi-original.json): 87 paths / 140 operations, captured from the published Redoc documentation.
+
+## Artifacts
+
+- [Authentication profile](authentication/ready2order-authentication.yml): apiKey Bearer Account Token; three-token authorization flow.
+- [Conventions](conventions/ready2order-conventions.yml): pagination (page/limit/offset), rate limiting, error envelope, versioning.
+- [Error/problem types](errors/ready2order-problem-types.yml): 400/401/403/404/429 with remediation.
+- [Webhooks](asyncapi/ready2order-webhooks.yml): 17 push events (product/customer/coupon/invoice/order lifecycle).
+- [Data model](data-model/ready2order-data-model.yml): product, customer, order, bill, table, coupon entities and relationships.
+- [Packages / SDKs](packages/ready2order-packages.yml): official PHP client (ready2order/r2o-api-client-php).
+
+## Docs
+
+- [API documentation](https://ready2order.com/api/doc): full endpoint reference (Redoc).
+- [Developer info](https://ready2order.com/en/api/): developer overview and token registration.
+- [Support center](https://support.ready2order.com/l/en): help articles.
+- [Pricing](https://ready2order.com/en/pricing/)
+- [Sign up](https://ready2order.com/en/signup/start/)
