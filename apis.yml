@@ -925,7 +925,7 @@ common:
 - type: GitHubOrganization
   url: https://github.com/ready2order
 - type: OpenAPI
-  url: openapi/ready2order-openapi-original.json
+  url: openapi/_original/ready2order-openapi-original.json
 - type: Overlay
   url: overlays/ready2order-openapi-overlay.yaml
 - type: Authentication
