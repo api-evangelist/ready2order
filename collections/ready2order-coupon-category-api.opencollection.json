@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Coupon Category API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Coupon Category",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List coupon categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/couponCategories",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page you want to display"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of coupon categories for the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Create a coupon category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/couponCategories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new coupon category. Categories are used to organise coupons and have no effect on coupon behaviour or fiscal treatment."
+        },
+        {
+          "info": {
+            "name": "Get a coupon category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/couponCategories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Coupon Category ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a single coupon category by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a coupon category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/couponCategories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Coupon Category ID to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the name and description of an existing coupon category."
+        },
+        {
+          "info": {
+            "name": "Delete a coupon category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/couponCategories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Coupon Category ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a coupon category. Fails if coupons are still assigned to it; reassign or delete those coupons first."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

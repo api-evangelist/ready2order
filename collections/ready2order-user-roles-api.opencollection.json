@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token User Roles API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all User Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/users/rights",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page you want to display"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all User Roles"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

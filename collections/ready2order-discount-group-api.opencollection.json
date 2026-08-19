@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Discount Group API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discount Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List discount groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/discountGroups",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all discount groups for the account, including inactive ones."
+        },
+        {
+          "info": {
+            "name": "Create a discount group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/discountGroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new discount group. You need at least one group before you can create discounts."
+        },
+        {
+          "info": {
+            "name": "Get a discount group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/discountGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a single discount group by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a discount group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/discountGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing discount group."
+        },
+        {
+          "info": {
+            "name": "Delete a discount group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/discountGroups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a discount group. Fails if the group still contains discounts; delete or reassign those first."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

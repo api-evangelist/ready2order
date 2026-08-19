@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Daily Report API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Daily Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Open daily report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/dailyReport/open",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Opens a new daily report. Fails if one is already open."
+        },
+        {
+          "info": {
+            "name": "Close daily report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/dailyReport/close",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Closes the currently open daily report and finalises the day's transactions. Fails if no report is open."
+        },
+        {
+          "info": {
+            "name": "Get daily report status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/dailyReport/status",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns whether a daily report is currently open."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

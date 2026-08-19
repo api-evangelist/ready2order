@@ -1,0 +1,248 @@
+{
+  "item": [
+    {
+      "id": "d3f2271e-095c-4d2c-bee8-6c94b57b9d57",
+      "name": "User Roles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f691143-dcbc-4666-ad21-af08d771dc16",
+          "name": "List all User Roles",
+          "request": {
+            "name": "List all User Roles",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "rights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page you want to display"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "181362ae-8a29-414e-b0d6-c7d40cdd651c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"userRight_id\": 9999,\n    \"userRight_name\": \"string\",\n    \"userRight_description\": \"string\",\n    \"userRight_allowGastroTransferOrders\": false,\n    \"userRight_allowGastroCancellation\": false,\n    \"userRight_allowGastroCancellationWithoutReceiptPrinting\": false,\n    \"userRight_allowCancellationInvoice\": 9999,\n    \"userRight_allowOrderRetourMode\": false,\n    \"userRight_allowGastroOrder\": \"string\",\n    \"userRight_allowGastroPayment\": \"string\",\n    \"userRight_showOwnOrdersOnly\": false,\n    \"userRight_allowOpenDay\": false,\n    \"userRight_allowCloseDay\": false,\n    \"userRight_allowSalesReport\": false,\n    \"userRight_allowSalesReportOwnOnly\": false,\n    \"userRight_allowSalesDailyReports\": false,\n    \"userRight_allowProductPage\": false,\n    \"userRight_allowOrderStop\": false,\n    \"userRight_allowProductSoldOut\": false,\n    \"userRight_allowProductFavorite\": false,\n    \"userRight_allowProductAddSideDish\": false,\n    \"userRight_showProductStock\": false,\n    \"userRight_allowPrintProductStock\": false,\n    \"userRight_allowInvoicePage\": false,\n    \"userRight_invoicePageShowOwnInvoicesOnly\": false,\n    \"userRight_allowCashBook\": false,\n    \"userRight_allowCashBookInsert\": false,\n    \"userRight_allowCashBookPdfExport\": false,\n    \"userRight_showCashBookBalance\": false,\n    \"userRight_allowBackendLogin\": false,\n    \"userRight_allowPrinterPage\": false,\n    \"userRight_allowPrinterDiscovery\": false,\n    \"userRight_allowLogoutAllUsers\": false,\n    \"userRight_allowOpenShiftAgain\": false,\n    \"userRight_allowProductDiscount\": false,\n    \"userRight_allowSelectedProductPriceChange\": false\n  },\n  {\n    \"userRight_id\": 9999,\n    \"userRight_name\": \"string\",\n    \"userRight_description\": \"string\",\n    \"userRight_allowGastroTransferOrders\": false,\n    \"userRight_allowGastroCancellation\": false,\n    \"userRight_allowGastroCancellationWithoutReceiptPrinting\": false,\n    \"userRight_allowCancellationInvoice\": 9999,\n    \"userRight_allowOrderRetourMode\": false,\n    \"userRight_allowGastroOrder\": \"string\",\n    \"userRight_allowGastroPayment\": \"string\",\n    \"userRight_showOwnOrdersOnly\": false,\n    \"userRight_allowOpenDay\": false,\n    \"userRight_allowCloseDay\": false,\n    \"userRight_allowSalesReport\": false,\n    \"userRight_allowSalesReportOwnOnly\": false,\n    \"userRight_allowSalesDailyReports\": false,\n    \"userRight_allowProductPage\": false,\n    \"userRight_allowOrderStop\": false,\n    \"userRight_allowProductSoldOut\": false,\n    \"userRight_allowProductFavorite\": false,\n    \"userRight_allowProductAddSideDish\": false,\n    \"userRight_showProductStock\": false,\n    \"userRight_allowPrintProductStock\": false,\n    \"userRight_allowInvoicePage\": false,\n    \"userRight_invoicePageShowOwnInvoicesOnly\": false,\n    \"userRight_allowCashBook\": false,\n    \"userRight_allowCashBookInsert\": false,\n    \"userRight_allowCashBookPdfExport\": false,\n    \"userRight_showCashBookBalance\": false,\n    \"userRight_allowBackendLogin\": false,\n    \"userRight_allowPrinterPage\": false,\n    \"userRight_allowPrinterDiscovery\": false,\n    \"userRight_allowLogoutAllUsers\": false,\n    \"userRight_allowOpenShiftAgain\": false,\n    \"userRight_allowProductDiscount\": false,\n    \"userRight_allowSelectedProductPriceChange\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8eb854a7-9464-44f9-ad87-83d5d00ed3df",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f900b89f-0c09-4e9d-8289-8651c7c918dc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ready2order.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c49b17d4-433a-45e9-b316-7ce69bd9b9df",
+    "name": "ready2order Public Account Token User Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n\n\nContact Support:\n Name: support@ready2order.com",
+      "type": "text/plain"
+    }
+  }
+}

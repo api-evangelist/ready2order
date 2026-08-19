@@ -1,0 +1,833 @@
+{
+  "item": [
+    {
+      "id": "5dbf5626-d824-4b07-9199-fd74f6b5c623",
+      "name": "Order",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7700bfe4-8d5c-4547-8df7-f195dc9a766d",
+          "name": "List all Orders",
+          "request": {
+            "name": "List all Orders",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page you want to display"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "allowed values: table_id or product_id or both"
+                },
+                {
+                  "disabled": false,
+                  "key": "trainingsMode",
+                  "value": "<string>",
+                  "description": "retrieve results for trainingsMode or liveMode"
+                },
+                {
+                  "disabled": false,
+                  "key": "table_id",
+                  "value": "<integer>",
+                  "description": "table id"
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<integer>",
+                  "description": "product id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "998bc1ac-37c0-4965-836c-8f4d57654fc8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "table_id"
+                    },
+                    {
+                      "key": "trainingsMode",
+                      "value": "true"
+                    },
+                    {
+                      "key": "table_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"order_id\": 123,\n    \"order_quantity\": \"string\",\n    \"order_priceGross\": \"string\",\n    \"order_priceNet\": \"string\",\n    \"order_vat\": \"string\",\n    \"order_discount_valueGross\": \"string\",\n    \"order_discount_valueNet\": \"string\",\n    \"order_vatRate\": \"string\",\n    \"order_product_priceGrossPerUnit\": \"string\",\n    \"order_product_priceNetPerUnit\": \"string\",\n    \"order_discount_name\": \"discountA\",\n    \"order_discountable\": true,\n    \"order_mergeable\": true,\n    \"order_retour\": false,\n    \"order_number\": 123,\n    \"order_group\": 123,\n    \"order_product_name\": \"productA\",\n    \"order_product_itemnumber\": \"string\",\n    \"order_product_serialnumber\": \"string\",\n    \"order_course\": 1,\n    \"order_status\": 1,\n    \"order_comment\": \"very long text\",\n    \"table_id\": 123456,\n    \"product_id\": 123456,\n    \"user_id\": 123456,\n    \"productgroup_type_id\": 123456,\n    \"order_created_at\": \"2019-01-01\"\n  },\n  {\n    \"order_id\": 123,\n    \"order_quantity\": \"string\",\n    \"order_priceGross\": \"string\",\n    \"order_priceNet\": \"string\",\n    \"order_vat\": \"string\",\n    \"order_discount_valueGross\": \"string\",\n    \"order_discount_valueNet\": \"string\",\n    \"order_vatRate\": \"string\",\n    \"order_product_priceGrossPerUnit\": \"string\",\n    \"order_product_priceNetPerUnit\": \"string\",\n    \"order_discount_name\": \"discountA\",\n    \"order_discountable\": true,\n    \"order_mergeable\": true,\n    \"order_retour\": false,\n    \"order_number\": 123,\n    \"order_group\": 123,\n    \"order_product_name\": \"productA\",\n    \"order_product_itemnumber\": \"string\",\n    \"order_product_serialnumber\": \"string\",\n    \"order_course\": 1,\n    \"order_status\": 1,\n    \"order_comment\": \"very long text\",\n    \"table_id\": 123456,\n    \"product_id\": 123456,\n    \"user_id\": 123456,\n    \"productgroup_type_id\": 123456,\n    \"order_created_at\": \"2019-01-01\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12de000e-d28e-40e4-bd44-6fe5e4635ecc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "table_id"
+                    },
+                    {
+                      "key": "trainingsMode",
+                      "value": "true"
+                    },
+                    {
+                      "key": "table_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6382790-9c29-4242-9740-2eea78b308d4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "table_id"
+                    },
+                    {
+                      "key": "trainingsMode",
+                      "value": "true"
+                    },
+                    {
+                      "key": "table_id",
+                      "value": "123"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "123"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b09704d-bcc4-43b1-959c-a57a528dcaa4",
+          "name": "Create a new Order",
+          "request": {
+            "name": "Create a new Order",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"table_id\": \"<integer>\",\n  \"items\": [\n    {\n      \"item_quantity\": \"<string>\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": \"<integer>\",\n      \"item_course\": \"<integer>\",\n      \"item_orderGroup\": \"<integer>\",\n      \"item_discountable\": \"<boolean>\",\n      \"item_mergeable\": \"<boolean>\",\n      \"product_id\": \"<integer>\",\n      \"item_name\": \"<string>\",\n      \"item_comment\": \"<string>\",\n      \"item_variations\": [\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"item_quantity\": \"<string>\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": \"<integer>\",\n      \"item_course\": \"<integer>\",\n      \"item_orderGroup\": \"<integer>\",\n      \"item_discountable\": \"<boolean>\",\n      \"item_mergeable\": \"<boolean>\",\n      \"product_id\": \"<integer>\",\n      \"item_name\": \"<string>\",\n      \"item_comment\": \"<string>\",\n      \"item_variations\": [\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"price_base\": \"<string>\",\n  \"training_mode\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43489987-8600-490c-8685-8c0833cc87f4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"table_id\": 1234,\n  \"items\": [],\n  \"price_base\": \"gross\",\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"order_id\": 123,\n    \"order_quantity\": \"string\",\n    \"order_priceGross\": \"string\",\n    \"order_priceNet\": \"string\",\n    \"order_vat\": \"string\",\n    \"order_discount_valueGross\": \"string\",\n    \"order_discount_valueNet\": \"string\",\n    \"order_vatRate\": \"string\",\n    \"order_product_priceGrossPerUnit\": \"string\",\n    \"order_product_priceNetPerUnit\": \"string\",\n    \"order_discount_name\": \"discountA\",\n    \"order_discountable\": true,\n    \"order_mergeable\": true,\n    \"order_retour\": false,\n    \"order_number\": 123,\n    \"order_group\": 123,\n    \"order_product_name\": \"productA\",\n    \"order_product_itemnumber\": \"string\",\n    \"order_product_serialnumber\": \"string\",\n    \"order_course\": 1,\n    \"order_status\": 1,\n    \"order_comment\": \"very long text\",\n    \"table_id\": 123456,\n    \"product_id\": 123456,\n    \"user_id\": 123456,\n    \"productgroup_type_id\": 123456,\n    \"order_created_at\": \"2019-01-01\"\n  },\n  {\n    \"order_id\": 123,\n    \"order_quantity\": \"string\",\n    \"order_priceGross\": \"string\",\n    \"order_priceNet\": \"string\",\n    \"order_vat\": \"string\",\n    \"order_discount_valueGross\": \"string\",\n    \"order_discount_valueNet\": \"string\",\n    \"order_vatRate\": \"string\",\n    \"order_product_priceGrossPerUnit\": \"string\",\n    \"order_product_priceNetPerUnit\": \"string\",\n    \"order_discount_name\": \"discountA\",\n    \"order_discountable\": true,\n    \"order_mergeable\": true,\n    \"order_retour\": false,\n    \"order_number\": 123,\n    \"order_group\": 123,\n    \"order_product_name\": \"productA\",\n    \"order_product_itemnumber\": \"string\",\n    \"order_product_serialnumber\": \"string\",\n    \"order_course\": 1,\n    \"order_status\": 1,\n    \"order_comment\": \"very long text\",\n    \"table_id\": 123456,\n    \"product_id\": 123456,\n    \"user_id\": 123456,\n    \"productgroup_type_id\": 123456,\n    \"order_created_at\": \"2019-01-01\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44fb0af3-aa5f-49e4-bbca-ec4ec8645502",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"table_id\": 1234,\n  \"items\": [],\n  \"price_base\": \"gross\",\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ef8eb03-0392-4fbc-b51e-cde7d86d0eaa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"table_id\": 1234,\n  \"items\": [],\n  \"price_base\": \"gross\",\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8e7bfb8-574a-4331-a2a6-3c7a3265f42f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"table_id\": 1234,\n  \"items\": [],\n  \"price_base\": \"gross\",\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d827b58a-38f2-40f0-9111-fbd07a012ee1",
+          "name": "Transfer",
+          "request": {
+            "name": "Transfer",
+            "description": {
+              "content": "Transfers unbilled order items from one table to another.<br>Pass specific `order_ids` to transfer a subset, or omit the field to transfer all unbilled items on the source table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_table_id\": \"<integer>\",\n  \"target_table_id\": \"<integer>\",\n  \"target_order_group_id\": \"<integer>\",\n  \"target_order_group_name\": \"<string>\",\n  \"order_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"training_mode\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b657fecb-241d-4563-8b7d-de68acc8e607",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_table_id\": 10,\n  \"target_table_id\": 20,\n  \"target_order_group_id\": 1,\n  \"target_order_group_name\": \"Group A\",\n  \"order_ids\": [\n    101,\n    102,\n    103\n  ],\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"order_id\": 123,\n    \"order_quantity\": \"string\",\n    \"order_priceGross\": \"string\",\n    \"order_priceNet\": \"string\",\n    \"order_vat\": \"string\",\n    \"order_discount_valueGross\": \"string\",\n    \"order_discount_valueNet\": \"string\",\n    \"order_vatRate\": \"string\",\n    \"order_product_priceGrossPerUnit\": \"string\",\n    \"order_product_priceNetPerUnit\": \"string\",\n    \"order_discount_name\": \"discountA\",\n    \"order_discountable\": true,\n    \"order_mergeable\": true,\n    \"order_retour\": false,\n    \"order_number\": 123,\n    \"order_group\": 123,\n    \"order_product_name\": \"productA\",\n    \"order_product_itemnumber\": \"string\",\n    \"order_product_serialnumber\": \"string\",\n    \"order_course\": 1,\n    \"order_status\": 1,\n    \"order_comment\": \"very long text\",\n    \"table_id\": 123456,\n    \"product_id\": 123456,\n    \"user_id\": 123456,\n    \"productgroup_type_id\": 123456,\n    \"order_created_at\": \"2019-01-01\"\n  },\n  {\n    \"order_id\": 123,\n    \"order_quantity\": \"string\",\n    \"order_priceGross\": \"string\",\n    \"order_priceNet\": \"string\",\n    \"order_vat\": \"string\",\n    \"order_discount_valueGross\": \"string\",\n    \"order_discount_valueNet\": \"string\",\n    \"order_vatRate\": \"string\",\n    \"order_product_priceGrossPerUnit\": \"string\",\n    \"order_product_priceNetPerUnit\": \"string\",\n    \"order_discount_name\": \"discountA\",\n    \"order_discountable\": true,\n    \"order_mergeable\": true,\n    \"order_retour\": false,\n    \"order_number\": 123,\n    \"order_group\": 123,\n    \"order_product_name\": \"productA\",\n    \"order_product_itemnumber\": \"string\",\n    \"order_product_serialnumber\": \"string\",\n    \"order_course\": 1,\n    \"order_status\": 1,\n    \"order_comment\": \"very long text\",\n    \"table_id\": 123456,\n    \"product_id\": 123456,\n    \"user_id\": 123456,\n    \"productgroup_type_id\": 123456,\n    \"order_created_at\": \"2019-01-01\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "247670d5-2ed4-4393-bd51-72be46832185",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_table_id\": 10,\n  \"target_table_id\": 20,\n  \"target_order_group_id\": 1,\n  \"target_order_group_name\": \"Group A\",\n  \"order_ids\": [\n    101,\n    102,\n    103\n  ],\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a76493c-8698-4920-b234-012aa527d0aa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_table_id\": 10,\n  \"target_table_id\": 20,\n  \"target_order_group_id\": 1,\n  \"target_order_group_name\": \"Group A\",\n  \"order_ids\": [\n    101,\n    102,\n    103\n  ],\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44df26bd-ae98-4bf8-97db-fcf94ecc53d7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_table_id\": 10,\n  \"target_table_id\": 20,\n  \"target_order_group_id\": 1,\n  \"target_order_group_name\": \"Group A\",\n  \"order_ids\": [\n    101,\n    102,\n    103\n  ],\n  \"training_mode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ready2order.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9f2faaa0-21c6-4636-89cf-419463157e9a",
+    "name": "ready2order Public Account Token Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n\n\nContact Support:\n Name: support@ready2order.com",
+      "type": "text/plain"
+    }
+  }
+}

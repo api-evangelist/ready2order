@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Table API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/tables",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page you want to display"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all Tables"
+        },
+        {
+          "info": {
+            "name": "Create a new Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new Table"
+        },
+        {
+          "info": {
+            "name": "Find Table by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Find Table by Id"
+        },
+        {
+          "info": {
+            "name": "Update Table by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update Table by Id"
+        },
+        {
+          "info": {
+            "name": "Delete Table by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/tables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete Table by Id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

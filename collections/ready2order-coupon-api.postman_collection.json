@@ -1,0 +1,2179 @@
+{
+  "item": [
+    {
+      "id": "79e42a74-f4ea-40a6-8ec9-244dd6e19646",
+      "name": "Coupon",
+      "description": {
+        "content": "<!-- markdownlint-disable MD041 MD033 MD051 github-internal-links relative-links -- tag description snippet, not a standalone document; the tag name serves as the heading in the API docs -->\nCoupons are gift cards and vouchers that merchants sell and later accept as payment at the point of sale. The `coupon_value` field always holds the current remaining balance.\n\n**Balance and Lifecycle**\n\nYou create a coupon with an initial value. From there you can [charge it](#operation/couponChargeById) (add value) or [redeem it](#operation/couponRedeemById) (deduct value). Partial redemptions work fine; the coupon stays active until the balance reaches zero.\n\n**Coupon Purpose**\n\n`coupon_purpose` determines when VAT is due. We distinguish between two voucher types:\n\n| Purpose | When VAT is due | `coupon_containsVat` |\n|---------|-----------------|----------------------|\n| `single` | At issuance (place of supply and tax rate are known at creation) | The applicable rate, e.g. `20` |\n| `multi` | At redemption (the POS applies the right rate per item) | Must be `0` |\n\nSingle-purpose suits vouchers for specific goods at a fixed rate, such as a drink voucher tied to a particular product.<br>\nMulti-purpose fits general gift cards redeemable for anything or across multiple locations.\n\nCheck with your tax advisor which type applies to your situation.\n\n**Identifier**\n\n`coupon_identifier` is the numeric code printed on physical voucher cards. If you leave it out, an EAN-13 code is generated automatically. Pass it as the `identifier` query parameter on [GET /coupons](#operation/couponGetAll) to look up a coupon by barcode scan.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cedab49-8081-4b31-9d01-6a2cf496362e",
+          "name": "List coupons",
+          "request": {
+            "name": "List coupons",
+            "description": {
+              "content": "Returns a paginated list of coupons. Filter by `identifier` to look up a coupon by its code (e.g. scanned from a barcode).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page you want to display"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier",
+                  "value": "<string>",
+                  "description": "Identifier/Code of coupon"
+                },
+                {
+                  "disabled": false,
+                  "key": "trainingMode",
+                  "value": "<boolean>",
+                  "description": "Trainingmode"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3506b7fc-31bd-402a-9450-08284f6cbf2c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "9995071228303"
+                    },
+                    {
+                      "key": "trainingMode",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"coupon_id\": 1234,\n    \"coupon_name\": \"Christmas Coupon\",\n    \"coupon_containsVat\": \"string\",\n    \"coupon_purpose\": \"single|multi\",\n    \"coupon_identifier\": \"string\",\n    \"coupon_testMode\": true,\n    \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n    \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n    \"couponCategory_id\": 4,\n    \"vat_id\": 1234,\n    \"product_id\": 1234,\n    \"customer_id\": 7455,\n    \"coupon_created_at\": \"2018-01-31 00:49:39\",\n    \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n  },\n  {\n    \"coupon_id\": 1234,\n    \"coupon_name\": \"Christmas Coupon\",\n    \"coupon_containsVat\": \"string\",\n    \"coupon_purpose\": \"single|multi\",\n    \"coupon_identifier\": \"string\",\n    \"coupon_testMode\": true,\n    \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n    \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n    \"couponCategory_id\": 4,\n    \"vat_id\": 1234,\n    \"product_id\": 1234,\n    \"customer_id\": 7455,\n    \"coupon_created_at\": \"2018-01-31 00:49:39\",\n    \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb4b4bd6-8634-4a61-abb0-59d0a13cb860",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "9995071228303"
+                    },
+                    {
+                      "key": "trainingMode",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "240275e7-ba64-4dc9-a201-d5b141f53e6f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "9995071228303"
+                    },
+                    {
+                      "key": "trainingMode",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b33c49fe-52b5-4952-8da0-b96bdd0378d7",
+          "name": "Create a coupon",
+          "request": {
+            "name": "Create a coupon",
+            "description": {
+              "content": "Creates a new coupon. `coupon_identifier` is auto-generated as an EAN-13 code if omitted. Set `coupon_purpose` to \"single\" or \"multi\" to control when VAT is due: at issuance or at redemption.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coupon_name\": \"<string>\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": \"<integer>\",\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": \"<integer>\",\n  \"coupon_type\": \"<string>\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"<string>\",\n  \"coupon_issuedAt\": \"<string>\",\n  \"coupon_testMode\": \"<boolean>\",\n  \"coupon_identifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b082df9a-2384-4058-83ca-a09003ca1916",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coupon_id\": 1234,\n  \"coupon_name\": \"Christmas Coupon\",\n  \"coupon_containsVat\": \"string\",\n  \"coupon_purpose\": \"single|multi\",\n  \"coupon_identifier\": \"string\",\n  \"coupon_testMode\": true,\n  \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n  \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n  \"couponCategory_id\": 4,\n  \"vat_id\": 1234,\n  \"product_id\": 1234,\n  \"customer_id\": 7455,\n  \"coupon_created_at\": \"2018-01-31 00:49:39\",\n  \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2844926c-8d17-4ce4-a5bd-712e9a7639ff",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48e5effb-d402-46aa-ac90-f6dc4dadd819",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae1eee29-4c11-48cb-9466-c67bad6b9fa0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3d04170-38d3-41ca-81cb-c060c0d8df7f",
+          "name": "Get a coupon",
+          "request": {
+            "name": "Get a coupon",
+            "description": {
+              "content": "Returns a single coupon by its ID, including its current balance in coupon_value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Coupon ID to find"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f0fd222-7603-440a-acd4-51208996279a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coupon_id\": 1234,\n  \"coupon_name\": \"Christmas Coupon\",\n  \"coupon_containsVat\": \"string\",\n  \"coupon_purpose\": \"single|multi\",\n  \"coupon_identifier\": \"string\",\n  \"coupon_testMode\": true,\n  \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n  \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n  \"couponCategory_id\": 4,\n  \"vat_id\": 1234,\n  \"product_id\": 1234,\n  \"customer_id\": 7455,\n  \"coupon_created_at\": \"2018-01-31 00:49:39\",\n  \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b74a671-f2ef-48f8-a846-e83c8ac7ff37",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2315f9db-4c23-4254-98b7-c8ba879e275a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9a6d4e4-af50-4a60-8d83-e6739502c43e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77c004cf-4f66-4712-9f51-4db1676107b2",
+          "name": "Update a coupon",
+          "request": {
+            "name": "Update a coupon",
+            "description": {
+              "content": "Updates coupon metadata such as name, validity dates, category, or customer assignment. To adjust the balance, use the charge or redeem endpoints instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Coupon ID to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coupon_name\": \"<string>\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": \"<integer>\",\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": \"<integer>\",\n  \"coupon_type\": \"<string>\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"<string>\",\n  \"coupon_issuedAt\": \"<string>\",\n  \"coupon_testMode\": \"<boolean>\",\n  \"coupon_identifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "59e4664f-d285-460f-96b3-78f6fd3a1d0b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coupon_id\": 1234,\n  \"coupon_name\": \"Christmas Coupon\",\n  \"coupon_containsVat\": \"string\",\n  \"coupon_purpose\": \"single|multi\",\n  \"coupon_identifier\": \"string\",\n  \"coupon_testMode\": true,\n  \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n  \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n  \"couponCategory_id\": 4,\n  \"vat_id\": 1234,\n  \"product_id\": 1234,\n  \"customer_id\": 7455,\n  \"coupon_created_at\": \"2018-01-31 00:49:39\",\n  \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "218449ac-248e-4aaa-991f-208169fbc9e0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a924849b-1182-4fad-bb56-382033825d78",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "348575d4-adfe-49b0-9466-6debd47c836e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6f7390c-f9c4-4226-a48b-4864a98af050",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coupon_name\": \"MyCoupon\",\n  \"coupon_value\": \"<string>\",\n  \"couponCategory_id\": 123,\n  \"coupon_containsVat\": \"<string>\",\n  \"customer_id\": 450,\n  \"coupon_type\": \"coupon\",\n  \"coupon_purpose\": \"<string>\",\n  \"coupon_validUntil\": \"2030-01-02\",\n  \"coupon_issuedAt\": \"2025-01-02\",\n  \"coupon_testMode\": false,\n  \"coupon_identifier\": \"AABBCC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0217cb63-1a90-4358-a810-e41b6da28dcf",
+          "name": "Delete a coupon",
+          "request": {
+            "name": "Delete a coupon",
+            "description": {
+              "content": "Deletes a coupon.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Coupon ID to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ba5d760-4c81-442a-a5db-1e4dee3aadae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"success\": true,\n  \"msg\": \"Coupon was successfully deleted!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "507f6d16-6340-4711-97e9-137cdad45eac",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f30a0b4d-9018-41ba-9195-81bbfa2cae4d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bf5cb78-c636-4efa-956a-8f3ee11a8727",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74b08d59-0899-40ea-9d43-c5e6a48be361",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7624030b-0b22-442b-ba04-d1a124f17a93",
+          "name": "Charge a coupon",
+          "request": {
+            "name": "Charge a coupon",
+            "description": {
+              "content": "Adds value to an existing coupon's balance, for example when a customer tops up a voucher card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":id",
+                "charge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Coupon ID to charge"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7170e909-35cd-42a1-b894-fc9ed648d92b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to charge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coupon_id\": 1234,\n  \"coupon_name\": \"Christmas Coupon\",\n  \"coupon_containsVat\": \"string\",\n  \"coupon_purpose\": \"single|multi\",\n  \"coupon_identifier\": \"string\",\n  \"coupon_testMode\": true,\n  \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n  \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n  \"couponCategory_id\": 4,\n  \"vat_id\": 1234,\n  \"product_id\": 1234,\n  \"customer_id\": 7455,\n  \"coupon_created_at\": \"2018-01-31 00:49:39\",\n  \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f2a47cd-aee0-43b2-9ec4-aafc02ba1205",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to charge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd86a3f1-123f-45f3-98ff-f068c8a8c57a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to charge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6a8f5b1-aaca-4427-be28-26158e2e20f1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to charge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4839fc2c-1e3a-4e75-89ec-ea55068394f5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "charge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to charge"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b17b040-2d9d-49ab-9c72-d2a7dc03934c",
+          "name": "Redeem a coupon",
+          "request": {
+            "name": "Redeem a coupon",
+            "description": {
+              "content": "Deducts the specified value from the coupon's balance. Partial redemptions are supported. Returns the updated coupon with the new balance in `coupon_value`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "coupons",
+                ":id",
+                "redeem"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Coupon ID to redeem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be6a4e27-8d44-4d87-bed4-2ac6c7e88597",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to redeem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coupon_id\": 1234,\n  \"coupon_name\": \"Christmas Coupon\",\n  \"coupon_containsVat\": \"string\",\n  \"coupon_purpose\": \"single|multi\",\n  \"coupon_identifier\": \"string\",\n  \"coupon_testMode\": true,\n  \"coupon_validUntil\": \"2020-01-31 00:49:39\",\n  \"coupon_issuedAt\": \"2018-01-31 00:49:39\",\n  \"couponCategory_id\": 4,\n  \"vat_id\": 1234,\n  \"product_id\": 1234,\n  \"customer_id\": 7455,\n  \"coupon_created_at\": \"2018-01-31 00:49:39\",\n  \"coupon_updated_at\": \"2018-01-31 04:49:39\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0e0b342-c18d-4de9-aa36-f44cf73edb6b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to redeem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad45648a-20db-46b7-ac98-885c9b15b837",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to redeem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46179dfe-ef8c-4c1b-8bf9-677e565f6b7c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to redeem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f77c8e8-fbe8-4072-9eaf-77d50ed9df06",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":id",
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Coupon ID to redeem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ready2order.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9917f8cb-d768-4e9e-bb07-89163c54c83d",
+    "name": "ready2order Public Account Token Coupon API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n\n\nContact Support:\n Name: support@ready2order.com",
+      "type": "text/plain"
+    }
+  }
+}

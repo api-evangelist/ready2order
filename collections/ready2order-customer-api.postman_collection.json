@@ -1,0 +1,1678 @@
+{
+  "item": [
+    {
+      "id": "e4b7d412-e2ae-419d-9a74-e620d137f1f1",
+      "name": "Customer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6899b8b-d6f4-405c-a788-41d298c4e6cc",
+          "name": "List all Customers",
+          "request": {
+            "name": "List all Customers",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page you want to display"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "969256e2-127a-48cd-9896-13a54b803bf1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"customer_id\": 9999,\n    \"customer_number\": 9999,\n    \"customer_name\": \"Maxi's custom name\",\n    \"vatId\": \"ATU1234567\",\n    \"customer_notes\": \"Some custom notes\",\n    \"customerCategory_id\": 9999,\n    \"customer_birthday\": \"1991-09-20\",\n    \"address\": [\n      {\n        \"invoice\": [\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          },\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          }\n        ]\n      },\n      {\n        \"invoice\": [\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          },\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"customer_id\": 9999,\n    \"customer_number\": 9999,\n    \"customer_name\": \"Maxi's custom name\",\n    \"vatId\": \"ATU1234567\",\n    \"customer_notes\": \"Some custom notes\",\n    \"customerCategory_id\": 9999,\n    \"customer_birthday\": \"1991-09-20\",\n    \"address\": [\n      {\n        \"invoice\": [\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          },\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          }\n        ]\n      },\n      {\n        \"invoice\": [\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          },\n          {\n            \"salutation\": \"Herr\",\n            \"title\": \"Professor\",\n            \"customer_company\": \"Maxi Gmbh\",\n            \"lastName\": \"Muster\",\n            \"firstName\": \"Max\",\n            \"zip\": \"string\",\n            \"city\": \"WIen\",\n            \"street\": \"Straße 1\",\n            \"country\": \"AT\",\n            \"email\": \"example@ready2order.com\",\n            \"phone\": \"+43 664 12345678\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79548130-d502-4080-a09b-85e292740b57",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d099e7e-8767-4b0b-8f2b-3c7648c626f0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f15f0e3a-e789-46ec-884e-d107c210a597",
+          "name": "Create a new Customer",
+          "request": {
+            "name": "Create a new Customer",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerCategory_id\": \"<integer>\",\n  \"birthday\": \"<string>\",\n  \"city\": \"<string>\",\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"customer_number\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"salutation\": \"<string>\",\n  \"street\": \"<string>\",\n  \"title\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"zip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67b8feb5-1524-4b10-8a06-b296405f3525",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer_id\": 9999,\n  \"customer_number\": 9999,\n  \"customer_name\": \"Maxi's custom name\",\n  \"vatId\": \"ATU1234567\",\n  \"customer_notes\": \"Some custom notes\",\n  \"customerCategory_id\": 9999,\n  \"customer_birthday\": \"1991-09-20\",\n  \"address\": [\n    {\n      \"invoice\": [\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        },\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        }\n      ]\n    },\n    {\n      \"invoice\": [\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        },\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b67c49a-ba49-4403-859d-195ad6b0d649",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2b871de-3e6c-493a-af07-c5e2f145643f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33a12433-816a-4dff-bfc0-017628050b6f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d77369c2-ed1b-4f69-921a-d2922285ca66",
+          "name": "Find Customer by Id",
+          "request": {
+            "name": "Find Customer by Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Customer ID to find"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "08d55305-3d50-4958-adcc-197f0d9de5ae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer_id\": 9999,\n  \"customer_number\": 9999,\n  \"customer_name\": \"Maxi's custom name\",\n  \"vatId\": \"ATU1234567\",\n  \"customer_notes\": \"Some custom notes\",\n  \"customerCategory_id\": 9999,\n  \"customer_birthday\": \"1991-09-20\",\n  \"address\": [\n    {\n      \"invoice\": [\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        },\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        }\n      ]\n    },\n    {\n      \"invoice\": [\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        },\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25f73ea6-4c21-4db7-995f-1f3a107472db",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77f7efbd-e63d-45ca-a76f-f4b8f8c4822b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fcb938f-6dd9-441a-80b9-3d7a95aee442",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69ed0feb-66d5-4f78-a388-85d4f0b1291d",
+          "name": "Update Customer by Id",
+          "request": {
+            "name": "Update Customer by Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Customer ID to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerCategory_id\": \"<integer>\",\n  \"birthday\": \"<string>\",\n  \"city\": \"<string>\",\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"customer_number\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"salutation\": \"<string>\",\n  \"street\": \"<string>\",\n  \"title\": \"<string>\",\n  \"uid\": \"<string>\",\n  \"zip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aba97d26-a188-4a5d-a274-7b34ffb4987e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer_id\": 9999,\n  \"customer_number\": 9999,\n  \"customer_name\": \"Maxi's custom name\",\n  \"vatId\": \"ATU1234567\",\n  \"customer_notes\": \"Some custom notes\",\n  \"customerCategory_id\": 9999,\n  \"customer_birthday\": \"1991-09-20\",\n  \"address\": [\n    {\n      \"invoice\": [\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        },\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        }\n      ]\n    },\n    {\n      \"invoice\": [\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        },\n        {\n          \"salutation\": \"Herr\",\n          \"title\": \"Professor\",\n          \"customer_company\": \"Maxi Gmbh\",\n          \"lastName\": \"Muster\",\n          \"firstName\": \"Max\",\n          \"zip\": \"string\",\n          \"city\": \"WIen\",\n          \"street\": \"Straße 1\",\n          \"country\": \"AT\",\n          \"email\": \"example@ready2order.com\",\n          \"phone\": \"+43 664 12345678\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec8fcc28-218d-4cdc-a6b3-bfcb40c4e4c8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22d5ee4f-d619-4253-8c71-f654c5fc166e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74ec41f6-3101-40fe-a90f-18cb720ab4ea",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e09edff6-df1c-4b8c-8114-37ec75b1a2e6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCategory_id\": 1126,\n  \"birthday\": \"1991-09-20\",\n  \"city\": \"Wien\",\n  \"company\": \"Maxi Gmbh\",\n  \"email\": \"example@ready2order.com\",\n  \"firstName\": \"Max\",\n  \"lastName\": \"Muster\",\n  \"customer_name\": \"<string>\",\n  \"notes\": \"Some custom notes\",\n  \"customer_number\": 9999,\n  \"phone\": \"+43 12345678\",\n  \"salutation\": \"Herr\",\n  \"street\": \"Straße 1\",\n  \"title\": \"Herr\",\n  \"uid\": \"ATU1234567\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b12875c-d409-4384-93ea-a2c0f128c751",
+          "name": "Delete Customer by Id",
+          "request": {
+            "name": "Delete Customer by Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Customer ID to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ded076cc-0920-405a-9111-a0d1d9ce9697",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"success\": true,\n  \"msg\": \"Customer was successfully deleted!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9138130e-9435-4f22-8fcc-6625044056e4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cccb19c-330c-4441-8916-a01dfc706c72",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1dd73d1a-950b-4d08-9bf8-14cbaf2f8dcf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12173404-4098-45b3-86f0-6a4d7ffabfbe",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Customer ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcdc72e1-5235-40c5-8a89-4e1cee8510c6",
+          "name": "Merge Customers",
+          "request": {
+            "name": "Merge Customers",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"masterCustomer\": \"<integer>\",\n  \"customerIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4da48be6-41bf-4151-acd5-8b7adeda360b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"masterCustomer\": 5924,\n  \"customerIds\": [\n    1,\n    2,\n    3,\n    4\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"success\": true,\n  \"msg\": \"Merged successfully!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99d1bb37-51fa-4163-a74d-b8f78c0d3342",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"masterCustomer\": 5924,\n  \"customerIds\": [\n    1,\n    2,\n    3,\n    4\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10e0e1c8-fb50-451b-b58f-719178902ed3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"masterCustomer\": 5924,\n  \"customerIds\": [\n    1,\n    2,\n    3,\n    4\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9b12992e-060a-4f3d-a2a6-a54fa375ea31",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"masterCustomer\": 5924,\n  \"customerIds\": [\n    1,\n    2,\n    3,\n    4\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ready2order.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9ac168b8-5132-467a-a18a-fa129e508efa",
+    "name": "ready2order Public Account Token Customer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n\n\nContact Support:\n Name: support@ready2order.com",
+      "type": "text/plain"
+    }
+  }
+}

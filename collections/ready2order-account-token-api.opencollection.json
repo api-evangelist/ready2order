@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Revoke Account Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/access/revoke",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint can be used to revoke the currently used API Account Token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

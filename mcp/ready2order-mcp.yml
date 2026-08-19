@@ -427,3 +427,9 @@ tools:
 - name: webhookUpdateWebhookEvent
   description: Update Webhook Event
   source_operation: openapi/ready2order-openapi-original.json#webhookUpdateWebhookEvent
+deployment:
+  mode: none
+  verified: derived
+  tools: 140
+  checked: '2026-08-12'
+  source: catalog MCP census

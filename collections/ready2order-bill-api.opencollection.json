@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Bill API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bill",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Bills",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/document/invoice",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query; the value to search by."
+              },
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "query",
+                "description": "Table-Id to filter by."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Customer-Id to filter by."
+              },
+              {
+                "name": "dateField",
+                "value": "",
+                "type": "query",
+                "description": "Date field the query should filter by. <br><br> __Values__<br> `daily_report` Filter by the start date of the related Daily Report<br> `bill` Filter by the bill’s creation date"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Marks the start date for filtering. Can be a whole date (account's timestamp is used by default) or a datetime (ISO 8601).<br><br> `2024-10-23` or `2023-12-31T13:00:00Z`"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "Marks the end date for filtering. Can be a whole date (account's timestamp is used by default) or a datetime (ISO 8601).<br><br> `2024-11-21` or `2023-12-31T13:00:00Z`"
+              },
+              {
+                "name": "testMode",
+                "value": "",
+                "type": "query",
+                "description": "Training mode on/off."
+              },
+              {
+                "name": "items",
+                "value": "",
+                "type": "query",
+                "description": "Include list of items."
+              },
+              {
+                "name": "discounts",
+                "value": "",
+                "type": "query",
+                "description": "Include list of discounts."
+              },
+              {
+                "name": "payments",
+                "value": "",
+                "type": "query",
+                "description": "Include list of payments."
+              },
+              {
+                "name": "payment",
+                "value": "",
+                "type": "query",
+                "description": "[DEPRECATED] ~~Include list of payments. (Default: `false`)~~ <br><br> __Alternative__<br> `payments`"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all Bills"
+        },
+        {
+          "info": {
+            "name": "Create Bill",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/document/invoice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create Bill"
+        },
+        {
+          "info": {
+            "name": "Count All Bills",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/document/invoice/count",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Count All Bills"
+        },
+        {
+          "info": {
+            "name": "Find Bill by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/document/invoice/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Bill ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Find Bill by Id"
+        },
+        {
+          "info": {
+            "name": "Cancel an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/document/invoice/:id/delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice that should be cancelled"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels an invoice by creating a cancellation (storno) bill that reverses its items and payments. By default the cancellation is paid back with the original invoice's payment method. An explicit paymentMethod_id and/or partPayments can be given to pay the cancellation back differently - see the description of those parameters for details."
+        },
+        {
+          "info": {
+            "name": "Print a bill",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/document/invoice/:id/print",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Bill ID to find"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add bill to printer queue for specific printer"
+        },
+        {
+          "info": {
+            "name": "Create PDF for bill",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/document/invoice/:id/pdf",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User ID to delete"
+              },
+              {
+                "name": "regeneratePDF",
+                "value": "",
+                "type": "query",
+                "description": "Regenerate an existing PDF"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "PDF Format"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns signed S3 URL. Optionally regenerates pdf if `regeneratePDF` is set to `true`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

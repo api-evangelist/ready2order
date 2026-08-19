@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Printer Profile API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Printer Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List printer profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/printingProfile",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all printer profiles for the account, including the IDs of the physical printers currently assigned to each profile."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

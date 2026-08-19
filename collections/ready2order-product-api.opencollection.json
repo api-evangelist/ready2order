@@ -1,0 +1,644 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Product API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create products in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/products/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates multiple products in a single request. Returns a result for each item along with a count of how many succeeded and how many failed."
+        },
+        {
+          "info": {
+            "name": "Update stock in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/products/batch/stock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates stock for multiple products in one request. Each item can be identified by either `product_id` or `product_itemNumber`."
+        },
+        {
+          "info": {
+            "name": "List products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page you want to display"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page"
+              },
+              {
+                "name": "productgroup_id",
+                "value": "",
+                "type": "query",
+                "description": "get all products for this productgroup_id"
+              },
+              {
+                "name": "itemNumber",
+                "value": "",
+                "type": "query",
+                "description": "search for a product with the given product_itemNumber"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "search for a product with the given product_name"
+              },
+              {
+                "name": "barcode",
+                "value": "",
+                "type": "query",
+                "description": "search for a product with the given product_barcode"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search for a product by keywords"
+              },
+              {
+                "name": "includeProductGroup",
+                "value": "",
+                "type": "query",
+                "description": "include product group information"
+              },
+              {
+                "name": "includeProductVariations",
+                "value": "",
+                "type": "query",
+                "description": "include product variations information"
+              },
+              {
+                "name": "includeProductIngredients",
+                "value": "",
+                "type": "query",
+                "description": "include product variations information"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Only return list of products which have been updated after a given timestamp"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of products. Filter by product group, name, barcode, or item number. Use `updatedAfter` to fetch only products changed since a given timestamp."
+        },
+        {
+          "info": {
+            "name": "Create a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new product."
+        },
+        {
+          "info": {
+            "name": "Get a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Product ID to find"
+              },
+              {
+                "name": "includeProductGroup",
+                "value": "",
+                "type": "query",
+                "description": "include product group information"
+              },
+              {
+                "name": "includeProductVariations",
+                "value": "",
+                "type": "query",
+                "description": "include product variations information"
+              },
+              {
+                "name": "includeProductIngredients",
+                "value": "",
+                "type": "query",
+                "description": "include product variations information"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a single product by ID."
+        },
+        {
+          "info": {
+            "name": "Update a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "product id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing product. To update stock figures without changing other product data, use the update stock endpoint instead."
+        },
+        {
+          "info": {
+            "name": "Delete a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Product ID to delete"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a product."
+        },
+        {
+          "info": {
+            "name": "Get product stock by item number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/itemNumber/:itemNumber/stock",
+            "params": [
+              {
+                "name": "itemNumber",
+                "value": "",
+                "type": "path",
+                "description": "Product item number"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns stock information for a product looked up by its item number rather than its ID."
+        },
+        {
+          "info": {
+            "name": "Get product stock",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/:id/stock",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the current stock level, safety stock, and reorder level for a product."
+        },
+        {
+          "info": {
+            "name": "Update product stock",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/products/:id/stock",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Product ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates stock for a product. Use `product_stock` to set an absolute value or `product_stockDelta` to add or subtract from the current quantity."
+        },
+        {
+          "info": {
+            "name": "List per-customer prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customer",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all per-customer price overrides for a product."
+        },
+        {
+          "info": {
+            "name": "Set per-customer price",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customer",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets a price override for a specific customer on this product."
+        },
+        {
+          "info": {
+            "name": "Get per-customer price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customer/:customerId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Customer category ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the price override for a specific customer."
+        },
+        {
+          "info": {
+            "name": "Update per-customer price",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customer/:customerId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the price override for a specific customer on this product."
+        },
+        {
+          "info": {
+            "name": "Remove per-customer price",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customer/:customerId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Customer category ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes the price override for a customer, reverting to the product's base price or their category price if one is set."
+        },
+        {
+          "info": {
+            "name": "List customer category prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customerCategory",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all customer category price overrides for a product."
+        },
+        {
+          "info": {
+            "name": "Set customer category price",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customerCategory",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets a price override for a customer category on this product."
+        },
+        {
+          "info": {
+            "name": "Get customer category price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customerCategory/:customerCategoryId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              },
+              {
+                "name": "customerCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "Customer category ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the price override for a specific customer category."
+        },
+        {
+          "info": {
+            "name": "Update customer category price",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customerCategory/:customerCategoryId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              },
+              {
+                "name": "customerCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "customer category id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the price override for a customer category on this product."
+        },
+        {
+          "info": {
+            "name": "Remove customer category price",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/products/:id/price/customerCategory/:customerCategoryId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID to find"
+              },
+              {
+                "name": "customerCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "Customer category ID to find"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes the price override for a customer category, reverting to the product's base price."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

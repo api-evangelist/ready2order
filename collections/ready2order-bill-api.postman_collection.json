@@ -1,0 +1,2201 @@
+{
+  "item": [
+    {
+      "id": "064b191f-5318-4722-9f80-924e7267204e",
+      "name": "Bill",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d41a5e9-951f-473b-bd3f-72b4d4592dca",
+          "name": "List all Bills",
+          "request": {
+            "name": "List all Bills",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Search query; the value to search by."
+                },
+                {
+                  "disabled": false,
+                  "key": "tableId",
+                  "value": "<integer>",
+                  "description": "Table-Id to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<integer>",
+                  "description": "Customer-Id to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateField",
+                  "value": "daily_report",
+                  "description": "Date field the query should filter by. <br><br> __Values__<br> `daily_report` Filter by the start date of the related Daily Report<br> `bill` Filter by the bill’s creation date"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<string>",
+                  "description": "Marks the start date for filtering. Can be a whole date (account's timestamp is used by default) or a datetime (ISO 8601).<br><br> `2024-10-23` or `2023-12-31T13:00:00Z`"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<string>",
+                  "description": "Marks the end date for filtering. Can be a whole date (account's timestamp is used by default) or a datetime (ISO 8601).<br><br> `2024-11-21` or `2023-12-31T13:00:00Z`"
+                },
+                {
+                  "disabled": false,
+                  "key": "testMode",
+                  "value": "false",
+                  "description": "Training mode on/off."
+                },
+                {
+                  "disabled": false,
+                  "key": "items",
+                  "value": "false",
+                  "description": "Include list of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "discounts",
+                  "value": "<boolean>",
+                  "description": "Include list of discounts."
+                },
+                {
+                  "disabled": false,
+                  "key": "payments",
+                  "value": "<boolean>",
+                  "description": "Include list of payments."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment",
+                  "value": "<boolean>",
+                  "description": "[DEPRECATED] ~~Include list of payments. (Default: `false`)~~ <br><br> __Alternative__<br> `payments`"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd4bcdc4-b37d-4b06-9355-c5e9cc762aa7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "255"
+                    },
+                    {
+                      "key": "query",
+                      "value": "RG2018/1"
+                    },
+                    {
+                      "key": "tableId",
+                      "value": "153311"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "27268"
+                    },
+                    {
+                      "key": "dateField",
+                      "value": "daily_report"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-10-23"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-11-21"
+                    },
+                    {
+                      "key": "testMode",
+                      "value": "false"
+                    },
+                    {
+                      "key": "items",
+                      "value": "false"
+                    },
+                    {
+                      "key": "discounts",
+                      "value": "false"
+                    },
+                    {
+                      "key": "payments",
+                      "value": "false"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoices\": [\n    {\n      \"invoice_id\": 1234,\n      \"invoice_reference_id\": 1233,\n      \"invoice_timestamp\": \"2019-01-01 00:00:00\",\n      \"invoice_number\": 1,\n      \"invoice_numberFull\": \"RG2019/1\",\n      \"invoice_total\": \"string\",\n      \"invoice_totalNet\": \"string\",\n      \"invoice_totalVat\": \"string\",\n      \"invoice_totalTip\": \"string\",\n      \"invoice_address_company\": \"ready2order GmbH\",\n      \"invoice_address_vatId\": \"ATU12341234\",\n      \"invoice_address_salutation\": \"Mr/Ms\",\n      \"invoice_address_title\": \"Professor\",\n      \"invoice_address_firstName\": \"Chris\",\n      \"invoice_address_lastName\": \"Fox\",\n      \"invoice_address_street\": \"Hintere Zollamtsstraße 17\",\n      \"invoice_address_city\": \"Vienna\",\n      \"invoice_address_zip\": \"string\",\n      \"invoice_address_country\": \"AT\",\n      \"invoice_address_email\": \"dux@fox.com\",\n      \"invoice_address_phone\": \"+43 664 1234 1234 1234\",\n      \"invoice_inPrinterQueue\": false,\n      \"invoice_priceBase\": \"brutto\",\n      \"invoice_deleted_at\": \"2019-01-01 00:00:00\",\n      \"invoice_deletedReason\": \"Some reason\",\n      \"invoice_pdf\": \"http://some.link\",\n      \"invoice_textBeforeItemsTable\": \"Some text\",\n      \"invoice_text\": \"Some text\",\n      \"invoice_locked\": true,\n      \"invoice_externalReferenceNumber\": \"REF-1234\",\n      \"invoice_internalInvoiceReferenceNumber\": \"string\",\n      \"invoice_dueDate\": \"2019-01-05\",\n      \"invoice_deliveryDate\": \"2019-01-01\",\n      \"invoice_paid\": true,\n      \"invoice_paidDate\": \"2019-01-01\",\n      \"invoice_offlineTimestamp\": \"2019-01-01 00:00:00\",\n      \"invoice_offlineNumber\": \"2A26A8D9/1\",\n      \"invoice_testMode\": true,\n      \"invoice_formatVersion\": 2,\n      \"customer_id\": 1234,\n      \"customerCategory_id\": 1023,\n      \"table_id\": 1234,\n      \"tableArea_id\": 67,\n      \"paymentMethod_id\": 1234,\n      \"user_id\": 1234,\n      \"printer_id\": 23,\n      \"billType_id\": 1,\n      \"currency_id\": 1,\n      \"items\": [\n        {\n          \"item_id\": 76234,\n          \"item_timestamp\": \"2019-01-01 00:00:00\",\n          \"item_quantity\": \"string\",\n          \"item_retour\": false,\n          \"item_number\": \"string\",\n          \"item_serialNumber\": \"some-serial-number\",\n          \"item_expirationDate\": \"2019-01-01 00:00:00\",\n          \"item_name\": \"MyProductName\",\n          \"item_comment\": \"my-optional-comment\",\n          \"item_price\": \"string\",\n          \"item_priceNet\": \"string\",\n          \"item_priceBase\": false,\n          \"item_total\": \"string\",\n          \"item_totalNet\": \"string\",\n          \"item_vat\": \"string\",\n          \"item_vatRate\": \"string\",\n          \"item_vatCompensation\": \"string\",\n          \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n          \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n          \"item_lineDiscountId\": 1234,\n          \"item_lineDiscountGroupId\": 1234,\n          \"item_lineDiscountName\": \"SomeDiscountName\",\n          \"item_lineDiscountPercent\": \"string\",\n          \"item_lineDiscountNet\": \"string\",\n          \"item_lineDiscountGross\": \"string\",\n          \"item_invoiceDiscountNet\": \"string\",\n          \"item_invoiceDiscountGross\": \"string\",\n          \"item_discountable\": true,\n          \"paymentMethod_id\": 1234,\n          \"item_updatedStock\": true,\n          \"product_id\": 1234,\n          \"productgroup_name\": \"My product group\",\n          \"productGroup_id\": 1234,\n          \"customer_id\": 1234,\n          \"user_id\": 1234,\n          \"user_name\": \"SomeUser\",\n          \"invoice_id\": 1234,\n          \"deliveryBill_id\": 1234,\n          \"dailyReport_id\": 1234,\n          \"productUnit_id\": 1,\n          \"table_id\": 1234,\n          \"table_name\": \"SomeTableName\",\n          \"payment_id\": 431,\n          \"retourInvoice_id\": 1233,\n          \"item_accountingCode\": \"string\",\n          \"item_testMode\": false,\n          \"item_product_price\": \"string\",\n          \"item_product_priceNet\": \"string\",\n          \"item_product_vat\": \"string\",\n          \"item_qty\": \"string\",\n          \"item_product_vatRate\": \"string\",\n          \"item_product_vatCompensation\": \"string\",\n          \"item_product_priceNetPerUnit\": \"string\",\n          \"item_product_pricePerUnit\": \"string\",\n          \"item_product_discountable\": true\n        },\n        {\n          \"item_id\": 76234,\n          \"item_timestamp\": \"2019-01-01 00:00:00\",\n          \"item_quantity\": \"string\",\n          \"item_retour\": false,\n          \"item_number\": \"string\",\n          \"item_serialNumber\": \"some-serial-number\",\n          \"item_expirationDate\": \"2019-01-01 00:00:00\",\n          \"item_name\": \"MyProductName\",\n          \"item_comment\": \"my-optional-comment\",\n          \"item_price\": \"string\",\n          \"item_priceNet\": \"string\",\n          \"item_priceBase\": false,\n          \"item_total\": \"string\",\n          \"item_totalNet\": \"string\",\n          \"item_vat\": \"string\",\n          \"item_vatRate\": \"string\",\n          \"item_vatCompensation\": \"string\",\n          \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n          \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n          \"item_lineDiscountId\": 1234,\n          \"item_lineDiscountGroupId\": 1234,\n          \"item_lineDiscountName\": \"SomeDiscountName\",\n          \"item_lineDiscountPercent\": \"string\",\n          \"item_lineDiscountNet\": \"string\",\n          \"item_lineDiscountGross\": \"string\",\n          \"item_invoiceDiscountNet\": \"string\",\n          \"item_invoiceDiscountGross\": \"string\",\n          \"item_discountable\": true,\n          \"paymentMethod_id\": 1234,\n          \"item_updatedStock\": true,\n          \"product_id\": 1234,\n          \"productgroup_name\": \"My product group\",\n          \"productGroup_id\": 1234,\n          \"customer_id\": 1234,\n          \"user_id\": 1234,\n          \"user_name\": \"SomeUser\",\n          \"invoice_id\": 1234,\n          \"deliveryBill_id\": 1234,\n          \"dailyReport_id\": 1234,\n          \"productUnit_id\": 1,\n          \"table_id\": 1234,\n          \"table_name\": \"SomeTableName\",\n          \"payment_id\": 431,\n          \"retourInvoice_id\": 1233,\n          \"item_accountingCode\": \"string\",\n          \"item_testMode\": false,\n          \"item_product_price\": \"string\",\n          \"item_product_priceNet\": \"string\",\n          \"item_product_vat\": \"string\",\n          \"item_qty\": \"string\",\n          \"item_product_vatRate\": \"string\",\n          \"item_product_vatCompensation\": \"string\",\n          \"item_product_priceNetPerUnit\": \"string\",\n          \"item_product_pricePerUnit\": \"string\",\n          \"item_product_discountable\": true\n        }\n      ],\n      \"address\": {\n        \"company\": \"ready2order GmbH\",\n        \"vatId\": \"ATU12341234\",\n        \"salutation\": \"Mr/Ms\",\n        \"title\": \"Professor\",\n        \"firstName\": \"Chris\",\n        \"lastName\": \"Muster\",\n        \"street\": \"SomeStreet 1234\",\n        \"city\": \"Vienna\",\n        \"zip\": \"string\",\n        \"country\": \"AT\",\n        \"email\": \"dummy@email.com\",\n        \"phone\": \"+43 1234 12312341234\"\n      },\n      \"type\": {\n        \"billType_id\": 1,\n        \"billType_name\": \"Rechnung\",\n        \"billType_symbol\": \"RG\"\n      },\n      \"payment\": [\n        {\n          \"billPayment_id\": 9999,\n          \"billPayment_name\": \"Cash\",\n          \"billPayment_value\": \"string\",\n          \"payment_id\": 431,\n          \"referenced_bill_id\": 1234\n        },\n        {\n          \"billPayment_id\": 9999,\n          \"billPayment_name\": \"Cash\",\n          \"billPayment_value\": \"string\",\n          \"payment_id\": 431,\n          \"referenced_bill_id\": 1234\n        }\n      ],\n      \"transaction\": {\n        \"id\": \"TFRG4C6NG2\",\n        \"tx_id\": \"string\",\n        \"customer_receipt\": \"string\",\n        \"amount\": \"string\",\n        \"r2o_id\": \"U1JGILYS\"\n      },\n      \"discounts\": [\n        {\n          \"billDiscount_id\": 9999,\n          \"billDiscount_name\": \"SomeDiscountName\",\n          \"billDiscount_value\": \"string\",\n          \"billDiscount_percent\": \"string\",\n          \"billDiscount_discount_id\": 9999,\n          \"billDiscount_discountGroup_id\": 9999,\n          \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n          \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n        },\n        {\n          \"billDiscount_id\": 9999,\n          \"billDiscount_name\": \"SomeDiscountName\",\n          \"billDiscount_value\": \"string\",\n          \"billDiscount_percent\": \"string\",\n          \"billDiscount_discount_id\": 9999,\n          \"billDiscount_discountGroup_id\": 9999,\n          \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n          \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n        }\n      ]\n    },\n    {\n      \"invoice_id\": 1234,\n      \"invoice_reference_id\": 1233,\n      \"invoice_timestamp\": \"2019-01-01 00:00:00\",\n      \"invoice_number\": 1,\n      \"invoice_numberFull\": \"RG2019/1\",\n      \"invoice_total\": \"string\",\n      \"invoice_totalNet\": \"string\",\n      \"invoice_totalVat\": \"string\",\n      \"invoice_totalTip\": \"string\",\n      \"invoice_address_company\": \"ready2order GmbH\",\n      \"invoice_address_vatId\": \"ATU12341234\",\n      \"invoice_address_salutation\": \"Mr/Ms\",\n      \"invoice_address_title\": \"Professor\",\n      \"invoice_address_firstName\": \"Chris\",\n      \"invoice_address_lastName\": \"Fox\",\n      \"invoice_address_street\": \"Hintere Zollamtsstraße 17\",\n      \"invoice_address_city\": \"Vienna\",\n      \"invoice_address_zip\": \"string\",\n      \"invoice_address_country\": \"AT\",\n      \"invoice_address_email\": \"dux@fox.com\",\n      \"invoice_address_phone\": \"+43 664 1234 1234 1234\",\n      \"invoice_inPrinterQueue\": false,\n      \"invoice_priceBase\": \"brutto\",\n      \"invoice_deleted_at\": \"2019-01-01 00:00:00\",\n      \"invoice_deletedReason\": \"Some reason\",\n      \"invoice_pdf\": \"http://some.link\",\n      \"invoice_textBeforeItemsTable\": \"Some text\",\n      \"invoice_text\": \"Some text\",\n      \"invoice_locked\": true,\n      \"invoice_externalReferenceNumber\": \"REF-1234\",\n      \"invoice_internalInvoiceReferenceNumber\": \"string\",\n      \"invoice_dueDate\": \"2019-01-05\",\n      \"invoice_deliveryDate\": \"2019-01-01\",\n      \"invoice_paid\": true,\n      \"invoice_paidDate\": \"2019-01-01\",\n      \"invoice_offlineTimestamp\": \"2019-01-01 00:00:00\",\n      \"invoice_offlineNumber\": \"2A26A8D9/1\",\n      \"invoice_testMode\": true,\n      \"invoice_formatVersion\": 2,\n      \"customer_id\": 1234,\n      \"customerCategory_id\": 1023,\n      \"table_id\": 1234,\n      \"tableArea_id\": 67,\n      \"paymentMethod_id\": 1234,\n      \"user_id\": 1234,\n      \"printer_id\": 23,\n      \"billType_id\": 1,\n      \"currency_id\": 1,\n      \"items\": [\n        {\n          \"item_id\": 76234,\n          \"item_timestamp\": \"2019-01-01 00:00:00\",\n          \"item_quantity\": \"string\",\n          \"item_retour\": false,\n          \"item_number\": \"string\",\n          \"item_serialNumber\": \"some-serial-number\",\n          \"item_expirationDate\": \"2019-01-01 00:00:00\",\n          \"item_name\": \"MyProductName\",\n          \"item_comment\": \"my-optional-comment\",\n          \"item_price\": \"string\",\n          \"item_priceNet\": \"string\",\n          \"item_priceBase\": false,\n          \"item_total\": \"string\",\n          \"item_totalNet\": \"string\",\n          \"item_vat\": \"string\",\n          \"item_vatRate\": \"string\",\n          \"item_vatCompensation\": \"string\",\n          \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n          \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n          \"item_lineDiscountId\": 1234,\n          \"item_lineDiscountGroupId\": 1234,\n          \"item_lineDiscountName\": \"SomeDiscountName\",\n          \"item_lineDiscountPercent\": \"string\",\n          \"item_lineDiscountNet\": \"string\",\n          \"item_lineDiscountGross\": \"string\",\n          \"item_invoiceDiscountNet\": \"string\",\n          \"item_invoiceDiscountGross\": \"string\",\n          \"item_discountable\": true,\n          \"paymentMethod_id\": 1234,\n          \"item_updatedStock\": true,\n          \"product_id\": 1234,\n          \"productgroup_name\": \"My product group\",\n          \"productGroup_id\": 1234,\n          \"customer_id\": 1234,\n          \"user_id\": 1234,\n          \"user_name\": \"SomeUser\",\n          \"invoice_id\": 1234,\n          \"deliveryBill_id\": 1234,\n          \"dailyReport_id\": 1234,\n          \"productUnit_id\": 1,\n          \"table_id\": 1234,\n          \"table_name\": \"SomeTableName\",\n          \"payment_id\": 431,\n          \"retourInvoice_id\": 1233,\n          \"item_accountingCode\": \"string\",\n          \"item_testMode\": false,\n          \"item_product_price\": \"string\",\n          \"item_product_priceNet\": \"string\",\n          \"item_product_vat\": \"string\",\n          \"item_qty\": \"string\",\n          \"item_product_vatRate\": \"string\",\n          \"item_product_vatCompensation\": \"string\",\n          \"item_product_priceNetPerUnit\": \"string\",\n          \"item_product_pricePerUnit\": \"string\",\n          \"item_product_discountable\": true\n        },\n        {\n          \"item_id\": 76234,\n          \"item_timestamp\": \"2019-01-01 00:00:00\",\n          \"item_quantity\": \"string\",\n          \"item_retour\": false,\n          \"item_number\": \"string\",\n          \"item_serialNumber\": \"some-serial-number\",\n          \"item_expirationDate\": \"2019-01-01 00:00:00\",\n          \"item_name\": \"MyProductName\",\n          \"item_comment\": \"my-optional-comment\",\n          \"item_price\": \"string\",\n          \"item_priceNet\": \"string\",\n          \"item_priceBase\": false,\n          \"item_total\": \"string\",\n          \"item_totalNet\": \"string\",\n          \"item_vat\": \"string\",\n          \"item_vatRate\": \"string\",\n          \"item_vatCompensation\": \"string\",\n          \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n          \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n          \"item_lineDiscountId\": 1234,\n          \"item_lineDiscountGroupId\": 1234,\n          \"item_lineDiscountName\": \"SomeDiscountName\",\n          \"item_lineDiscountPercent\": \"string\",\n          \"item_lineDiscountNet\": \"string\",\n          \"item_lineDiscountGross\": \"string\",\n          \"item_invoiceDiscountNet\": \"string\",\n          \"item_invoiceDiscountGross\": \"string\",\n          \"item_discountable\": true,\n          \"paymentMethod_id\": 1234,\n          \"item_updatedStock\": true,\n          \"product_id\": 1234,\n          \"productgroup_name\": \"My product group\",\n          \"productGroup_id\": 1234,\n          \"customer_id\": 1234,\n          \"user_id\": 1234,\n          \"user_name\": \"SomeUser\",\n          \"invoice_id\": 1234,\n          \"deliveryBill_id\": 1234,\n          \"dailyReport_id\": 1234,\n          \"productUnit_id\": 1,\n          \"table_id\": 1234,\n          \"table_name\": \"SomeTableName\",\n          \"payment_id\": 431,\n          \"retourInvoice_id\": 1233,\n          \"item_accountingCode\": \"string\",\n          \"item_testMode\": false,\n          \"item_product_price\": \"string\",\n          \"item_product_priceNet\": \"string\",\n          \"item_product_vat\": \"string\",\n          \"item_qty\": \"string\",\n          \"item_product_vatRate\": \"string\",\n          \"item_product_vatCompensation\": \"string\",\n          \"item_product_priceNetPerUnit\": \"string\",\n          \"item_product_pricePerUnit\": \"string\",\n          \"item_product_discountable\": true\n        }\n      ],\n      \"address\": {\n        \"company\": \"ready2order GmbH\",\n        \"vatId\": \"ATU12341234\",\n        \"salutation\": \"Mr/Ms\",\n        \"title\": \"Professor\",\n        \"firstName\": \"Chris\",\n        \"lastName\": \"Muster\",\n        \"street\": \"SomeStreet 1234\",\n        \"city\": \"Vienna\",\n        \"zip\": \"string\",\n        \"country\": \"AT\",\n        \"email\": \"dummy@email.com\",\n        \"phone\": \"+43 1234 12312341234\"\n      },\n      \"type\": {\n        \"billType_id\": 1,\n        \"billType_name\": \"Rechnung\",\n        \"billType_symbol\": \"RG\"\n      },\n      \"payment\": [\n        {\n          \"billPayment_id\": 9999,\n          \"billPayment_name\": \"Cash\",\n          \"billPayment_value\": \"string\",\n          \"payment_id\": 431,\n          \"referenced_bill_id\": 1234\n        },\n        {\n          \"billPayment_id\": 9999,\n          \"billPayment_name\": \"Cash\",\n          \"billPayment_value\": \"string\",\n          \"payment_id\": 431,\n          \"referenced_bill_id\": 1234\n        }\n      ],\n      \"transaction\": {\n        \"id\": \"TFRG4C6NG2\",\n        \"tx_id\": \"string\",\n        \"customer_receipt\": \"string\",\n        \"amount\": \"string\",\n        \"r2o_id\": \"U1JGILYS\"\n      },\n      \"discounts\": [\n        {\n          \"billDiscount_id\": 9999,\n          \"billDiscount_name\": \"SomeDiscountName\",\n          \"billDiscount_value\": \"string\",\n          \"billDiscount_percent\": \"string\",\n          \"billDiscount_discount_id\": 9999,\n          \"billDiscount_discountGroup_id\": 9999,\n          \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n          \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n        },\n        {\n          \"billDiscount_id\": 9999,\n          \"billDiscount_name\": \"SomeDiscountName\",\n          \"billDiscount_value\": \"string\",\n          \"billDiscount_percent\": \"string\",\n          \"billDiscount_discount_id\": 9999,\n          \"billDiscount_discountGroup_id\": 9999,\n          \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n          \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n        }\n      ]\n    }\n  ],\n  \"count\": 50,\n  \"offset\": 0,\n  \"limit\": 50,\n  \"dateFrom\": \"2019-01-01\",\n  \"dateTo\": \"2019-12-31\",\n  \"query\": \"some-query\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "386ccef4-93d8-4109-9581-40ad83949b3a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "255"
+                    },
+                    {
+                      "key": "query",
+                      "value": "RG2018/1"
+                    },
+                    {
+                      "key": "tableId",
+                      "value": "153311"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "27268"
+                    },
+                    {
+                      "key": "dateField",
+                      "value": "daily_report"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-10-23"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-11-21"
+                    },
+                    {
+                      "key": "testMode",
+                      "value": "false"
+                    },
+                    {
+                      "key": "items",
+                      "value": "false"
+                    },
+                    {
+                      "key": "discounts",
+                      "value": "false"
+                    },
+                    {
+                      "key": "payments",
+                      "value": "false"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54c49465-3e02-4440-83b4-d9b82fa8d290",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "255"
+                    },
+                    {
+                      "key": "query",
+                      "value": "RG2018/1"
+                    },
+                    {
+                      "key": "tableId",
+                      "value": "153311"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "27268"
+                    },
+                    {
+                      "key": "dateField",
+                      "value": "daily_report"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-10-23"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-11-21"
+                    },
+                    {
+                      "key": "testMode",
+                      "value": "false"
+                    },
+                    {
+                      "key": "items",
+                      "value": "false"
+                    },
+                    {
+                      "key": "discounts",
+                      "value": "false"
+                    },
+                    {
+                      "key": "payments",
+                      "value": "false"
+                    },
+                    {
+                      "key": "payment",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b795ab89-7750-44a1-8e59-6599625c44a3",
+          "name": "Create Bill",
+          "request": {
+            "name": "Create Bill",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentMethod_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": \"<integer>\",\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"<string>\"\n    },\n    {\n      \"paymentMethod_id\": \"<integer>\",\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"<string>\"\n    }\n  ],\n  \"table_id\": \"<integer>\",\n  \"customer_id\": \"<integer>\",\n  \"billType_id\": \"<integer>\",\n  \"printer_id\": \"<integer>\",\n  \"printingProfile_id\": \"<integer>\",\n  \"invoice_printCount\": \"<integer>\",\n  \"invoice_textBeforeItemsTable\": \"<string>\",\n  \"invoice_text\": \"<string>\",\n  \"invoice_externalReferenceNumber\": \"<string>\",\n  \"invoice_totalTip\": \"<string>\",\n  \"invoice_priceBase\": \"<string>\",\n  \"invoice_testMode\": \"<boolean>\",\n  \"createPDF\": \"<boolean>\",\n  \"pdfFormat\": \"<string>\",\n  \"invoice_showRecipient\": \"<boolean>\",\n  \"invoice_dueDate\": \"<string>\",\n  \"items\": [\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"<string>\",\n      \"item_comment\": \"<string>\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": \"<integer>\",\n      \"item_priceBase\": \"<string>\",\n      \"product_id\": \"<integer>\",\n      \"discount_id\": \"<integer>\",\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"<string>\",\n      \"item_variations\": [\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"<string>\",\n      \"item_comment\": \"<string>\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": \"<integer>\",\n      \"item_priceBase\": \"<string>\",\n      \"product_id\": \"<integer>\",\n      \"discount_id\": \"<integer>\",\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"<string>\",\n      \"item_variations\": [\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": \"<integer>\",\n          \"variation_name\": \"<string>\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"orderItem_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"address\": [\n    {\n      \"company\": \"<string>\",\n      \"vatId\": \"<string>\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"<string>\",\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"company\": \"<string>\",\n      \"vatId\": \"<string>\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"<string>\",\n      \"title\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"invoice_discounts\": [\n    {\n      \"invoice_discountId\": \"<integer>\",\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"<string>\"\n    },\n    {\n      \"invoice_discountId\": \"<integer>\",\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"<string>\"\n    }\n  ],\n  \"order_enablePrinting\": \"<boolean>\",\n  \"priceLevel_id\": \"<integer>\",\n  \"invoice_roundToSmallestCurrencyUnit\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a94734fa-4432-4bcd-8db0-1f7f5d12b944",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentMethod_id\": 123456,\n  \"user_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ],\n  \"table_id\": 4321,\n  \"customer_id\": 1024,\n  \"billType_id\": 1,\n  \"printer_id\": 1,\n  \"printingProfile_id\": 1,\n  \"invoice_printCount\": 2,\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_totalTip\": \"<string>\",\n  \"invoice_priceBase\": \"<string>\",\n  \"invoice_testMode\": false,\n  \"createPDF\": false,\n  \"pdfFormat\": \"A4, 80mm or 58mm\",\n  \"invoice_showRecipient\": false,\n  \"invoice_dueDate\": \"2019-01-15\",\n  \"items\": [\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"orderItem_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"address\": [\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    },\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    }\n  ],\n  \"invoice_discounts\": [\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    },\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    }\n  ],\n  \"order_enablePrinting\": true,\n  \"priceLevel_id\": 255,\n  \"invoice_roundToSmallestCurrencyUnit\": \"0.05, 0.1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoice_id\": 1234,\n  \"invoice_reference_id\": 1233,\n  \"invoice_timestamp\": \"2019-01-01 00:00:00\",\n  \"invoice_number\": 1,\n  \"invoice_numberFull\": \"RG2019/1\",\n  \"invoice_total\": \"string\",\n  \"invoice_totalNet\": \"string\",\n  \"invoice_totalVat\": \"string\",\n  \"invoice_totalTip\": \"string\",\n  \"invoice_address_company\": \"ready2order GmbH\",\n  \"invoice_address_vatId\": \"ATU12341234\",\n  \"invoice_address_salutation\": \"Mr/Ms\",\n  \"invoice_address_title\": \"Professor\",\n  \"invoice_address_firstName\": \"Chris\",\n  \"invoice_address_lastName\": \"Fox\",\n  \"invoice_address_street\": \"Hintere Zollamtsstraße 17\",\n  \"invoice_address_city\": \"Vienna\",\n  \"invoice_address_zip\": \"string\",\n  \"invoice_address_country\": \"AT\",\n  \"invoice_address_email\": \"dux@fox.com\",\n  \"invoice_address_phone\": \"+43 664 1234 1234 1234\",\n  \"invoice_inPrinterQueue\": false,\n  \"invoice_priceBase\": \"brutto\",\n  \"invoice_deleted_at\": \"2019-01-01 00:00:00\",\n  \"invoice_deletedReason\": \"Some reason\",\n  \"invoice_pdf\": \"http://some.link\",\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_locked\": true,\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_internalInvoiceReferenceNumber\": \"string\",\n  \"invoice_dueDate\": \"2019-01-05\",\n  \"invoice_deliveryDate\": \"2019-01-01\",\n  \"invoice_paid\": true,\n  \"invoice_paidDate\": \"2019-01-01\",\n  \"invoice_offlineTimestamp\": \"2019-01-01 00:00:00\",\n  \"invoice_offlineNumber\": \"2A26A8D9/1\",\n  \"invoice_testMode\": true,\n  \"invoice_formatVersion\": 2,\n  \"customer_id\": 1234,\n  \"customerCategory_id\": 1023,\n  \"table_id\": 1234,\n  \"tableArea_id\": 67,\n  \"paymentMethod_id\": 1234,\n  \"user_id\": 1234,\n  \"printer_id\": 23,\n  \"billType_id\": 1,\n  \"currency_id\": 1,\n  \"items\": [\n    {\n      \"item_id\": 76234,\n      \"item_timestamp\": \"2019-01-01 00:00:00\",\n      \"item_quantity\": \"string\",\n      \"item_retour\": false,\n      \"item_number\": \"string\",\n      \"item_serialNumber\": \"some-serial-number\",\n      \"item_expirationDate\": \"2019-01-01 00:00:00\",\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"my-optional-comment\",\n      \"item_price\": \"string\",\n      \"item_priceNet\": \"string\",\n      \"item_priceBase\": false,\n      \"item_total\": \"string\",\n      \"item_totalNet\": \"string\",\n      \"item_vat\": \"string\",\n      \"item_vatRate\": \"string\",\n      \"item_vatCompensation\": \"string\",\n      \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n      \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n      \"item_lineDiscountId\": 1234,\n      \"item_lineDiscountGroupId\": 1234,\n      \"item_lineDiscountName\": \"SomeDiscountName\",\n      \"item_lineDiscountPercent\": \"string\",\n      \"item_lineDiscountNet\": \"string\",\n      \"item_lineDiscountGross\": \"string\",\n      \"item_invoiceDiscountNet\": \"string\",\n      \"item_invoiceDiscountGross\": \"string\",\n      \"item_discountable\": true,\n      \"paymentMethod_id\": 1234,\n      \"item_updatedStock\": true,\n      \"product_id\": 1234,\n      \"productgroup_name\": \"My product group\",\n      \"productGroup_id\": 1234,\n      \"customer_id\": 1234,\n      \"user_id\": 1234,\n      \"user_name\": \"SomeUser\",\n      \"invoice_id\": 1234,\n      \"deliveryBill_id\": 1234,\n      \"dailyReport_id\": 1234,\n      \"productUnit_id\": 1,\n      \"table_id\": 1234,\n      \"table_name\": \"SomeTableName\",\n      \"payment_id\": 431,\n      \"retourInvoice_id\": 1233,\n      \"item_accountingCode\": \"string\",\n      \"item_testMode\": false,\n      \"item_product_price\": \"string\",\n      \"item_product_priceNet\": \"string\",\n      \"item_product_vat\": \"string\",\n      \"item_qty\": \"string\",\n      \"item_product_vatRate\": \"string\",\n      \"item_product_vatCompensation\": \"string\",\n      \"item_product_priceNetPerUnit\": \"string\",\n      \"item_product_pricePerUnit\": \"string\",\n      \"item_product_discountable\": true\n    },\n    {\n      \"item_id\": 76234,\n      \"item_timestamp\": \"2019-01-01 00:00:00\",\n      \"item_quantity\": \"string\",\n      \"item_retour\": false,\n      \"item_number\": \"string\",\n      \"item_serialNumber\": \"some-serial-number\",\n      \"item_expirationDate\": \"2019-01-01 00:00:00\",\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"my-optional-comment\",\n      \"item_price\": \"string\",\n      \"item_priceNet\": \"string\",\n      \"item_priceBase\": false,\n      \"item_total\": \"string\",\n      \"item_totalNet\": \"string\",\n      \"item_vat\": \"string\",\n      \"item_vatRate\": \"string\",\n      \"item_vatCompensation\": \"string\",\n      \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n      \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n      \"item_lineDiscountId\": 1234,\n      \"item_lineDiscountGroupId\": 1234,\n      \"item_lineDiscountName\": \"SomeDiscountName\",\n      \"item_lineDiscountPercent\": \"string\",\n      \"item_lineDiscountNet\": \"string\",\n      \"item_lineDiscountGross\": \"string\",\n      \"item_invoiceDiscountNet\": \"string\",\n      \"item_invoiceDiscountGross\": \"string\",\n      \"item_discountable\": true,\n      \"paymentMethod_id\": 1234,\n      \"item_updatedStock\": true,\n      \"product_id\": 1234,\n      \"productgroup_name\": \"My product group\",\n      \"productGroup_id\": 1234,\n      \"customer_id\": 1234,\n      \"user_id\": 1234,\n      \"user_name\": \"SomeUser\",\n      \"invoice_id\": 1234,\n      \"deliveryBill_id\": 1234,\n      \"dailyReport_id\": 1234,\n      \"productUnit_id\": 1,\n      \"table_id\": 1234,\n      \"table_name\": \"SomeTableName\",\n      \"payment_id\": 431,\n      \"retourInvoice_id\": 1233,\n      \"item_accountingCode\": \"string\",\n      \"item_testMode\": false,\n      \"item_product_price\": \"string\",\n      \"item_product_priceNet\": \"string\",\n      \"item_product_vat\": \"string\",\n      \"item_qty\": \"string\",\n      \"item_product_vatRate\": \"string\",\n      \"item_product_vatCompensation\": \"string\",\n      \"item_product_priceNetPerUnit\": \"string\",\n      \"item_product_pricePerUnit\": \"string\",\n      \"item_product_discountable\": true\n    }\n  ],\n  \"address\": {\n    \"company\": \"ready2order GmbH\",\n    \"vatId\": \"ATU12341234\",\n    \"salutation\": \"Mr/Ms\",\n    \"title\": \"Professor\",\n    \"firstName\": \"Chris\",\n    \"lastName\": \"Muster\",\n    \"street\": \"SomeStreet 1234\",\n    \"city\": \"Vienna\",\n    \"zip\": \"string\",\n    \"country\": \"AT\",\n    \"email\": \"dummy@email.com\",\n    \"phone\": \"+43 1234 12312341234\"\n  },\n  \"type\": {\n    \"billType_id\": 1,\n    \"billType_name\": \"Rechnung\",\n    \"billType_symbol\": \"RG\"\n  },\n  \"payment\": [\n    {\n      \"billPayment_id\": 9999,\n      \"billPayment_name\": \"Cash\",\n      \"billPayment_value\": \"string\",\n      \"payment_id\": 431,\n      \"referenced_bill_id\": 1234\n    },\n    {\n      \"billPayment_id\": 9999,\n      \"billPayment_name\": \"Cash\",\n      \"billPayment_value\": \"string\",\n      \"payment_id\": 431,\n      \"referenced_bill_id\": 1234\n    }\n  ],\n  \"transaction\": {\n    \"id\": \"TFRG4C6NG2\",\n    \"tx_id\": \"string\",\n    \"customer_receipt\": \"string\",\n    \"amount\": \"string\",\n    \"r2o_id\": \"U1JGILYS\"\n  },\n  \"discounts\": [\n    {\n      \"billDiscount_id\": 9999,\n      \"billDiscount_name\": \"SomeDiscountName\",\n      \"billDiscount_value\": \"string\",\n      \"billDiscount_percent\": \"string\",\n      \"billDiscount_discount_id\": 9999,\n      \"billDiscount_discountGroup_id\": 9999,\n      \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n      \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n    },\n    {\n      \"billDiscount_id\": 9999,\n      \"billDiscount_name\": \"SomeDiscountName\",\n      \"billDiscount_value\": \"string\",\n      \"billDiscount_percent\": \"string\",\n      \"billDiscount_discount_id\": 9999,\n      \"billDiscount_discountGroup_id\": 9999,\n      \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n      \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa74fc95-0f30-4222-82d6-026b5a27fece",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentMethod_id\": 123456,\n  \"user_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ],\n  \"table_id\": 4321,\n  \"customer_id\": 1024,\n  \"billType_id\": 1,\n  \"printer_id\": 1,\n  \"printingProfile_id\": 1,\n  \"invoice_printCount\": 2,\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_totalTip\": \"<string>\",\n  \"invoice_priceBase\": \"<string>\",\n  \"invoice_testMode\": false,\n  \"createPDF\": false,\n  \"pdfFormat\": \"A4, 80mm or 58mm\",\n  \"invoice_showRecipient\": false,\n  \"invoice_dueDate\": \"2019-01-15\",\n  \"items\": [\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"orderItem_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"address\": [\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    },\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    }\n  ],\n  \"invoice_discounts\": [\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    },\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    }\n  ],\n  \"order_enablePrinting\": true,\n  \"priceLevel_id\": 255,\n  \"invoice_roundToSmallestCurrencyUnit\": \"0.05, 0.1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65799d1a-9213-4d0f-86c5-5250f2ed15d5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentMethod_id\": 123456,\n  \"user_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ],\n  \"table_id\": 4321,\n  \"customer_id\": 1024,\n  \"billType_id\": 1,\n  \"printer_id\": 1,\n  \"printingProfile_id\": 1,\n  \"invoice_printCount\": 2,\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_totalTip\": \"<string>\",\n  \"invoice_priceBase\": \"<string>\",\n  \"invoice_testMode\": false,\n  \"createPDF\": false,\n  \"pdfFormat\": \"A4, 80mm or 58mm\",\n  \"invoice_showRecipient\": false,\n  \"invoice_dueDate\": \"2019-01-15\",\n  \"items\": [\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"orderItem_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"address\": [\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    },\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    }\n  ],\n  \"invoice_discounts\": [\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    },\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    }\n  ],\n  \"order_enablePrinting\": true,\n  \"priceLevel_id\": 255,\n  \"invoice_roundToSmallestCurrencyUnit\": \"0.05, 0.1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f013e00d-bcea-4b7d-b74c-97b58cebcf6c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paymentMethod_id\": 123456,\n  \"user_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ],\n  \"table_id\": 4321,\n  \"customer_id\": 1024,\n  \"billType_id\": 1,\n  \"printer_id\": 1,\n  \"printingProfile_id\": 1,\n  \"invoice_printCount\": 2,\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_totalTip\": \"<string>\",\n  \"invoice_priceBase\": \"<string>\",\n  \"invoice_testMode\": false,\n  \"createPDF\": false,\n  \"pdfFormat\": \"A4, 80mm or 58mm\",\n  \"invoice_showRecipient\": false,\n  \"invoice_dueDate\": \"2019-01-15\",\n  \"items\": [\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"item_quantity\": 1,\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"MyProductDescription\",\n      \"item_price\": \"<string>\",\n      \"item_vatRate\": \"<string>\",\n      \"item_vatId\": 12345,\n      \"item_priceBase\": \"brutto or netto\",\n      \"product_id\": 1234,\n      \"discount_id\": 1234,\n      \"discount_value\": \"<string>\",\n      \"discount_unit\": \"percent or currency\",\n      \"item_variations\": [\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        },\n        {\n          \"product_id\": 1,\n          \"variation_name\": \"Schnitzel with chips and mayo\",\n          \"variation_price\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"orderItem_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"address\": [\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    },\n    {\n      \"company\": \"ready2order GmbH\",\n      \"vatId\": \"ATU12341234\",\n      \"leitweg_id\": \"<string>\",\n      \"supplier_number\": \"<string>\",\n      \"salutation\": \"Mr/Mrs\",\n      \"title\": \"Professor\",\n      \"firstName\": \"Chris\",\n      \"lastName\": \"Muster\",\n      \"street\": \"SomeStreet 1234\",\n      \"city\": \"Vienna\",\n      \"zip\": \"<string>\",\n      \"country\": \"AT\",\n      \"email\": \"dummy@email.com\",\n      \"phone\": \"+43 1234 12312341234\"\n    }\n  ],\n  \"invoice_discounts\": [\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    },\n    {\n      \"invoice_discountId\": 1234,\n      \"invoice_discountValue\": \"<string>\",\n      \"invoice_discountUnit\": \"percent or currency\"\n    }\n  ],\n  \"order_enablePrinting\": true,\n  \"priceLevel_id\": 255,\n  \"invoice_roundToSmallestCurrencyUnit\": \"0.05, 0.1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8152db4-dd03-4af2-9163-f6ca5d07f024",
+          "name": "Count All Bills",
+          "request": {
+            "name": "Count All Bills",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eaed9fce-d423-4d41-8c6e-6aac6d085967",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"count\": 1500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b1a2320-2e41-4742-a08a-86ecc58fd48f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44133cd4-b17f-4cb6-8ede-d218333bee0b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "524676b4-d7b5-4b2d-afd4-1e6d5c0fc57c",
+          "name": "Find Bill by Id",
+          "request": {
+            "name": "Find Bill by Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Bill ID to find"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e2f1382d-a65b-4a85-b24f-440eb89dfe64",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoice_id\": 1234,\n  \"invoice_reference_id\": 1233,\n  \"invoice_timestamp\": \"2019-01-01 00:00:00\",\n  \"invoice_number\": 1,\n  \"invoice_numberFull\": \"RG2019/1\",\n  \"invoice_total\": \"string\",\n  \"invoice_totalNet\": \"string\",\n  \"invoice_totalVat\": \"string\",\n  \"invoice_totalTip\": \"string\",\n  \"invoice_address_company\": \"ready2order GmbH\",\n  \"invoice_address_vatId\": \"ATU12341234\",\n  \"invoice_address_salutation\": \"Mr/Ms\",\n  \"invoice_address_title\": \"Professor\",\n  \"invoice_address_firstName\": \"Chris\",\n  \"invoice_address_lastName\": \"Fox\",\n  \"invoice_address_street\": \"Hintere Zollamtsstraße 17\",\n  \"invoice_address_city\": \"Vienna\",\n  \"invoice_address_zip\": \"string\",\n  \"invoice_address_country\": \"AT\",\n  \"invoice_address_email\": \"dux@fox.com\",\n  \"invoice_address_phone\": \"+43 664 1234 1234 1234\",\n  \"invoice_inPrinterQueue\": false,\n  \"invoice_priceBase\": \"brutto\",\n  \"invoice_deleted_at\": \"2019-01-01 00:00:00\",\n  \"invoice_deletedReason\": \"Some reason\",\n  \"invoice_pdf\": \"http://some.link\",\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_locked\": true,\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_internalInvoiceReferenceNumber\": \"string\",\n  \"invoice_dueDate\": \"2019-01-05\",\n  \"invoice_deliveryDate\": \"2019-01-01\",\n  \"invoice_paid\": true,\n  \"invoice_paidDate\": \"2019-01-01\",\n  \"invoice_offlineTimestamp\": \"2019-01-01 00:00:00\",\n  \"invoice_offlineNumber\": \"2A26A8D9/1\",\n  \"invoice_testMode\": true,\n  \"invoice_formatVersion\": 2,\n  \"customer_id\": 1234,\n  \"customerCategory_id\": 1023,\n  \"table_id\": 1234,\n  \"tableArea_id\": 67,\n  \"paymentMethod_id\": 1234,\n  \"user_id\": 1234,\n  \"printer_id\": 23,\n  \"billType_id\": 1,\n  \"currency_id\": 1,\n  \"items\": [\n    {\n      \"item_id\": 76234,\n      \"item_timestamp\": \"2019-01-01 00:00:00\",\n      \"item_quantity\": \"string\",\n      \"item_retour\": false,\n      \"item_number\": \"string\",\n      \"item_serialNumber\": \"some-serial-number\",\n      \"item_expirationDate\": \"2019-01-01 00:00:00\",\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"my-optional-comment\",\n      \"item_price\": \"string\",\n      \"item_priceNet\": \"string\",\n      \"item_priceBase\": false,\n      \"item_total\": \"string\",\n      \"item_totalNet\": \"string\",\n      \"item_vat\": \"string\",\n      \"item_vatRate\": \"string\",\n      \"item_vatCompensation\": \"string\",\n      \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n      \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n      \"item_lineDiscountId\": 1234,\n      \"item_lineDiscountGroupId\": 1234,\n      \"item_lineDiscountName\": \"SomeDiscountName\",\n      \"item_lineDiscountPercent\": \"string\",\n      \"item_lineDiscountNet\": \"string\",\n      \"item_lineDiscountGross\": \"string\",\n      \"item_invoiceDiscountNet\": \"string\",\n      \"item_invoiceDiscountGross\": \"string\",\n      \"item_discountable\": true,\n      \"paymentMethod_id\": 1234,\n      \"item_updatedStock\": true,\n      \"product_id\": 1234,\n      \"productgroup_name\": \"My product group\",\n      \"productGroup_id\": 1234,\n      \"customer_id\": 1234,\n      \"user_id\": 1234,\n      \"user_name\": \"SomeUser\",\n      \"invoice_id\": 1234,\n      \"deliveryBill_id\": 1234,\n      \"dailyReport_id\": 1234,\n      \"productUnit_id\": 1,\n      \"table_id\": 1234,\n      \"table_name\": \"SomeTableName\",\n      \"payment_id\": 431,\n      \"retourInvoice_id\": 1233,\n      \"item_accountingCode\": \"string\",\n      \"item_testMode\": false,\n      \"item_product_price\": \"string\",\n      \"item_product_priceNet\": \"string\",\n      \"item_product_vat\": \"string\",\n      \"item_qty\": \"string\",\n      \"item_product_vatRate\": \"string\",\n      \"item_product_vatCompensation\": \"string\",\n      \"item_product_priceNetPerUnit\": \"string\",\n      \"item_product_pricePerUnit\": \"string\",\n      \"item_product_discountable\": true\n    },\n    {\n      \"item_id\": 76234,\n      \"item_timestamp\": \"2019-01-01 00:00:00\",\n      \"item_quantity\": \"string\",\n      \"item_retour\": false,\n      \"item_number\": \"string\",\n      \"item_serialNumber\": \"some-serial-number\",\n      \"item_expirationDate\": \"2019-01-01 00:00:00\",\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"my-optional-comment\",\n      \"item_price\": \"string\",\n      \"item_priceNet\": \"string\",\n      \"item_priceBase\": false,\n      \"item_total\": \"string\",\n      \"item_totalNet\": \"string\",\n      \"item_vat\": \"string\",\n      \"item_vatRate\": \"string\",\n      \"item_vatCompensation\": \"string\",\n      \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n      \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n      \"item_lineDiscountId\": 1234,\n      \"item_lineDiscountGroupId\": 1234,\n      \"item_lineDiscountName\": \"SomeDiscountName\",\n      \"item_lineDiscountPercent\": \"string\",\n      \"item_lineDiscountNet\": \"string\",\n      \"item_lineDiscountGross\": \"string\",\n      \"item_invoiceDiscountNet\": \"string\",\n      \"item_invoiceDiscountGross\": \"string\",\n      \"item_discountable\": true,\n      \"paymentMethod_id\": 1234,\n      \"item_updatedStock\": true,\n      \"product_id\": 1234,\n      \"productgroup_name\": \"My product group\",\n      \"productGroup_id\": 1234,\n      \"customer_id\": 1234,\n      \"user_id\": 1234,\n      \"user_name\": \"SomeUser\",\n      \"invoice_id\": 1234,\n      \"deliveryBill_id\": 1234,\n      \"dailyReport_id\": 1234,\n      \"productUnit_id\": 1,\n      \"table_id\": 1234,\n      \"table_name\": \"SomeTableName\",\n      \"payment_id\": 431,\n      \"retourInvoice_id\": 1233,\n      \"item_accountingCode\": \"string\",\n      \"item_testMode\": false,\n      \"item_product_price\": \"string\",\n      \"item_product_priceNet\": \"string\",\n      \"item_product_vat\": \"string\",\n      \"item_qty\": \"string\",\n      \"item_product_vatRate\": \"string\",\n      \"item_product_vatCompensation\": \"string\",\n      \"item_product_priceNetPerUnit\": \"string\",\n      \"item_product_pricePerUnit\": \"string\",\n      \"item_product_discountable\": true\n    }\n  ],\n  \"address\": {\n    \"company\": \"ready2order GmbH\",\n    \"vatId\": \"ATU12341234\",\n    \"salutation\": \"Mr/Ms\",\n    \"title\": \"Professor\",\n    \"firstName\": \"Chris\",\n    \"lastName\": \"Muster\",\n    \"street\": \"SomeStreet 1234\",\n    \"city\": \"Vienna\",\n    \"zip\": \"string\",\n    \"country\": \"AT\",\n    \"email\": \"dummy@email.com\",\n    \"phone\": \"+43 1234 12312341234\"\n  },\n  \"type\": {\n    \"billType_id\": 1,\n    \"billType_name\": \"Rechnung\",\n    \"billType_symbol\": \"RG\"\n  },\n  \"payment\": [\n    {\n      \"billPayment_id\": 9999,\n      \"billPayment_name\": \"Cash\",\n      \"billPayment_value\": \"string\",\n      \"payment_id\": 431,\n      \"referenced_bill_id\": 1234\n    },\n    {\n      \"billPayment_id\": 9999,\n      \"billPayment_name\": \"Cash\",\n      \"billPayment_value\": \"string\",\n      \"payment_id\": 431,\n      \"referenced_bill_id\": 1234\n    }\n  ],\n  \"transaction\": {\n    \"id\": \"TFRG4C6NG2\",\n    \"tx_id\": \"string\",\n    \"customer_receipt\": \"string\",\n    \"amount\": \"string\",\n    \"r2o_id\": \"U1JGILYS\"\n  },\n  \"discounts\": [\n    {\n      \"billDiscount_id\": 9999,\n      \"billDiscount_name\": \"SomeDiscountName\",\n      \"billDiscount_value\": \"string\",\n      \"billDiscount_percent\": \"string\",\n      \"billDiscount_discount_id\": 9999,\n      \"billDiscount_discountGroup_id\": 9999,\n      \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n      \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n    },\n    {\n      \"billDiscount_id\": 9999,\n      \"billDiscount_name\": \"SomeDiscountName\",\n      \"billDiscount_value\": \"string\",\n      \"billDiscount_percent\": \"string\",\n      \"billDiscount_discount_id\": 9999,\n      \"billDiscount_discountGroup_id\": 9999,\n      \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n      \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53e91c63-deb6-415a-a516-f41000d23484",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c3612ec-5075-4b18-b9c1-9374c4a36619",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26951083-666f-45fc-ab2c-ca6a41fd1637",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebe42bcf-5723-4bb3-97e4-97e0f6bb4c87",
+          "name": "Cancel an invoice",
+          "request": {
+            "name": "Cancel an invoice",
+            "description": {
+              "content": "Cancels an invoice by creating a cancellation (storno) bill that reverses its items and payments. By default the cancellation is paid back with the original invoice's payment method. An explicit paymentMethod_id and/or partPayments can be given to pay the cancellation back differently - see the description of those parameters for details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice",
+                ":id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of the invoice that should be cancelled"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"storno_id\": \"<integer>\",\n  \"storno_reason\": \"<string>\",\n  \"invoice_externalReferenceNumber\": \"<string>\",\n  \"paymentMethod_id\": \"<integer>\",\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": \"<integer>\",\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"<string>\"\n    },\n    {\n      \"paymentMethod_id\": \"<integer>\",\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77efa4cb-1420-488e-85f7-2d9c4978fa8e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the invoice that should be cancelled"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storno_id\": 9823,\n  \"storno_reason\": \"Correction\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"paymentMethod_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoice_id\": 1234,\n  \"invoice_reference_id\": 1233,\n  \"invoice_timestamp\": \"2019-01-01 00:00:00\",\n  \"invoice_number\": 1,\n  \"invoice_numberFull\": \"RG2019/1\",\n  \"invoice_total\": \"string\",\n  \"invoice_totalNet\": \"string\",\n  \"invoice_totalVat\": \"string\",\n  \"invoice_totalTip\": \"string\",\n  \"invoice_address_company\": \"ready2order GmbH\",\n  \"invoice_address_vatId\": \"ATU12341234\",\n  \"invoice_address_salutation\": \"Mr/Ms\",\n  \"invoice_address_title\": \"Professor\",\n  \"invoice_address_firstName\": \"Chris\",\n  \"invoice_address_lastName\": \"Fox\",\n  \"invoice_address_street\": \"Hintere Zollamtsstraße 17\",\n  \"invoice_address_city\": \"Vienna\",\n  \"invoice_address_zip\": \"string\",\n  \"invoice_address_country\": \"AT\",\n  \"invoice_address_email\": \"dux@fox.com\",\n  \"invoice_address_phone\": \"+43 664 1234 1234 1234\",\n  \"invoice_inPrinterQueue\": false,\n  \"invoice_priceBase\": \"brutto\",\n  \"invoice_deleted_at\": \"2019-01-01 00:00:00\",\n  \"invoice_deletedReason\": \"Some reason\",\n  \"invoice_pdf\": \"http://some.link\",\n  \"invoice_textBeforeItemsTable\": \"Some text\",\n  \"invoice_text\": \"Some text\",\n  \"invoice_locked\": true,\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"invoice_internalInvoiceReferenceNumber\": \"string\",\n  \"invoice_dueDate\": \"2019-01-05\",\n  \"invoice_deliveryDate\": \"2019-01-01\",\n  \"invoice_paid\": true,\n  \"invoice_paidDate\": \"2019-01-01\",\n  \"invoice_offlineTimestamp\": \"2019-01-01 00:00:00\",\n  \"invoice_offlineNumber\": \"2A26A8D9/1\",\n  \"invoice_testMode\": true,\n  \"invoice_formatVersion\": 2,\n  \"customer_id\": 1234,\n  \"customerCategory_id\": 1023,\n  \"table_id\": 1234,\n  \"tableArea_id\": 67,\n  \"paymentMethod_id\": 1234,\n  \"user_id\": 1234,\n  \"printer_id\": 23,\n  \"billType_id\": 1,\n  \"currency_id\": 1,\n  \"items\": [\n    {\n      \"item_id\": 76234,\n      \"item_timestamp\": \"2019-01-01 00:00:00\",\n      \"item_quantity\": \"string\",\n      \"item_retour\": false,\n      \"item_number\": \"string\",\n      \"item_serialNumber\": \"some-serial-number\",\n      \"item_expirationDate\": \"2019-01-01 00:00:00\",\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"my-optional-comment\",\n      \"item_price\": \"string\",\n      \"item_priceNet\": \"string\",\n      \"item_priceBase\": false,\n      \"item_total\": \"string\",\n      \"item_totalNet\": \"string\",\n      \"item_vat\": \"string\",\n      \"item_vatRate\": \"string\",\n      \"item_vatCompensation\": \"string\",\n      \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n      \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n      \"item_lineDiscountId\": 1234,\n      \"item_lineDiscountGroupId\": 1234,\n      \"item_lineDiscountName\": \"SomeDiscountName\",\n      \"item_lineDiscountPercent\": \"string\",\n      \"item_lineDiscountNet\": \"string\",\n      \"item_lineDiscountGross\": \"string\",\n      \"item_invoiceDiscountNet\": \"string\",\n      \"item_invoiceDiscountGross\": \"string\",\n      \"item_discountable\": true,\n      \"paymentMethod_id\": 1234,\n      \"item_updatedStock\": true,\n      \"product_id\": 1234,\n      \"productgroup_name\": \"My product group\",\n      \"productGroup_id\": 1234,\n      \"customer_id\": 1234,\n      \"user_id\": 1234,\n      \"user_name\": \"SomeUser\",\n      \"invoice_id\": 1234,\n      \"deliveryBill_id\": 1234,\n      \"dailyReport_id\": 1234,\n      \"productUnit_id\": 1,\n      \"table_id\": 1234,\n      \"table_name\": \"SomeTableName\",\n      \"payment_id\": 431,\n      \"retourInvoice_id\": 1233,\n      \"item_accountingCode\": \"string\",\n      \"item_testMode\": false,\n      \"item_product_price\": \"string\",\n      \"item_product_priceNet\": \"string\",\n      \"item_product_vat\": \"string\",\n      \"item_qty\": \"string\",\n      \"item_product_vatRate\": \"string\",\n      \"item_product_vatCompensation\": \"string\",\n      \"item_product_priceNetPerUnit\": \"string\",\n      \"item_product_pricePerUnit\": \"string\",\n      \"item_product_discountable\": true\n    },\n    {\n      \"item_id\": 76234,\n      \"item_timestamp\": \"2019-01-01 00:00:00\",\n      \"item_quantity\": \"string\",\n      \"item_retour\": false,\n      \"item_number\": \"string\",\n      \"item_serialNumber\": \"some-serial-number\",\n      \"item_expirationDate\": \"2019-01-01 00:00:00\",\n      \"item_name\": \"MyProductName\",\n      \"item_comment\": \"my-optional-comment\",\n      \"item_price\": \"string\",\n      \"item_priceNet\": \"string\",\n      \"item_priceBase\": false,\n      \"item_total\": \"string\",\n      \"item_totalNet\": \"string\",\n      \"item_vat\": \"string\",\n      \"item_vatRate\": \"string\",\n      \"item_vatCompensation\": \"string\",\n      \"item_undiscountedSumBeforeLineDiscount\": \"string\",\n      \"item_undiscountedSumBeforeInvoiceDiscount\": \"string\",\n      \"item_lineDiscountId\": 1234,\n      \"item_lineDiscountGroupId\": 1234,\n      \"item_lineDiscountName\": \"SomeDiscountName\",\n      \"item_lineDiscountPercent\": \"string\",\n      \"item_lineDiscountNet\": \"string\",\n      \"item_lineDiscountGross\": \"string\",\n      \"item_invoiceDiscountNet\": \"string\",\n      \"item_invoiceDiscountGross\": \"string\",\n      \"item_discountable\": true,\n      \"paymentMethod_id\": 1234,\n      \"item_updatedStock\": true,\n      \"product_id\": 1234,\n      \"productgroup_name\": \"My product group\",\n      \"productGroup_id\": 1234,\n      \"customer_id\": 1234,\n      \"user_id\": 1234,\n      \"user_name\": \"SomeUser\",\n      \"invoice_id\": 1234,\n      \"deliveryBill_id\": 1234,\n      \"dailyReport_id\": 1234,\n      \"productUnit_id\": 1,\n      \"table_id\": 1234,\n      \"table_name\": \"SomeTableName\",\n      \"payment_id\": 431,\n      \"retourInvoice_id\": 1233,\n      \"item_accountingCode\": \"string\",\n      \"item_testMode\": false,\n      \"item_product_price\": \"string\",\n      \"item_product_priceNet\": \"string\",\n      \"item_product_vat\": \"string\",\n      \"item_qty\": \"string\",\n      \"item_product_vatRate\": \"string\",\n      \"item_product_vatCompensation\": \"string\",\n      \"item_product_priceNetPerUnit\": \"string\",\n      \"item_product_pricePerUnit\": \"string\",\n      \"item_product_discountable\": true\n    }\n  ],\n  \"address\": {\n    \"company\": \"ready2order GmbH\",\n    \"vatId\": \"ATU12341234\",\n    \"salutation\": \"Mr/Ms\",\n    \"title\": \"Professor\",\n    \"firstName\": \"Chris\",\n    \"lastName\": \"Muster\",\n    \"street\": \"SomeStreet 1234\",\n    \"city\": \"Vienna\",\n    \"zip\": \"string\",\n    \"country\": \"AT\",\n    \"email\": \"dummy@email.com\",\n    \"phone\": \"+43 1234 12312341234\"\n  },\n  \"type\": {\n    \"billType_id\": 1,\n    \"billType_name\": \"Rechnung\",\n    \"billType_symbol\": \"RG\"\n  },\n  \"payment\": [\n    {\n      \"billPayment_id\": 9999,\n      \"billPayment_name\": \"Cash\",\n      \"billPayment_value\": \"string\",\n      \"payment_id\": 431,\n      \"referenced_bill_id\": 1234\n    },\n    {\n      \"billPayment_id\": 9999,\n      \"billPayment_name\": \"Cash\",\n      \"billPayment_value\": \"string\",\n      \"payment_id\": 431,\n      \"referenced_bill_id\": 1234\n    }\n  ],\n  \"transaction\": {\n    \"id\": \"TFRG4C6NG2\",\n    \"tx_id\": \"string\",\n    \"customer_receipt\": \"string\",\n    \"amount\": \"string\",\n    \"r2o_id\": \"U1JGILYS\"\n  },\n  \"discounts\": [\n    {\n      \"billDiscount_id\": 9999,\n      \"billDiscount_name\": \"SomeDiscountName\",\n      \"billDiscount_value\": \"string\",\n      \"billDiscount_percent\": \"string\",\n      \"billDiscount_discount_id\": 9999,\n      \"billDiscount_discountGroup_id\": 9999,\n      \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n      \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n    },\n    {\n      \"billDiscount_id\": 9999,\n      \"billDiscount_name\": \"SomeDiscountName\",\n      \"billDiscount_value\": \"string\",\n      \"billDiscount_percent\": \"string\",\n      \"billDiscount_discount_id\": 9999,\n      \"billDiscount_discountGroup_id\": 9999,\n      \"billDiscount_created_at\": \"2019-01-01 00:00:00\",\n      \"billDiscount_updated_at\": \"2019-01-01 00:00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a02c2851-ecae-4d63-8b5a-436e969e3a81",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the invoice that should be cancelled"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storno_id\": 9823,\n  \"storno_reason\": \"Correction\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"paymentMethod_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ad66b1d-8484-46ef-a9e9-3be14a6a6019",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the invoice that should be cancelled"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storno_id\": 9823,\n  \"storno_reason\": \"Correction\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"paymentMethod_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e50aa31-3b7a-41d7-aa6b-2f54238c8a34",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the invoice that should be cancelled"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storno_id\": 9823,\n  \"storno_reason\": \"Correction\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"paymentMethod_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "433fcf5f-08bd-46aa-b688-34bc9e890b4a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of the invoice that should be cancelled"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storno_id\": 9823,\n  \"storno_reason\": \"Correction\",\n  \"invoice_externalReferenceNumber\": \"REF-1234\",\n  \"paymentMethod_id\": 123456,\n  \"partPayments\": [\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    },\n    {\n      \"paymentMethod_id\": 123456,\n      \"amount\": \"<string>\",\n      \"tip\": \"<string>\",\n      \"couponIdentifier\": \"COUPON-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f130e8d7-8b17-4e1f-882c-d7e8a545e2bb",
+          "name": "Print a bill",
+          "request": {
+            "name": "Print a bill",
+            "description": {
+              "content": "Add bill to printer queue for specific printer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice",
+                ":id",
+                "print"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Bill ID to find"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"printer_id\": \"<integer>\",\n  \"printingProfile_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a03760b-61e5-46b3-9961-184b77b8a108",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"printer_id\": 2394,\n  \"printingProfile_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"msg\": \"Bill was added to printer queue\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54a57f50-6a95-4e48-ac90-c7b5af2b916c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"printer_id\": 2394,\n  \"printingProfile_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "798c32c4-2d0b-4f80-84d5-053b4c9104ed",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"printer_id\": 2394,\n  \"printingProfile_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "283df499-8c22-4152-b7c0-ee0e0758b2bd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"printer_id\": 2394,\n  \"printingProfile_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9767a7c-698d-4438-b9d3-89a92fe126ef",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Bill ID to find"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"printer_id\": 2394,\n  \"printingProfile_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85f353ee-ff07-4a5e-9b63-ea22d2cc9c40",
+          "name": "Create PDF for bill",
+          "request": {
+            "name": "Create PDF for bill",
+            "description": {
+              "content": "Returns signed S3 URL. Optionally regenerates pdf if `regeneratePDF` is set to `true`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document",
+                "invoice",
+                ":id",
+                "pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "regeneratePDF",
+                  "value": "<boolean>",
+                  "description": "Regenerate an existing PDF"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "A4",
+                  "description": "PDF Format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) User ID to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bae9946d-6538-41cf-acac-cc0917e0b968",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "regeneratePDF",
+                      "value": "true"
+                    },
+                    {
+                      "key": "format",
+                      "value": "A4, 80mm or 58mm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) User ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"uri\": \"https://some.link\",\n  \"format\": \"A4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9909a1d-6cfa-48b8-b179-dc7916fee876",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "regeneratePDF",
+                      "value": "true"
+                    },
+                    {
+                      "key": "format",
+                      "value": "A4, 80mm or 58mm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) User ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16f3a226-2f5c-4b6f-943e-29ccdd7edb0a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "regeneratePDF",
+                      "value": "true"
+                    },
+                    {
+                      "key": "format",
+                      "value": "A4, 80mm or 58mm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) User ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "626a5f7d-124b-4b46-9267-4f84a8bfc1ea",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document",
+                    "invoice",
+                    ":id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "regeneratePDF",
+                      "value": "true"
+                    },
+                    {
+                      "key": "format",
+                      "value": "A4, 80mm or 58mm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) User ID to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ready2order.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fe0e8333-43d0-4064-b81f-761439dc2a21",
+    "name": "ready2order Public Account Token Bill API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# First Steps\n\n## Authorization\n\nThe ready2order API uses a three-token flow to grant your integration access to a ready2order account. Your integration identifies itself with a Developer Token, requests permission from the account owner, and receives a long-lived Account Token to use for all subsequent requests.\n\nEvery API request to account data must include:\n\n```http\nAuthorization: Bearer <ACCOUNT_TOKEN>\n```\n\n| Token | Scope | Lifetime |\n|-------|-------|----------|\n| **Developer Token** | Identifies your integration | Permanent |\n| **Grant Access Token** | One-time permission request | 10 minutes |\n| **Account Token** | Access to a ready2order account | Until revoked |\n\n---\n\n## Setup\n\nThis is a one-time process per account you want to integrate with.\n\n### Step 1 — Get your Developer Token\n\nRegister at [https://api.ready2order.com](https://api.ready2order.com). Your Developer Token will be emailed to you.\n\nStore it securely — it identifies your integration across all accounts.\n\n---\n\n### Step 2 — Request a Grant Access Token\n\nCall this endpoint using your Developer Token:\n\n```http\nPOST /v1/developerToken/grantAccessToken\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\n```json\n{\n  \"callbackUri\": \"https://your-app.com/callback\"\n}\n```\n\n`callbackUri` is optional but strongly recommended (see Step 3).\n\n**Response:**\n\n```json\n{\n  \"grantAccessToken\": \"...\",\n  \"grantAccessUri\": \"https://app.ready2order.com/...\"\n}\n```\n\n---\n\n### Step 3 — Account owner approves access\n\nRedirect the account owner to the `grantAccessUri`. They will log in to their ready2order account and click **Approve**.\n\n**With `callbackUri`** — after approval, ready2order redirects the account owner back to your URL:\n\n```\nhttps://your-app.com/callback?accountToken=<ACCOUNT_TOKEN>&grantAccessToken=<GRANT_ACCESS_TOKEN>&status=approved\n```\n\nThe `accountToken` in that redirect is what you store and use for all future requests.\n\n**Without `callbackUri`** — poll for the result instead:\n\n```http\nGET /v1/developerToken/grantAccessToken/{grantAccessToken}\nAuthorization: Bearer <DEVELOPER_TOKEN>\n```\n\nThe response will include `accountToken` once the account owner has approved.\n\n> The Grant Access Token expires after **10 minutes**. If the account owner does not approve in time, repeat Step 2 to generate a new one.\n\n---\n\n## Training Mode\n\nSome resources support a training mode that keeps test transactions separate from live data. It is handy for staff training and demos where test sales should not show up in reports or fiscal records.\n\nWhen a cashier puts the POS into training mode, all transactions in that session are flagged as training records and kept separate from live data. On the API side, the `trainingMode` field on a resource tells you whether it is a training record, and most list endpoints accept a `trainingMode` query parameter to filter by it.\n\n---\n\n## Error Responses\n\n| Status | Likely cause |\n|--------|-------------|\n| `401 Unauthorized` | Wrong token type, or `Authorization` header missing |\n| `403 Forbidden` | Developer Token used where Account Token is required (or vice versa) |\n| `429 Too Many Requests` | Rate limit exceeded — max 60 requests per minute per Account Token |\n\n\nContact Support:\n Name: support@ready2order.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Terminal Transaction API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Terminal Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Init",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/terminalTransactions/init/:identifier",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the terminal transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Init"
+        },
+        {
+          "info": {
+            "name": "Trigger Bill Creation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/terminalTransactions/:txId/create-bill",
+            "params": [
+              {
+                "name": "txId",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the terminal transaction"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Trigger Bill Creation"
+        },
+        {
+          "info": {
+            "name": "Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/terminalTransactions/:txId",
+            "params": [
+              {
+                "name": "txId",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the terminal transaction"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Status"
+        },
+        {
+          "info": {
+            "name": "Abort",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ready2order.com/v1/terminalTransactions/:txId",
+            "params": [
+              {
+                "name": "txId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the terminal transaction to abort"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Abort"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

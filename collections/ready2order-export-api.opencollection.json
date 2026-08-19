@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ready2order Public Account Token Export API",
+    "version": "R2-2026.30.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Cashbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/cashbook/export",
+            "params": [
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileFormat",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export Cashbook"
+        },
+        {
+          "info": {
+            "name": "Export Accountancy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/export/accountancy",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use one of the possible export formats: bmd, bmd-ntcs, datev, sap, rzl"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "Year for which the export should be generated (optional)"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "Month for which the export should be generated (optional)"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Day for which the export should be generated (optional)"
+              },
+              {
+                "name": "exportCashbook",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include cashbook transactions in the export"
+              },
+              {
+                "name": "dataSource",
+                "value": "",
+                "type": "query",
+                "description": "Type of data-aggregation to use. Possible value are: invoice, eachItem, dailyReport_productGroups, dailyReport_accountingCode"
+              },
+              {
+                "name": "financialYear",
+                "value": "",
+                "type": "query",
+                "description": "If format is datev the number of the financialYear has to be provided. See GET /accounting/financialYears <br><br> _* Required when `format` is `datev`._"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "If format is datev the start date of the financialYear has to be provided. See GET /accounting/financialYears <br><br> _* Required when `financialYear` is provided._"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "If format is datev the end date of the financialYear has to be provided. See GET /accounting/financialYears <br><br> _* Required when `financialYear` is provided._"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export Accountancy"
+        },
+        {
+          "info": {
+            "name": "Export Cashbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ready2order.com/v1/export/accountancy/cashbook",
+            "params": [
+              {
+                "name": "year",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "<br><br> _* Required when `dateTo` is provided._"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "<br><br> _* Required when `dateFrom` is provided._"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export Cashbook"
+        },
+        {
+          "info": {
+            "name": "Export Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ready2order.com/v1/export/sales",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export Sales"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
