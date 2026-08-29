@@ -10,6 +10,18 @@ description: >-
   Switzerland. Surfaced as a portfolio company of Speedinvest and enriched into the API Evangelist
   network from its published OpenAPI and developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/ready2order/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -914,6 +926,9 @@ x-enrichment:
   artifacts_added: 15
   pass: local-v1
 common:
+- type: CapabilityMap
+  url: capabilities/ready2order-capability-edges.yml
+  name: Ready2order Business Capability Map
 - type: DeveloperPortal
   url: https://ready2order.com/en/api/
 - type: Documentation
