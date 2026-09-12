@@ -927,6 +927,8 @@ x-enrichment:
   artifacts_added: 15
   pass: local-v1
 common:
+- type: Website
+  url: https://www.ready2order.com/
 - type: CapabilityMap
   url: capabilities/ready2order-capability-edges.yml
   name: Ready2order Business Capability Map
