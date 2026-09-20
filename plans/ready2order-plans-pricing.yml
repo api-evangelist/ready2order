@@ -1,0 +1,99 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://ready2order.com/en/pricing/
+sources:
+- https://ready2order.com/en/pricing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120317
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: POS software/hardware pricing page; API mentioned only in nav, not priced. All prices excl. VAT.
+plan_count: 13
+currency: EUR
+plans:
+- name: POS License
+  price_text: 35 . 90 € monthly
+  price: 35.9
+  currency: EUR
+  period: month
+  unit: per device
+  included_quota: All basic functions, Quick setup, Free support, For iOS, Android, Windows, and macOS,
+    100% tax compliant
+  overage: 'POS Activation Fee: € 99'
+- name: POS License (annual)
+  price_text: € 430.80 per year with annual advance payment
+  price: 430.8
+  currency: EUR
+  period: year
+  unit: per device
+  included_quota: Save € 132 vs monthly
+- name: Gastro Package
+  price_text: € 23.90 monthly
+  price: 23.9
+  currency: EUR
+  period: month
+  included_quota: Table plan and management, wireless ordering, separate bills
+- name: Cashbook
+  price_text: € 13.90 monthly
+  price: 13.9
+  currency: EUR
+  period: month
+  included_quota: Integrated into cash register, data export
+- name: Digital Receipt
+  price_text: € 7.90 monthly
+  price: 7.9
+  currency: EUR
+  period: month
+  included_quota: QR code receipts
+- name: Certificate "Signaturpflicht"
+  price_text: 12 . 00 € monthly
+  price: 12
+  currency: EUR
+  period: month
+  included_quota: Unlimited signatures per year
+- name: TSE Package
+  price_text: 15 . 90 € monthly
+  price: 15.9
+  currency: EUR
+  period: month
+  included_quota: Unlimited devices, unlimited storage
+- name: Starter Package
+  price_text: 0 . 00 € (included)
+  price: 0
+  currency: EUR
+  period: none
+  included_quota: Help Center, resources, free support
+- name: Online Compact Training
+  price_text: 199 . 00 € once
+  price: 199
+  currency: EUR
+  period: one-time
+  included_quota: approx. 60 minutes
+- name: Online Full Setup
+  price_text: 349 . 00 € once
+  price: 349
+  currency: EUR
+  period: one-time
+  included_quota: For 1 to 2 cash registers or smartphones, approx. 90 minutes
+- name: readyTab
+  price_text: Only € 649.00
+  price: 649
+  currency: EUR
+  period: one-time
+  unit: hardware
+- name: readyMax 2
+  price_text: Only € 1,199.00
+  price: 1199
+  currency: EUR
+  period: one-time
+  unit: hardware
+- name: readyMini
+  price_text: Only € 279.00
+  price: 279
+  currency: EUR
+  period: one-time
+  unit: hardware

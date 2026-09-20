@@ -931,6 +931,8 @@ x-enrichment:
   artifacts_added: 15
   pass: local-v1
 common:
+- type: Plans
+  url: plans/ready2order-plans-pricing.yml
 - type: Website
   url: https://www.ready2order.com/
 - type: CapabilityMap
