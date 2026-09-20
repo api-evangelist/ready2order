@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 7
+edge_count: 11
 edges:
 - tag: Customer
   spec_file: ready2order-customer-api-openapi.yml
@@ -49,6 +49,18 @@ edges:
   confidence: 0.8
   evidence: POST /discountGroups  discountGroupCreateDiscountGroup  Create a discount group
   reason: Maintains groupings of discounts, part of discount/promotion structure management in pricing.
+- tag: Coupon
+  spec_file: ready2order-coupon-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.75
+  evidence: POST /coupons  couponCreate  Create a coupon; POST /coupons/{id}/redeem  couponRedeemById  Redeem
+    a coupon
+  reason: Full lifecycle of coupons including charging and redemption at the point of sale — promotional/voucher
+    instrument management, which sits under Discount & Promotion Management. Loyalty framing is possible
+    but not evidenced (no programme, tiers or points).
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Bill
   spec_file: ready2order-bill-api-openapi.yml
   capability_id: BC-2320.10
@@ -60,6 +72,17 @@ edges:
   reason: On a cloud POS for gastronomy/retail, creating, printing and cancelling bills/invoices is the
     till-side capture and documentation of consumer sales transactions. Some ambiguity versus accounts-receivable
     invoicing, hence moderate confidence.
+- tag: Account Token
+  spec_file: ready2order-account-token-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: '"Revoke Account Token"; "Your integration identifies itself with a Developer Token, requests
+    permission from the account owner, and receives a long-lived Account Token"'
+  reason: Operation manages the lifecycle (revocation) of credentials issued to third-party integrations
+    against the public API — developer identity & credential management for the platform's API ecosystem.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Daily Report
   spec_file: ready2order-daily-report-api-openapi.yml
   capability_id: BC-2320
@@ -80,3 +103,26 @@ edges:
   reason: Full CRUD over the product/item record including item numbers, stock and per-customer prices
     — the canonical item master record for the POS. Stock and price sub-resources add some ambiguity (inventory/pricing),
     so not maximal confidence.
+- tag: User
+  spec_file: ready2order-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /users userCreate Create a new User; PATCH /users/{id} userUpdatePasswordById Update
+    Password By Id; GET /users/{id}/signInToken
+  reason: Lifecycle of POS operator accounts including credentials and sign-in tokens — identity and access
+    administration. Could alternatively be read as tenant user administration, so not maximal confidence.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Webhook
+  spec_file: ready2order-webhook-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: PUT /webhook webhookUpdateWebhookUrl Update Webhook Url; GET /webhook/events webhookFindWebhookEvents
+    Find Webhook Events
+  reason: Configures the outbound webhook endpoint and the event types delivered to integrations — outbound
+    event subscription management as offered by the vendor's public API platform. Plumbing-like, but the
+    frame names this capability explicitly.
+  recovered_from: sweep-20260829T005356Z-edges.json
