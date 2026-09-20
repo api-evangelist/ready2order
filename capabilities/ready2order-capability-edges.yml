@@ -1,0 +1,82 @@
+slug: ready2order
+provider: Ready2order
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Retail & Consumer Goods
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Customer
+  spec_file: ready2order-customer-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: POST /customers  customerCreate  "Create a new Customer"; POST /customers/merge  "Merge Customers"
+  reason: Full CRUD over the customer record plus a merge/de-duplication operation — maintenance of the
+    customer master and golden record.
+- tag: Discount
+  spec_file: ready2order-discount-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.85
+  evidence: POST /discounts  discountCreate  Create a discount
+  reason: Full CRUD over discount definitions used at the till — discount and promotion management within
+    pricing.
+- tag: Terminal Transaction
+  spec_file: ready2order-terminal-transaction-api-openapi.yml
+  capability_id: BC-2320.20
+  capability_id_l1: BC-2320
+  capability_name: Tender and Payment Acceptance Management
+  confidence: 0.85
+  evidence: POST /terminalTransactions/init/{identifier}  "Init"; GET /terminalTransactions/{txId}  "Status";
+    DELETE /terminalTransactions/{txId}  "Abort"; POST /terminalTransactions/{txId}/create-bill
+  reason: Initiating, polling and aborting card-terminal payment transactions and then triggering bill
+    creation is precisely tender/payment acceptance at the till.
+- tag: Discount Group
+  spec_file: ready2order-discount-group-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.8
+  evidence: POST /discountGroups  discountGroupCreateDiscountGroup  Create a discount group
+  reason: Maintains groupings of discounts, part of discount/promotion structure management in pricing.
+- tag: Bill
+  spec_file: ready2order-bill-api-openapi.yml
+  capability_id: BC-2320.10
+  capability_id_l1: BC-2320
+  capability_name: Sales Transaction Management
+  confidence: 0.72
+  evidence: POST /document/invoice  billCreateBill  "Create Bill"; "Print a bill"; "Cancel an invoice";
+    "Create PDF for bill"
+  reason: On a cloud POS for gastronomy/retail, creating, printing and cancelling bills/invoices is the
+    till-side capture and documentation of consumer sales transactions. Some ambiguity versus accounts-receivable
+    invoicing, hence moderate confidence.
+- tag: Daily Report
+  spec_file: ready2order-daily-report-api-openapi.yml
+  capability_id: BC-2320
+  capability_id_l1: BC-2320
+  capability_name: Point of Sale Operations Management
+  confidence: 0.7
+  evidence: PUT /dailyReport/open  dailyReportOpen  Open daily report; PUT /dailyReport/close  dailyReportClose
+  reason: Opening/closing the POS daily report is the till-day open/close and end-of-day reconciliation
+    routine of point-of-sale operations. Ambiguous between POS cash/tender handling and store open/close
+    routines, so L1 only.
+- tag: Product
+  spec_file: ready2order-product-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.7
+  evidence: POST /products  "Create a product"; PUT /products/{id}  "Update a product"; GET /products/itemNumber/{itemNumber}/stock
+  reason: Full CRUD over the product/item record including item numbers, stock and per-customer prices
+    — the canonical item master record for the POS. Stock and price sub-resources add some ambiguity (inventory/pricing),
+    so not maximal confidence.
