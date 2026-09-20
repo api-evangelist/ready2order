@@ -931,6 +931,8 @@ x-enrichment:
   artifacts_added: 15
   pass: local-v1
 common:
+- type: RateLimits
+  url: rate-limits/ready2order-rate-limits.yml
 - type: Plans
   url: plans/ready2order-plans-pricing.yml
 - type: Website

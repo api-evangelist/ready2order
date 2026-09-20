@@ -1,0 +1,21 @@
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://ready2order.com/api/doc
+sources:
+- https://ready2order.com/api/doc
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: 'The API reference page states one rate limit in its Error Responses table: 429 Too Many Requests
+  — max 60 requests per minute per Account Token. No rate-limit headers are documented.'
+limit_count: 1
+limits:
+- name: Account token request limit
+  limit_text: max 60 requests per minute per Account Token
+  limit: 60
+  window: minute
+  scope: account
+exceeded_status: 429
